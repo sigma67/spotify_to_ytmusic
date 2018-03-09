@@ -1,0 +1,7 @@
+[google]
+email = abc@gmail.com
+password = 123kd72k1h
+
+[spotify]
+client_id = id_from_developer_console
+client_secret = secret_from_developer_console
