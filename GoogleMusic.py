@@ -7,7 +7,7 @@ import settings
 class GoogleMusic:
     def __init__(self):
         conf = settings['google']
-        self.api = Mobileclient()
+        self.api = Mobileclient(debug_logging=False)
         self.api.login(conf['email'], conf['password'], Mobileclient.FROM_MAC_ADDRESS)
 
     def createPlaylist(self, name, songs):
