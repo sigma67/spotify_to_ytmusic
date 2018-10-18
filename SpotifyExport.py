@@ -29,4 +29,4 @@ class Spotify:
             more = len(results["items"]) == 100
             count = count + 1
 
-        return [tracks, name]
+        return {'tracks': tracks, 'name': name}
