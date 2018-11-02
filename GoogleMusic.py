@@ -1,6 +1,7 @@
 from gmusicapi import Mobileclient
 from SpotifyExport import Spotify
 import sys
+import os
 import re
 import difflib
 import settings
@@ -76,13 +77,14 @@ def main(argv):
 
     gmusic = GoogleMusic()
     if args.file:
-        with open(args.file, 'r') as f:
+        with open(args.playlist, 'r') as f:
             songs = f.readlines()
         if args.name:
             name = args.name
         else:
-            name = args.file.split('.')[0]
+            name = os.path.basename(args.playlist).split('.')[0]
         gmusic.createPlaylist(name, songs)
+        return
 
     playlist = Spotify().getSpotifyPlaylist(args.playlist)
 
