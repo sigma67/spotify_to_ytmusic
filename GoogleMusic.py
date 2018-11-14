@@ -76,13 +76,18 @@ def main(argv):
     args = get_args()
 
     gmusic = GoogleMusic()
+
+    date = ""
+    if args.date:
+        date = " " + datetime.today().strftime('%m/%d/%Y')
+
     if args.file:
         with open(args.playlist, 'r') as f:
             songs = f.readlines()
         if args.name:
-            name = args.name
+            name = args.name + date
         else:
-            name = os.path.basename(args.playlist).split('.')[0]
+            name = os.path.basename(args.playlist).split('.')[0] + date
         gmusic.createPlaylist(name, songs)
         return
 
@@ -94,11 +99,10 @@ def main(argv):
         gmusic.addSongs(playlistId, playlist['tracks'])
     else:
         if args.name:
-            name = args.name
+            name = args.name + date
         else:
-            name = playlist['name']
-        if args.date:
-            name += " " + datetime.today().strftime('%m/%d/%Y')
+            name = playlist['name'] + date
+
         gmusic.createPlaylist(name, playlist['tracks'])
 
 if __name__ == "__main__":
