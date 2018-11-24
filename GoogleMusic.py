@@ -69,7 +69,7 @@ def get_args():
     parser.add_argument("-u", "--update", type=str, help="Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.")
     parser.add_argument("-n", "--name", type=str, help="Provide a name for the Google Play Music playlist. Default: Spotify playlist name")
     parser.add_argument("-d", "--date", action='store_true', help="Append the current date to the playlist name")
-    parser.add_argument("-f", "--file", action='store_true', help="Indicates that the laylist parameter is a filename. Reads playlist entry names from file instead")
+    parser.add_argument("-f", "--file", action='store_true', help="Indicates that the playlist parameter is a filename. Reads playlist entry names from file instead")
     return parser.parse_args()
 
 def main(argv):

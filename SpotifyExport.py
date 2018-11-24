@@ -10,13 +10,13 @@ class Spotify:
 
     def getSpotifyPlaylist(self, url):
         url_parts = url.split('/')
-        user = url_parts[4]
-        playlistId = url_parts[6].split('?')[0]
+        playlistId = url_parts[4].split('?')[0]
         if len(playlistId) != 22:
             return ('Bad playlist id: ' + playlistId)
 
         tracks = []
-        results = self.api.user_playlist(user, playlistId)
+        results = self.api.playlist(playlistId)
+        user = results['owner']['id']
         name = results['name']
         tracks += list(track['track']['artists'][0]['name'] + ' ' + track['track']['name'] for track in results['tracks']["items"] if track['track'] is not None)
 
