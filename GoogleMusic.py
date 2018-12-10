@@ -10,9 +10,8 @@ from datetime import datetime
 
 class GoogleMusic:
     def __init__(self):
-        conf = settings['google']
         self.api = Mobileclient(debug_logging=False)
-        self.api.login(conf['email'], conf['password'], Mobileclient.FROM_MAC_ADDRESS)
+        self.api.login(self.api.login(settings['google']['mobileclient']))
 
     def createPlaylist(self, name, songs):
         playlistId = self.api.create_playlist(name=name, description=None, public=False)

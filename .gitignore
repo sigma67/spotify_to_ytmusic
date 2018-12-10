@@ -106,7 +106,7 @@ venv.bak/
 .mypy_cache/
 
 # specific
+.idea/
 noresults.txt
 *.ini
-*.cred
 *.txt
