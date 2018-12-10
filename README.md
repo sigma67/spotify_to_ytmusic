@@ -22,4 +22,4 @@ The script will log its progress and output songs that were not found in Google 
 
 To upload songs, run
 
-`python GoogleMusic.py <filepath>`
+`python GoogleMusicManager.py <filepath>`
