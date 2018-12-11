@@ -8,10 +8,17 @@ import settings
 import argparse
 from datetime import datetime
 
+path = os.path.dirname(os.path.realpath(__file__))
+
+
 class GoogleMusic:
     def __init__(self):
         self.api = Mobileclient(debug_logging=False)
-        self.api.login(self.api.login(settings['google']['mobileclient']))
+        with open(path + "oauth.cred", 'w+') as tmp:
+            tmp.write(settings['google']['mobileclient'])
+            tmp.close()
+            self.api.oauth_login(Mobileclient.FROM_MAC_ADDRESS, tmp.name)
+            os.remove(tmp.name)
 
     def createPlaylist(self, name, songs):
         playlistId = self.api.create_playlist(name=name, description=None, public=False)
@@ -32,7 +39,7 @@ class GoogleMusic:
 
         self.api.add_songs_to_playlist(playlistId, songIds)
 
-        with open('noresults.txt', 'w') as f:
+        with open(path + 'noresults.txt', 'w') as f:
             f.write("\n".join(notFound))
             f.close()
 
