@@ -8,7 +8,7 @@ import settings
 import argparse
 from datetime import datetime
 
-path = os.path.dirname(os.path.realpath(__file__))
+path = os.path.dirname(os.path.realpath(__file__)) + '\\'
 
 
 class GoogleMusic:
