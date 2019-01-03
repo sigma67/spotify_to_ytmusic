@@ -20,9 +20,10 @@ class GoogleMusic:
             self.api.oauth_login(Mobileclient.FROM_MAC_ADDRESS, tmp.name)
             os.remove(tmp.name)
 
-    def createPlaylist(self, name, songs):
-        playlistId = self.api.create_playlist(name=name, description=None, public=False)
+    def createPlaylist(self, name, songs, public):
+        playlistId = self.api.create_playlist(name=name, description=None, public=public)
         self.addSongs(playlistId, songs)
+        print("Success: created playlist \"" + name + "\"")
 
     def addSongs(self, playlistId, songs):
         songIds = []
@@ -71,11 +72,11 @@ class GoogleMusic:
 
 def get_args():
     parser = argparse.ArgumentParser(description='Transfer spotify playlist to Google Play Music.')
-    parser.add_argument("playlist", type=str)
+    parser.add_argument("playlist", type=str, help="Provide a playlist Spotify link. Alternatively, provide a text file (one song per line)")
     parser.add_argument("-u", "--update", type=str, help="Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.")
     parser.add_argument("-n", "--name", type=str, help="Provide a name for the Google Play Music playlist. Default: Spotify playlist name")
     parser.add_argument("-d", "--date", action='store_true', help="Append the current date to the playlist name")
-    parser.add_argument("-f", "--file", action='store_true', help="Indicates that the playlist parameter is a filename. Reads playlist entry names from file instead")
+    parser.add_argument("-p", "--public", action='store_true', help="Make the playlist public. Default: private")
     return parser.parse_args()
 
 def main(argv):
@@ -87,14 +88,14 @@ def main(argv):
     if args.date:
         date = " " + datetime.today().strftime('%m/%d/%Y')
 
-    if args.file:
+    if os.path.isfile(args.playlist):
         with open(args.playlist, 'r') as f:
             songs = f.readlines()
         if args.name:
             name = args.name + date
         else:
             name = os.path.basename(args.playlist).split('.')[0] + date
-        gmusic.createPlaylist(name, songs)
+        gmusic.createPlaylist(name, songs, args.public)
         return
 
     playlist = Spotify().getSpotifyPlaylist(args.playlist)
@@ -109,7 +110,7 @@ def main(argv):
         else:
             name = playlist['name'] + date
 
-        gmusic.createPlaylist(name, playlist['tracks'])
+        gmusic.createPlaylist(name, playlist['tracks'], args.public)
 
 if __name__ == "__main__":
     main(sys.argv)
