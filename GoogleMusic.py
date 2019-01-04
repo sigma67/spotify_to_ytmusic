@@ -98,7 +98,11 @@ def main(argv):
         gmusic.createPlaylist(name, songs, args.public)
         return
 
-    playlist = Spotify().getSpotifyPlaylist(args.playlist)
+    try:
+        playlist = Spotify().getSpotifyPlaylist(args.playlist)
+    except:
+        print("Could not get Spotify playlist. Please check the playlist link")
+        return
 
     if args.update:
         playlistId = gmusic.getPlaylistId(args.update)
