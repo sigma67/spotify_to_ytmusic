@@ -1,25 +1,43 @@
-# spotifyplaylist_to_gmusic
-A simple script to clone a Spotify playlist to Google Play Music.
+# Transfer a Spotify Playlist to Google Play Music
+A simple command line script to clone a Spotify playlist to Google Play Music. 
+Also includes interfaces for 
+- creating a Play Music playlist from a text file
+- uploading local MP3s to Play Music
+
+## Requirements
+
+- Python 3 - https://www.python.org
+- Python extension gmusicapi: `pip install gmusicapi`
+
+## Setup
 
 Initially you should create a new settings.ini containing your Spotify credentials. Simply copy settings.ini.example to a new file settings.ini and fill in your client_id and client_secret from https://developer.spotify.com/my-applications
 
-For Google Play Music, run 
+For Google Play Music, open a console in the source code folder and run 
 
 `python Setup.py <client>`
 
-and follow the command line instructions to grant the app access to your account. All credentials are stored locally in the file `settings.ini`. 
+where `<client>` should be `mobileclient` to setup playlist transfers **or** `musicmanager` to be able to upload files with GoogleMusicManager.py.
 
-Replace `<client>` with `mobileclient` to setup playlist transfers. Replace with `musicmanager` to be able to upload files with GoogleMusicManager.py.
+Then follow the command line instructions to grant the app access to your account. All credentials are stored locally in the file `settings.ini`. 
+
+## Transfer playlists
 
 After you've created the settings file, you can simply run the script from the command line using
 
 `python GoogleMusic.py <spotifylink>`
 
 where `<spotifylink>` is a link like https://open.spotify.com/user/edmsauce/playlist/3yGp845Tz2duWCORALQHFO
+Alternatively you can also use a file name in place of a spotify link. The file should contain one song per line.
 
 The script will log its progress and output songs that were not found in Google Play Music to **noresults.txt**.
 
-
+## Upload songs
 To upload songs, run
 
 `python GoogleMusicManager.py <filepath>`
+
+## Command line options
+There are some additional command line options for setting the playlist name and determining whether it's public or not. To view them, run
+
+`python GoogleMusic.py -h`
