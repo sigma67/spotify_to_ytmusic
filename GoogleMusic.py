@@ -61,14 +61,21 @@ class GoogleMusic:
 
         return max(match_score, key=match_score.get)
 
-# def remove_playlists(pattern, debug = False):
-#     #gmusic = GoogleMusic()
-#     #pl = Mobileclient.get_all_playlists(gmusic.api)
-#     p = re.compile(pattern)
-#     if debug:
-#         [print(song['name']) for song in pl if p.match(song['name'])]
-#     else:
-#         [gmusic.deletePlaylist(song['id']) for song in pl if p.match(song['name'])]
+    def remove_playlists(self, pattern):
+        pl = self.api.get_all_playlists()
+        p = re.compile("{0}".format(pattern))
+        matches = [song for song in pl if p.match(song['name'])]
+        print("The following playlists will be removed:")
+        print("\n".join([song['name'] for song in matches]))
+        print("Please confirm (y/n):")
+
+        choice = input().lower()
+        if choice[:1] == 'y':
+            [self.api.delete_playlist(song['id']) for song in matches]
+            print(str(len(matches)) + " playlists deleted.")
+        else:
+            print("Aborted. No playlists were deleted.")
+
 
 def get_args():
     parser = argparse.ArgumentParser(description='Transfer spotify playlist to Google Play Music.')
@@ -77,12 +84,17 @@ def get_args():
     parser.add_argument("-n", "--name", type=str, help="Provide a name for the Google Play Music playlist. Default: Spotify playlist name")
     parser.add_argument("-d", "--date", action='store_true', help="Append the current date to the playlist name")
     parser.add_argument("-p", "--public", action='store_true', help="Make the playlist public. Default: private")
+    parser.add_argument("-r", "--remove", action='store_true', help="Remove playlists with specified regex pattern.")
     return parser.parse_args()
 
 def main(argv):
     args = get_args()
 
     gmusic = GoogleMusic()
+
+    if args.remove:
+        gmusic.remove_playlists(args.playlist)
+        return
 
     date = ""
     if args.date:
