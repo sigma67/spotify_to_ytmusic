@@ -12,7 +12,7 @@ class Spotify:
         url_parts = url.split('/')
         playlistId = url_parts[4].split('?')[0]
         if len(playlistId) != 22:
-            return ('Bad playlist id: ' + playlistId)
+            raise Exception('Bad playlist id: ' + playlistId)
 
         tracks = []
         results = self.api.playlist(playlistId)

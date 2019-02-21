@@ -112,8 +112,8 @@ def main(argv):
 
     try:
         playlist = Spotify().getSpotifyPlaylist(args.playlist)
-    except:
-        print("Could not get Spotify playlist. Please check the playlist link")
+    except Exception as ex:
+        print("Could not get Spotify playlist. Please check the playlist link.\n Error: " + repr(ex))
         return
 
     if args.update:
