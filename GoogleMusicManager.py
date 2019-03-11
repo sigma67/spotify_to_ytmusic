@@ -8,7 +8,6 @@ path = os.path.dirname(os.path.realpath(__file__)) + '\\'
 class GoogleMusicManager:
     def __init__(self):
         self.api = Musicmanager(debug_logging=False)
-        self.api.login()
         with open(path + "oauth.cred", 'w+') as tmp:
             tmp.write(settings['google']['musicmanager'])
             tmp.close()
@@ -21,8 +20,9 @@ class GoogleMusicManager:
 
 if __name__ == "__main__":
     gmusic = GoogleMusicManager()
-    try:
-        gmusic.upload_song(sys.argv[1])
-        print("Successfully uploaded " + sys.argv[1])
-    except:
-        print("There was an error during the upload.")
+    for x in sys.argv[1:]:
+        try:
+            gmusic.upload_song(x)
+            print("Successfully uploaded " + x)
+        except Exception as e:
+            print("There was an error during the upload for file " + x + ": " + str(e))
