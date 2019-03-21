@@ -40,7 +40,7 @@ class GoogleMusic:
 
         self.api.add_songs_to_playlist(playlistId, songIds)
 
-        with open(path + 'noresults.txt', 'w') as f:
+        with open(path + 'noresults.txt', 'w', encoding="utf-8") as f:
             f.write("\n".join(notFound))
             f.close()
 
