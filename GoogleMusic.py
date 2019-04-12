@@ -6,6 +6,7 @@ import re
 import difflib
 import settings
 import argparse
+import reddit
 from datetime import datetime
 
 path = os.path.dirname(os.path.realpath(__file__)) + '\\'
@@ -85,6 +86,7 @@ def get_args():
     parser.add_argument("-d", "--date", action='store_true', help="Append the current date to the playlist name")
     parser.add_argument("-p", "--public", action='store_true', help="Make the playlist public. Default: private")
     parser.add_argument("-r", "--remove", action='store_true', help="Remove playlists with specified regex pattern.")
+    parser.add_argument("-re", "--reddit", action='store_true', help="Post to latest r/EDM reddit thread.")
     return parser.parse_args()
 
 def main(argv):
@@ -127,6 +129,12 @@ def main(argv):
             name = playlist['name'] + date
 
         gmusic.createPlaylist(name, playlist['tracks'], args.public)
+
+    if args.reddit:
+        pl = gmusic.api.get_all_playlists()
+        shareToken = next(x for x in pl if x['name'].find(name) != -1)['shareToken']
+        r = reddit.Reddit()
+        r.comment_EDM("[Google Play Music](https://play.google.com/music/playlist/" + shareToken + ")")
 
 if __name__ == "__main__":
     main(sys.argv)
