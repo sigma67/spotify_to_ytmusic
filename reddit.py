@@ -24,7 +24,7 @@ def setup():
                          redirect_uri='http://localhost:8080',
                          user_agent=agent)
 
-    print(reddit.auth.url(['identity', 'read', 'submit'], '...', 'permanent'))
+    print(reddit.auth.url(['identity', 'read', 'submit'], '322', 'permanent'))
 
     client = receive_connection()
     data = client.recv(1024).decode("utf-8")
@@ -35,6 +35,7 @@ def setup():
     }
 
     settings['reddit']['refresh_token'] = reddit.auth.authorize(params["code"])
+    settings.save()
 
 
 class Reddit:
@@ -55,3 +56,6 @@ class Reddit:
             if time.time() - x.created_utc < 86400:
                 print("Commenting post: " + x.title)
                 x.reply(content)
+
+def main(argv):
+    setup()
