@@ -34,7 +34,7 @@ def setup():
         for (key, value) in [token.split("=") for token in param_tokens]
     }
 
-    settings['reddit']['refresh_token'] = reddit.auth.authorize("1T4W_JQV_yWo3yHL6yhNXCW_Mc8")
+    settings['reddit']['refresh_token'] = reddit.auth.authorize(params["code"])
 
 
 class Reddit:
