@@ -9,7 +9,7 @@ import argparse
 import reddit
 from datetime import datetime
 
-path = os.path.dirname(os.path.realpath(__file__)) + '\\'
+path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 
 class GoogleMusic:
