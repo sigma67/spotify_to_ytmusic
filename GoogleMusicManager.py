@@ -3,7 +3,7 @@ import os
 import settings
 from gmusicapi import Musicmanager
 
-path = os.path.dirname(os.path.realpath(__file__)) + '\\'
+path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 class GoogleMusicManager:
     def __init__(self):
