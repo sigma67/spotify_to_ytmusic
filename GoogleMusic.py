@@ -31,6 +31,7 @@ class GoogleMusic:
         songlist = list(songs)
         notFound = list()
         for i, song in enumerate(songlist):
+            song = song.replace(" &", "")
             result = self.api.search(query=song, max_results=2)
             if len(result['song_hits']) == 0:
                 notFound.append(song)
