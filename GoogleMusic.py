@@ -86,12 +86,28 @@ def get_args():
     parser.add_argument("-d", "--date", action='store_true', help="Append the current date to the playlist name")
     parser.add_argument("-p", "--public", action='store_true', help="Make the playlist public. Default: private")
     parser.add_argument("-r", "--remove", action='store_true', help="Remove playlists with specified regex pattern.")
+    parser.add_argument("-a", "--all", action='store_true', help="Transfer all public playlists of the specified user (Spotify User ID).")
     return parser.parse_args()
 
 def main(argv):
     args = get_args()
 
     gmusic = GoogleMusic()
+
+    if args.all:
+        s = Spotify()
+        pl = s.getUserPlaylists(args.playlist)
+        print(str(len(pl)) + " playlists found. Starting transfer...")
+        count = 1
+        for p in pl:
+            print("Playlist " + str(count) + ": " + p['name'])
+            count = count + 1
+            try:
+                playlist = Spotify().getSpotifyPlaylist(p['external_urls']['spotify'])
+                gmusic.createPlaylist(p['name'], playlist['tracks'], args.public)
+            except Exception as ex:
+                print("Could not transfer playlist")
+        return
 
     if args.remove:
         gmusic.remove_playlists(args.playlist)

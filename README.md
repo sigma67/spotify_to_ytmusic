@@ -32,6 +32,11 @@ Alternatively you can also **use a file name** in place of a spotify link. The f
 
 The script will log its progress and output songs that were not found in Google Play Music to **noresults.txt**.
 
+## Transfer all playlists of a user
+For migration purposes, it is possible to transfer all public playlists of a user by using the user's ID (unique username). 
+
+`python GoogleMusic.py --all <user>`
+
 ## Upload songs
 To upload songs, run
 

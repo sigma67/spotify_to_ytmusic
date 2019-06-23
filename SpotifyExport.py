@@ -30,3 +30,15 @@ class Spotify:
             count = count + 1
 
         return {'tracks': tracks, 'name': name}
+
+    def getUserPlaylists(self, user):
+        pl = self.api.user_playlists(user)['items']
+        count = 1
+        more = len(pl) == 50
+        while more:
+            results = self.api.user_playlists(user, offset=count * 50)['items']
+            pl.extend(results)
+            more = len(results) == 50
+            count = count + 1
+
+        return [p for p in pl if p['owner']['display_name'] == user and p['tracks']['total'] > 0]
