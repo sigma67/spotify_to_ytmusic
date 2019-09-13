@@ -57,5 +57,6 @@ class Reddit:
                 print("Commenting post: " + x.title)
                 x.reply(content)
 
-def main(argv):
+
+if __name__ == "__main__":
     setup()
