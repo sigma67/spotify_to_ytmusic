@@ -2,6 +2,8 @@ import praw
 import settings
 import socket
 import time
+import sys
+import os
 
 agent = 'Gmusic playlist app by /u/Sigmatics'
 def receive_connection():
@@ -52,11 +54,29 @@ class Reddit:
     def comment_EDM(self, content):
         sub = self.reddit.subreddit('EDM')
         results = sub.search("New EDM This Week", time_filter="week")
+        commented = False
         for x in results:
             if time.time() - x.created_utc < 86400:
                 print("Commenting post: " + x.title)
                 x.reply(content)
+                commented = True
 
+        return commented
 
 if __name__ == "__main__":
-    setup()
+    if len(sys.argv) > 1:
+        setup()
+
+    else:
+        path = os.path.dirname(os.path.realpath(__file__)) + os.sep
+        filename = path + "comment.txt"
+        if not os.path.isfile(filename):
+            exit()
+        f = open(filename, 'r')
+        comment = f.read()
+        r = Reddit()
+        success = r.comment_EDM(comment)
+        if success:
+            os.remove(filename)
+
+

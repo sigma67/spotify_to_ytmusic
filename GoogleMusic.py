@@ -135,7 +135,11 @@ def main(argv):
         pl = gmusic.api.get_all_playlists()
         shareToken = next(x for x in pl if x['name'].find(name) != -1)['shareToken']
         r = reddit.Reddit()
-        r.comment_EDM("[Google Play Music](https://play.google.com/music/playlist/" + shareToken + ")")
+        comment = "[Google Play Music](https://play.google.com/music/playlist/" + shareToken + ")"
+        commented = r.comment_EDM(comment)
+        if not commented:
+            with open(path + "comment.txt", 'w') as f:
+                f.write(comment)
 
 if __name__ == "__main__":
     main(sys.argv)
