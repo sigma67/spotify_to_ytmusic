@@ -29,7 +29,7 @@ class Spotify:
             more = len(results["items"]) == 100
             count = count + 1
 
-        return {'tracks': tracks, 'name': name}
+        return {'tracks': tracks, 'name': name, 'description': results['description']}
 
     def getUserPlaylists(self, user):
         pl = self.api.user_playlists(user)['items']

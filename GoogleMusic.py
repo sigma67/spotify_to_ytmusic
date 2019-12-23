@@ -20,8 +20,8 @@ class GoogleMusic:
             self.api.oauth_login(Mobileclient.FROM_MAC_ADDRESS, tmp.name)
             os.remove(tmp.name)
 
-    def createPlaylist(self, name, songs, public):
-        playlistId = self.api.create_playlist(name=name, description=None, public=public)
+    def createPlaylist(self, name, description, songs, public):
+        playlistId = self.api.create_playlist(name=name, description=description, public=public)
         self.addSongs(playlistId, songs)
         print("Success: created playlist \"" + name + "\"")
 
@@ -83,6 +83,7 @@ def get_args():
     parser.add_argument("playlist", type=str, help="Provide a playlist Spotify link. Alternatively, provide a text file (one song per line)")
     parser.add_argument("-u", "--update", type=str, help="Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.")
     parser.add_argument("-n", "--name", type=str, help="Provide a name for the Google Play Music playlist. Default: Spotify playlist name")
+    parser.add_argument("-i", "--info", type=str, help="Provide description information for the Google Play Music Playlist. Default: Spotify playlist description")
     parser.add_argument("-d", "--date", action='store_true', help="Append the current date to the playlist name")
     parser.add_argument("-p", "--public", action='store_true', help="Make the playlist public. Default: private")
     parser.add_argument("-r", "--remove", action='store_true', help="Remove playlists with specified regex pattern.")
@@ -91,7 +92,6 @@ def get_args():
 
 def main(argv):
     args = get_args()
-
     gmusic = GoogleMusic()
 
     if args.all:
@@ -104,7 +104,7 @@ def main(argv):
             count = count + 1
             try:
                 playlist = Spotify().getSpotifyPlaylist(p['external_urls']['spotify'])
-                gmusic.createPlaylist(p['name'], playlist['tracks'], args.public)
+                gmusic.createPlaylist(p['name'], p['description'], playlist['tracks'], args.public)
             except Exception as ex:
                 print("Could not transfer playlist")
         return
@@ -124,7 +124,7 @@ def main(argv):
             name = args.name + date
         else:
             name = os.path.basename(args.playlist).split('.')[0] + date
-        gmusic.createPlaylist(name, songs, args.public)
+        gmusic.createPlaylist(name, args.info, songs, args.public)
         return
 
     try:
@@ -138,12 +138,10 @@ def main(argv):
         gmusic.removeSongs(playlistId)
         gmusic.addSongs(playlistId, playlist['tracks'])
     else:
-        if args.name:
-            name = args.name + date
-        else:
-            name = playlist['name'] + date
+        name = args.name + date if args.name else playlist['name'] + date
+        info = playlist['description'] if (args.info is None) else args.info
+        gmusic.createPlaylist(name, info, playlist['tracks'], args.public)
 
-        gmusic.createPlaylist(name, playlist['tracks'], args.public)
 
 if __name__ == "__main__":
     main(sys.argv)

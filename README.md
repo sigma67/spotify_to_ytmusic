@@ -61,7 +61,11 @@ optional arguments:
                         Spotify playlist.
   -n NAME, --name NAME  Provide a name for the Google Play Music playlist.
                         Default: Spotify playlist name
+  -i INFO, --info INFO  Provide description information for the Google Play
+                        Music Playlist. Default: Spotify playlist description
   -d, --date            Append the current date to the playlist name
   -p, --public          Make the playlist public. Default: private
   -r, --remove          Remove playlists with specified regex pattern.
+  -a, --all             Transfer all public playlists of the specified user
+                        (Spotify User ID).
 ```
