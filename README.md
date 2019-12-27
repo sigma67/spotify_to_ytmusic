@@ -7,7 +7,7 @@ Also includes interfaces for
 ## Requirements
 
 - Python 3 - https://www.python.org
-- Python extension gmusicapi: `pip install gmusicapi`
+- Python extensions: `pip install -U -r requirements`
 
 ## Setup
 
