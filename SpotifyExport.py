@@ -23,10 +23,10 @@ class Spotify:
         count = 1
         more = len(results['tracks']['items']) == 100
         while more:
-            results = self.api.user_playlist_tracks(user, playlistId, offset = count * 100, limit=100)
+            items = self.api.user_playlist_tracks(user, playlistId, offset = count * 100, limit=100)
             print('requested from ' + str(count * 100))
-            tracks += list(track['track']['artists'][0]['name'] + ' ' + track['track']['name'] for track in results["items"] if track['track'] is not None)
-            more = len(results["items"]) == 100
+            tracks += list(track['track']['artists'][0]['name'] + ' ' + track['track']['name'] for track in items["items"] if track['track'] is not None)
+            more = len(items["items"]) == 100
             count = count + 1
 
         return {'tracks': tracks, 'name': name, 'description': results['description']}
