@@ -4,3 +4,6 @@
 [spotify]
 client_id = id_from_developer_console
 client_secret = secret_from_developer_console
+
+[youtube]
+client_secrets = json_from_google_developer_console
