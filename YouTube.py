@@ -9,6 +9,7 @@ import sys
 import os
 from SpotifyExport import Spotify
 
+path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 class YouService:
     max_results = 50
@@ -157,6 +158,10 @@ def main(argv):
     name = args.name + date if args.name else playlist['name'] + date
     info = playlist['description'] if (args.info is None) else args.info
     playlistId = YouService.create_playlist(name, info, args.public)
+    comment = "[YouTube Music](https://music.youtube.com/playlist?list=" + playlistId + ")"
+    with open(path + "comment.txt", 'a') as f:
+        f.write(comment + '\n\n')
+
     if len(playlist['tracks']) <= 60:
         YouService.add_songs(playlistId, playlist['tracks'])
     else:
