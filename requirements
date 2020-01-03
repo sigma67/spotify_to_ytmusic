@@ -1,4 +1,5 @@
 gmusicapi
+praw
 git+https://github.com/Harrison97/spotipy-plamere
 google-api-python-client
 google-auth-oauthlib
