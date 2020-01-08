@@ -1,18 +1,17 @@
 import sys
 import os
+import json
 import settings
-from gmusicapi import Musicmanager
+from gmusicapi import session, Musicmanager
 
 path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 class GoogleMusicManager:
     def __init__(self):
         self.api = Musicmanager(debug_logging=False)
-        with open(path + "oauth.cred", 'w+') as tmp:
-            tmp.write(settings['google']['musicmanager'])
-            tmp.close()
-            self.api.login(tmp.name)
-            os.remove(tmp.name)
+        refresh_token = json.loads(settings['google']['musicmanager'])['refresh_token']
+        credentials = session.credentials_from_refresh_token(refresh_token, session.Mobileclient.oauth)
+        self.api.login(credentials)
 
     def upload_song(self, file):
         self.api.upload(file)

@@ -1,8 +1,8 @@
-from gmusicapi import Mobileclient
+from gmusicapi import session, Mobileclient
 from SpotifyExport import Spotify
-import sys
 import os
 import re
+import json
 import difflib
 import settings
 import argparse
@@ -15,11 +15,9 @@ path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 class GoogleMusic:
     def __init__(self):
         self.api = Mobileclient(debug_logging=False)
-        with open(path + "oauth.cred", 'w+') as tmp:
-            tmp.write(settings['google']['mobileclient'])
-            tmp.close()
-            self.api.oauth_login(Mobileclient.FROM_MAC_ADDRESS, tmp.name)
-            os.remove(tmp.name)
+        refresh_token = json.loads(settings['google']['mobileclient'])['refresh_token']
+        credentials = session.credentials_from_refresh_token(refresh_token, session.Mobileclient.oauth)
+        self.api.oauth_login(Mobileclient.FROM_MAC_ADDRESS, credentials)
 
     def createPlaylist(self, name, description, songs, public):
         playlistId = self.api.create_playlist(name=name, description=description, public=public)
@@ -92,7 +90,7 @@ def get_args():
     parser.add_argument("-a", "--all", action='store_true', help="Transfer all public playlists of the specified user (Spotify User ID).")
     return parser.parse_args()
 
-def main(argv):
+def main():
     args = get_args()
     gmusic = GoogleMusic()
 
@@ -152,4 +150,4 @@ def main(argv):
             f.write(comment)
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main()
