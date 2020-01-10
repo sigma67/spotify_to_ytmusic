@@ -5,14 +5,13 @@ import json
 import settings
 import argparse
 from datetime import datetime
-import sys
 import os
 from SpotifyExport import Spotify
 
 path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
+
 class YouService:
-    max_results = 50
     client = None
     scopes = ["https://www.googleapis.com/auth/youtube"]
 
@@ -64,8 +63,7 @@ class YouService:
 
         cls.add_songs_to_playlist(playlist, songIds)
 
-        path = os.path.dirname(os.path.realpath(__file__)) + os.sep
-        with open(path + 'noresults.txt', 'w', encoding="utf-8") as f:
+        with open(path + 'noresults_youtube.txt', 'w', encoding="utf-8") as f:
             f.write("\n".join(notFound))
             f.close()
 
@@ -136,7 +134,7 @@ def get_args():
     return parser.parse_args()
 
 
-def main(argv):
+def main():
     args = get_args()
     date = ""
     if args.date:
@@ -164,10 +162,13 @@ def main(argv):
 
     if len(playlist['tracks']) <= 60:
         YouService.add_songs(playlistId, playlist['tracks'])
+        print("Success: created playlist \"" + name + "\"")
     else:
         songIds = YouService.search_songs(playlist['tracks'])
-        with open('youtube.txt', 'w') as out:
+        with open(path + 'youtube.txt', 'w') as out:
             [out.write(str(item) + '\n') for item in songIds]
+        print("Success: searched " + str(len(songIds)) + " songs for playlist " + name + " and saved to youtube.txt")
+
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main()
