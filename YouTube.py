@@ -146,11 +146,12 @@ def main():
         return
 
     if args.search:
-        if len(playlist['tracks']) > args.search:
+        if len(playlist['tracks']) <= args.search:
             return
-        songIds = YouService.search_songs(playlist['tracks'][args.search:])
+        songIds, noresults = YouService.search_songs(playlist['tracks'][args.search:])
         with open('youtube.txt', 'a') as out:
-            [out.write(str(item) + '\n') for item in songIds]
+            out.write(' '.join(songIds) + '\n')
+            out.write('\n'.join(noresults))
         return
 
     name = args.name + date if args.name else playlist['name'] + date
@@ -160,9 +161,10 @@ def main():
         YouService.add_songs(playlistId, playlist['tracks'])
         print("Success: created playlist \"" + name + "\"")
     else:
-        songIds = YouService.search_songs(playlist['tracks'])
+        songIds, noresults = YouService.search_songs(playlist['tracks'])
         with open(path + 'youtube.txt', 'w') as out:
-            [out.write(str(item) + '\n') for item in songIds]
+            out.write(' '.join(songIds) + '\n')
+            out.write('\n'.join(noresults))
         print("Success: searched " + str(len(songIds)) + " songs for playlist " + name + " and saved to youtube.txt")
 
 
