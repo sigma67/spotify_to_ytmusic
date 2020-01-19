@@ -145,30 +145,29 @@ def main():
         print("Could not get Spotify playlist. Please check the playlist link.\n Error: " + repr(ex))
         return
 
-    if args.search:
-        if len(playlist['tracks']) <= args.search:
-            return
-        songIds, noresults = YouService.search_songs(playlist['tracks'][args.search:])
-        with open('youtube.txt', 'a') as out:
-            out.write(' '.join(songIds) + '\n')
-            out.write('\n'.join(noresults))
+    if args.search and len(playlist['tracks']) <= args.search:
         return
 
     name = args.name + date if args.name else playlist['name'] + date
     info = playlist['description'] if (args.info is None) else args.info
     playlistId = YouService.create_playlist(name, info, args.public)
+    with open(path + 'playlist.txt', 'w') as out:
+        out.write(playlistId)
+
     comment = "[YouTube Music](https://music.youtube.com/playlist?list=" + playlistId + ")"
     with open(path + "comment.txt", 'a') as f:
         f.write(comment + '\n\n')
 
-    if len(playlist['tracks']) <= 60:
+    if len(playlist['tracks']) <= 60 and not args.search:
         YouService.add_songs(playlistId, playlist['tracks'])
         print("Success: created playlist \"" + name + "\"")
     else:
-        songIds, noresults = YouService.search_songs(playlist['tracks'])
+        start = args.search if args.search else 0
+        songIds, noresults = YouService.search_songs(playlist['tracks'][start:])
         with open(path + 'youtube.txt', 'w') as out:
             out.write(' '.join(songIds) + '\n')
-            out.write('\n'.join(noresults))
+        with open(path + 'youtube_noresults.txt', 'w') as out:
+            out.write(' '.join(noresults) + '\n')
         print("Success: searched " + str(len(songIds)) + " songs for playlist " + name + " and saved to youtube.txt")
 
 
