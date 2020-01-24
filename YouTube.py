@@ -150,13 +150,14 @@ def main():
 
     name = args.name + date if args.name else playlist['name'] + date
     info = playlist['description'] if (args.info is None) else args.info
-    playlistId = YouService.create_playlist(name, info, args.public)
-    with open(path + 'playlist.txt', 'w') as out:
-        out.write(playlistId)
 
-    comment = "[YouTube Music](https://music.youtube.com/playlist?list=" + playlistId + ")"
-    with open(path + "comment.txt", 'a') as f:
-        f.write(comment + '\n\n')
+    if not args.search:
+        playlistId = YouService.create_playlist(name, info, args.public)
+        with open(path + 'playlist.txt', 'w') as out:
+            out.write(playlistId)
+        comment = "[YouTube Music](https://music.youtube.com/playlist?list=" + playlistId + ")"
+        with open(path + "comment.txt", 'a') as f:
+            f.write(comment + '\n\n')
 
     if len(playlist['tracks']) <= 60 and not args.search:
         YouService.add_songs(playlistId, playlist['tracks'])
