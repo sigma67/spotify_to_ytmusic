@@ -16,14 +16,13 @@ class Spotify:
 
         tracks = []
         results = self.api.playlist(playlistId)
-        user = results['owner']['id']
         name = results['name']
         tracks += list(track['track']['artists'][0]['name'] + ' ' + track['track']['name'] for track in results['tracks']["items"] if track['track'] is not None)
 
         count = 1
         more = len(results['tracks']['items']) == 100
         while more:
-            items = self.api.user_playlist_tracks(user, playlistId, offset = count * 100, limit=100)
+            items = self.api.playlist_tracks(playlistId, offset = count * 100, limit=100)
             print('requested from ' + str(count * 100))
             tracks += list(track['track']['artists'][0]['name'] + ' ' + track['track']['name'] for track in items["items"] if track['track'] is not None)
             more = len(items["items"]) == 100
