@@ -1,5 +1,4 @@
 gmusicapi
 spotipy
+git+https://github.com/sigma67/ytmusicapi
 praw
-google-api-python-client
-google-auth-oauthlib
