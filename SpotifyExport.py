@@ -17,7 +17,8 @@ class Spotify:
         tracks = []
         results = self.api.playlist(playlistId)
         name = results['name']
-        tracks += list(track['track']['artists'][0]['name'] + ' ' + track['track']['name'] for track in results['tracks']["items"] if track['track'] is not None)
+        tracks += [' '.join([artist['name'] for artist in track['track']['artists']]) + ' ' + track['track']['name']
+                       for track in results['tracks']["items"] if track['track'] is not None]
 
         count = 1
         more = len(results['tracks']['items']) == 100
