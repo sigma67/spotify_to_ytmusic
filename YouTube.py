@@ -42,8 +42,8 @@ class YTMusicTransfer:
     def add_songs(self, playlist, tracks):
         videoIds, notFound = self.search_songs(tracks)
 
-        # for videoId in videoIds:
-        #     self.api.add_playlist_item(playlist, videoId)
+        for videoId in videoIds:
+            self.api.add_playlist_item(playlist, videoId)
 
         with open(path + 'noresults_youtube.txt', 'w', encoding="utf-8") as f:
             f.write("\n".join(notFound))
