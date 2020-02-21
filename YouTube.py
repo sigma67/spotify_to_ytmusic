@@ -12,8 +12,8 @@ class YTMusicTransfer:
     def __init__(self):
         self.api = YTMusic('headers_auth.json')
 
-    def create_playlist(self, name, info, public=False):
-        return self.api.add_playlist(name, info, public)
+    def create_playlist(self, name, info, privacy="PRIVATE"):
+        return self.api.create_playlist(name, info, privacy)
 
     def get_best_fit_song_id(self, results, song):
         match_score = {}
@@ -30,7 +30,7 @@ class YTMusicTransfer:
         for i, song in enumerate(songs):
             song = song.replace(" &", "")
             result = self.api.search(song)
-            if result is None:
+            if len(result) == 0:
                 notFound.append(song)
             else:
                 videoIds.append(self.get_best_fit_song_id(result, song))
@@ -77,7 +77,7 @@ def main():
     name = args.name + date if args.name else playlist['name'] + date
     info = playlist['description'] if (args.info is None) else args.info
     ytmusic = YTMusicTransfer()
-    playlistId = ytmusic.create_playlist(name, info, args.public)
+    playlistId = ytmusic.create_playlist(name, info, 'PUBLIC' if args.public else 'PRIVATE')
     ytmusic.add_songs(playlistId, playlist['tracks'])
 
     comment = "[YouTube Music](https://music.youtube.com/playlist?list=" + playlistId + ")"
