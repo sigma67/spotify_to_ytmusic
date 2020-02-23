@@ -1,6 +1,7 @@
 from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy
 import settings
+import html
 
 class Spotify:
     def __init__(self):
@@ -39,7 +40,7 @@ class Spotify:
             more = len(items["items"]) == 100
             count = count + 1
 
-        return {'tracks': tracks, 'name': name, 'description': results['description']}
+        return {'tracks': tracks, 'name': name, 'description': html.unescape(results['description'])}
 
     def getUserPlaylists(self, user):
         pl = self.api.user_playlists(user)['items']
