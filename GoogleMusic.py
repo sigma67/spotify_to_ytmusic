@@ -29,10 +29,11 @@ class GoogleMusic:
         songlist = list(songs)
         notFound = list()
         for i, song in enumerate(songlist):
-            song = song.replace(" &", "")
-            result = self.api.search(query=song, max_results=2)
+            query = song['artist'] + ' ' + song['name']
+            query = query.replace(" &", "")
+            result = self.api.search(query=query, max_results=2)
             if len(result['song_hits']) == 0:
-                notFound.append(song)
+                notFound.append(query)
             else:
                 songIds.append(self.get_best_fit_song_id(result['song_hits'], song))
             if i % 20 == 0:
@@ -56,8 +57,10 @@ class GoogleMusic:
     def get_best_fit_song_id(self, results, song):
         match_score = {}
         for res in results:
-            compare = res['track']['artist'] + ' ' + res['track']['title']
-            match_score[res['track']['storeId']] = difflib.SequenceMatcher(a=song.lower(), b=compare.lower()).ratio()
+            artist_score = difflib.SequenceMatcher(a=res['track']['artist'].lower(), b=song['artist'].lower()).ratio()
+            title_score = difflib.SequenceMatcher(a=res['track']['title'].lower(), b=song['name'].lower()).ratio()
+            album_score = difflib.SequenceMatcher(a=res['track']['album'].lower(), b=song['album'].lower()).ratio()
+            match_score[res['track']['storeId']] = (artist_score + title_score + album_score) / 3
 
         return max(match_score, key=match_score.get)
 
