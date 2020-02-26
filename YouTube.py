@@ -24,7 +24,7 @@ class YTMusicTransfer:
             scores = [difflib.SequenceMatcher(a=res['artist'].lower(), b=song['artist'].lower()).ratio(),
                       difflib.SequenceMatcher(a=res['title'].lower(), b=song['name'].lower()).ratio()]
 
-            if res['resultType'] == 'song':
+            if res['resultType'] == 'song' and 'album' in res:
                 scores.append(difflib.SequenceMatcher(a=res['album'].lower(), b=song['album'].lower()).ratio())
 
             match_score[res['videoId']] = sum(scores) / len(scores)
