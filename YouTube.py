@@ -17,19 +17,30 @@ class YTMusicTransfer:
 
     def get_best_fit_song_id(self, results, song):
         match_score = {}
+        title_score = {}
         for res in results:
             if res['resultType'] not in ['song', 'video']:
                 continue
 
-            scores = [difflib.SequenceMatcher(a=res['artist'].lower(), b=song['artist'].lower()).ratio(),
-                      difflib.SequenceMatcher(a=res['title'].lower(), b=song['name'].lower()).ratio()]
+            #remove artists from target song title for videos
+            title = res['title']
+            if res['resultType'] == 'video':
+                for a in song['artist'].split(' '):
+                    title = title.replace(a, '')
 
+            title_score[res['videoId']] = difflib.SequenceMatcher(a=title.lower(), b=song['name'].lower()).ratio()
+            scores = [title_score[res['videoId']],
+                      difflib.SequenceMatcher(a=res['artist'].lower(), b=song['artist'].lower()).ratio()]
+
+            #add album for songs only
             if res['resultType'] == 'song' and 'album' in res:
                 scores.append(difflib.SequenceMatcher(a=res['album'].lower(), b=song['album'].lower()).ratio())
 
             match_score[res['videoId']] = sum(scores) / len(scores)
 
-        return max(match_score, key=match_score.get)
+        #don't return songs with titles <45% match
+        max_score = max(match_score, key=match_score.get)
+        return max_score if title_score[max_score] > 0.45 else None
 
     def search_songs(self, tracks):
         videoIds = []
@@ -42,7 +53,12 @@ class YTMusicTransfer:
             if len(result) == 0:
                 notFound.append(query)
             else:
-                videoIds.append(self.get_best_fit_song_id(result, song))
+                targetSong = self.get_best_fit_song_id(result, song)
+                if targetSong is None:
+                    notFound.append(query)
+                else:
+                    videoIds.append(targetSong)
+
             if i > 0 and i % 10 == 0:
                 print(str(i) + ' searched')
 
