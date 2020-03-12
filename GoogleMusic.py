@@ -150,7 +150,7 @@ def main():
         shareToken = next(x for x in pl if x['name'].find(name) != -1)['shareToken']
         comment = "[Google Play Music](https://play.google.com/music/playlist/" + shareToken + ")"
         with open(path + "comment.txt", 'a') as f:
-            f.write(comment)
+            f.write(comment + '\n\n')
 
 if __name__ == "__main__":
     main()
