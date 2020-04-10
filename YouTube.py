@@ -38,6 +38,9 @@ class YTMusicTransfer:
 
             match_score[res['videoId']] = sum(scores) / len(scores)
 
+        if len(match_score) == 0:
+            return None
+
         #don't return songs with titles <45% match
         max_score = max(match_score, key=match_score.get)
         return max_score if title_score[max_score] > 0.45 else None
@@ -46,7 +49,7 @@ class YTMusicTransfer:
         videoIds = []
         songs = list(tracks)
         notFound = list()
-        for i, song in enumerate(songs):
+        for i, song in enumerate(songs[130:140]):
             query = song['artist'] + ' ' + song['name']
             query = query.replace(" &", "")
             result = self.api.search(query)
