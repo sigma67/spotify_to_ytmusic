@@ -127,6 +127,11 @@ def main():
     else:
         playlistId = ytmusic.create_playlist(name, info, 'PUBLIC' if args.public else 'PRIVATE')
         ytmusic.add_songs(playlistId, playlist['tracks'])
+
+        comment = "[YouTube Music](https://music.youtube.com/playlist?list=" + playlistId + ")"
+        with open(path + "comment.txt", 'a') as f:
+            f.write(comment)
+
         print("Success: created playlist \"" + name + "\"")
 
 
