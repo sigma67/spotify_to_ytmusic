@@ -1,6 +1,7 @@
 from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy
 import settings
+import html
 
 class Spotify:
     def __init__(self):
@@ -8,28 +9,38 @@ class Spotify:
         client_credentials_manager = SpotifyClientCredentials(client_id=conf['client_id'], client_secret=conf['client_secret'])
         self.api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
+    def build_results(self, tracks):
+        results = []
+        for track in tracks['items']:
+            if track['track'] is not None:
+                results.append({
+                    'artist': ' '.join([artist['name'] for artist in track['track']['artists']]),
+                    'name': track['track']['name'],
+                    'album': track['track']['album']['name']
+                })
+
+        return results
+
     def getSpotifyPlaylist(self, url):
         url_parts = url.split('/')
         playlistId = url_parts[4].split('?')[0]
         if len(playlistId) != 22:
             raise Exception('Bad playlist id: ' + playlistId)
 
-        tracks = []
         results = self.api.playlist(playlistId)
-        user = results['owner']['id']
         name = results['name']
-        tracks += list(track['track']['artists'][0]['name'] + ' ' + track['track']['name'] for track in results['tracks']["items"] if track['track'] is not None)
+        tracks = self.build_results(results['tracks'])
 
         count = 1
         more = len(results['tracks']['items']) == 100
         while more:
-            items = self.api.user_playlist_tracks(user, playlistId, offset = count * 100, limit=100)
+            items = self.api.playlist_tracks(playlistId, offset = count * 100, limit=100)
             print('requested from ' + str(count * 100))
-            tracks += list(track['track']['artists'][0]['name'] + ' ' + track['track']['name'] for track in items["items"] if track['track'] is not None)
+            tracks += self.build_results(items)
             more = len(items["items"]) == 100
             count = count + 1
 
-        return {'tracks': tracks, 'name': name, 'description': results['description']}
+        return {'tracks': tracks, 'name': name, 'description': html.unescape(results['description'])}
 
     def getUserPlaylists(self, user):
         pl = self.api.user_playlists(user)['items']

@@ -1,8 +1,8 @@
-from gmusicapi import Mobileclient
+from gmusicapi import session, Mobileclient
 from SpotifyExport import Spotify
-import sys
 import os
 import re
+import json
 import difflib
 import settings
 import argparse
@@ -15,11 +15,9 @@ path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 class GoogleMusic:
     def __init__(self):
         self.api = Mobileclient(debug_logging=False)
-        with open(path + "oauth.cred", 'w+') as tmp:
-            tmp.write(settings['google']['mobileclient'])
-            tmp.close()
-            self.api.oauth_login(Mobileclient.FROM_MAC_ADDRESS, tmp.name)
-            os.remove(tmp.name)
+        refresh_token = json.loads(settings['google']['mobileclient'])['refresh_token']
+        credentials = session.credentials_from_refresh_token(refresh_token, session.Mobileclient.oauth)
+        self.api.oauth_login(Mobileclient.FROM_MAC_ADDRESS, credentials)
 
     def createPlaylist(self, name, description, songs, public):
         playlistId = self.api.create_playlist(name=name, description=description, public=public)
@@ -31,10 +29,11 @@ class GoogleMusic:
         songlist = list(songs)
         notFound = list()
         for i, song in enumerate(songlist):
-            song = song.replace(" &", "")
-            result = self.api.search(query=song, max_results=2)
+            query = song['artist'] + ' ' + song['name']
+            query = query.replace(" &", "")
+            result = self.api.search(query=query, max_results=2)
             if len(result['song_hits']) == 0:
-                notFound.append(song)
+                notFound.append(query)
             else:
                 songIds.append(self.get_best_fit_song_id(result['song_hits'], song))
             if i % 20 == 0:
@@ -58,8 +57,10 @@ class GoogleMusic:
     def get_best_fit_song_id(self, results, song):
         match_score = {}
         for res in results:
-            compare = res['track']['artist'] + ' ' + res['track']['title']
-            match_score[res['track']['storeId']] = difflib.SequenceMatcher(a=song.lower(), b=compare.lower()).ratio()
+            artist_score = difflib.SequenceMatcher(a=res['track']['artist'].lower(), b=song['artist'].lower()).ratio()
+            title_score = difflib.SequenceMatcher(a=res['track']['title'].lower(), b=song['name'].lower()).ratio()
+            album_score = difflib.SequenceMatcher(a=res['track']['album'].lower(), b=song['album'].lower()).ratio()
+            match_score[res['track']['storeId']] = (artist_score + title_score + album_score) / 3
 
         return max(match_score, key=match_score.get)
 
@@ -92,7 +93,7 @@ def get_args():
     parser.add_argument("-a", "--all", action='store_true', help="Transfer all public playlists of the specified user (Spotify User ID).")
     return parser.parse_args()
 
-def main(argv):
+def main():
     args = get_args()
     gmusic = GoogleMusic()
 
@@ -155,4 +156,4 @@ def main(argv):
                 f.write(comment)
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main()
