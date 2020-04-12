@@ -4,13 +4,14 @@ import os
 import argparse
 import difflib
 from SpotifyExport import Spotify
+import settings
 
 path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 
 class YTMusicTransfer:
     def __init__(self):
-        self.api = YTMusic(path + 'headers_auth.json')
+        self.api = YTMusic(settings['youtube']['headers'])
 
     def create_playlist(self, name, info, privacy="PRIVATE"):
         return self.api.create_playlist(name, info, privacy)
