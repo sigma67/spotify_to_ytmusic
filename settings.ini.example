@@ -1,12 +1,11 @@
 [google]
 
+[youtube]
+headers = headers_json_from_browser
 
 [spotify]
 client_id = id_from_developer_console
 client_secret = secret_from_developer_console
-
-[youtube]
-client_secrets = json_from_google_developer_console
 
 [reddit]
 client_id = id from https://www.reddit.com/prefs/apps

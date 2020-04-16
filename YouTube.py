@@ -50,7 +50,7 @@ class YTMusicTransfer:
         videoIds = []
         songs = list(tracks)
         notFound = list()
-        for i, song in enumerate(songs[130:140]):
+        for i, song in enumerate(songs):
             query = song['artist'] + ' ' + song['name']
             query = query.replace(" &", "")
             result = self.api.search(query)
