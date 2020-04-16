@@ -3,7 +3,7 @@ import sys
 import types
 import os
 
-config = configparser.RawConfigParser()
+config = configparser.ConfigParser(interpolation=None)
 filepath = os.path.dirname(os.path.realpath(__file__)) + '/settings.ini'
 config.read(filepath)
 
