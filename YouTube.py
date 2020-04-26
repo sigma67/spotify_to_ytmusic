@@ -24,28 +24,34 @@ class YTMusicTransfer:
             if res['resultType'] not in ['song', 'video']:
                 continue
 
-            #remove artists from target song title for videos
+            durationItems = res['duration'].split(':')
+            duration = int(durationItems[0]) * 60 + int(durationItems[1])
+            durationMatch = 1 - abs(duration - song['duration']) * 5 / song['duration']
+
             title = res['title']
+            # for videos,
             if res['resultType'] == 'video':
-                for a in song['artist'].split(' '):
-                    title = title.replace(a, '')
+                titleSplit = title.split('-')
+                if len(titleSplit) == 2:
+                    title = titleSplit[1]
 
             title_score[res['videoId']] = difflib.SequenceMatcher(a=title.lower(), b=song['name'].lower()).ratio()
-            scores = [title_score[res['videoId']],
+
+            scores = [durationMatch * 2, title_score[res['videoId']],
                       difflib.SequenceMatcher(a=res['artist'].lower(), b=song['artist'].lower()).ratio()]
 
             #add album for songs only
             if res['resultType'] == 'song' and 'album' in res:
                 scores.append(difflib.SequenceMatcher(a=res['album'].lower(), b=song['album'].lower()).ratio())
 
-            match_score[res['videoId']] = sum(scores) / len(scores)
+            match_score[res['videoId']] = sum(scores) / (len(scores) + 1)
 
         if len(match_score) == 0:
             return None
 
         #don't return songs with titles <45% match
         max_score = max(match_score, key=match_score.get)
-        return max_score if title_score[max_score] > 0.45 else None
+        return max_score
 
     def search_songs(self, tracks):
         videoIds = []
