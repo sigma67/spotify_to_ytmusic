@@ -16,7 +16,8 @@ class Spotify:
                 results.append({
                     'artist': ' '.join([artist['name'] for artist in track['track']['artists']]),
                     'name': track['track']['name'],
-                    'album': track['track']['album']['name']
+                    'album': track['track']['album']['name'],
+                    'duration': track['track']['duration_ms']/1000
                 })
 
         return results

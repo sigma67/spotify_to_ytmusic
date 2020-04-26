@@ -1,6 +1,7 @@
 from ytmusicapi import YTMusic
 from datetime import datetime
 import os
+import re
 import argparse
 import difflib
 from SpotifyExport import Spotify
@@ -23,28 +24,34 @@ class YTMusicTransfer:
             if res['resultType'] not in ['song', 'video']:
                 continue
 
-            #remove artists from target song title for videos
+            durationItems = res['duration'].split(':')
+            duration = int(durationItems[0]) * 60 + int(durationItems[1])
+            durationMatch = 1 - abs(duration - song['duration']) * 5 / song['duration']
+
             title = res['title']
+            # for videos,
             if res['resultType'] == 'video':
-                for a in song['artist'].split(' '):
-                    title = title.replace(a, '')
+                titleSplit = title.split('-')
+                if len(titleSplit) == 2:
+                    title = titleSplit[1]
 
             title_score[res['videoId']] = difflib.SequenceMatcher(a=title.lower(), b=song['name'].lower()).ratio()
-            scores = [title_score[res['videoId']],
+
+            scores = [durationMatch * 2, title_score[res['videoId']],
                       difflib.SequenceMatcher(a=res['artist'].lower(), b=song['artist'].lower()).ratio()]
 
             #add album for songs only
             if res['resultType'] == 'song' and 'album' in res:
                 scores.append(difflib.SequenceMatcher(a=res['album'].lower(), b=song['album'].lower()).ratio())
 
-            match_score[res['videoId']] = sum(scores) / len(scores)
+            match_score[res['videoId']] = sum(scores) / (len(scores) + 1)
 
         if len(match_score) == 0:
             return None
 
         #don't return songs with titles <45% match
         max_score = max(match_score, key=match_score.get)
-        return max_score if title_score[max_score] > 0.45 else None
+        return max_score
 
     def search_songs(self, tracks):
         videoIds = []
@@ -66,30 +73,42 @@ class YTMusicTransfer:
             if i > 0 and i % 10 == 0:
                 print(str(i) + ' searched')
 
-        return videoIds, notFound
-
-    def add_songs(self, playlist, tracks):
-        videoIds, notFound = self.search_songs(tracks)
-
-        self.api.add_playlist_items(playlist, videoIds)
-
         with open(path + 'noresults_youtube.txt', 'w', encoding="utf-8") as f:
             f.write("\n".join(notFound))
             f.close()
 
-    def get_playlist_id(self, name):
-        result = {}
-        try:
-            result = self.api.search(name, 'playlists')[0]
-        except Exception as e:
-            print(e)
+        return videoIds
 
-        return result['browseId'][2:]
+    def add_playlist_items(self, playlistId, videoIds):
+        self.api.add_playlist_items(playlistId, videoIds)
+
+    def get_playlist_id(self, name):
+        pl = self.api.get_playlists()
+        try:
+            playlist = next(x for x in pl if x['title'].find(name) != -1)['playlistId']
+            return playlist
+        except:
+            raise Exception("Playlist title not found in playlists")
 
     def remove_songs(self, playlistId):
         items = self.api.get_playlist_items(playlistId)
         if len(items) > 0:
             self.api.remove_playlist_items(playlistId, items)
+
+    def remove_playlists(self, pattern):
+        playlists = self.api.get_playlists()
+        p = re.compile("{0}".format(pattern))
+        matches = [pl for pl in playlists if p.match(pl['title'])]
+        print("The following playlists will be removed:")
+        print("\n".join([pl['title'] for pl in matches]))
+        print("Please confirm (y/n):")
+
+        choice = input().lower()
+        if choice[:1] == 'y':
+            [self.api.delete_playlist(pl['playlistId']) for pl in matches]
+            print(str(len(matches)) + " playlists deleted.")
+        else:
+            print("Aborted. No playlists were deleted.")
 
 
 def get_args():
@@ -100,13 +119,19 @@ def get_args():
     parser.add_argument("-i", "--info", type=str, help="Provide description information for the YouTube Music Playlist. Default: Spotify playlist description")
     parser.add_argument("-d", "--date", action='store_true', help="Append the current date to the playlist name")
     parser.add_argument("-p", "--public", action='store_true', help="Make the playlist public. Default: private")
-    #parser.add_argument("-r", "--remove", action='store_true', help="Remove playlists with specified regex pattern.")
+    parser.add_argument("-r", "--remove", action='store_true', help="Remove playlists with specified regex pattern.")
     #parser.add_argument("-a", "--all", action='store_true', help="Transfer all public playlists of the specified user (Spotify User ID).")
     return parser.parse_args()
 
 
 def main():
     args = get_args()
+    ytmusic = YTMusicTransfer()
+
+    if args.remove:
+        ytmusic.remove_playlists(args.playlist)
+        return
+
     date = ""
     if args.date:
         date = " " + datetime.today().strftime('%m/%d/%Y')
@@ -118,16 +143,17 @@ def main():
 
     name = args.name + date if args.name else playlist['name'] + date
     info = playlist['description'] if (args.info is None) else args.info
-    ytmusic = YTMusicTransfer()
 
     if args.update:
         playlistId = ytmusic.get_playlist_id(args.update)
+        videoIds = ytmusic.search_songs(playlist['tracks'])
         ytmusic.remove_songs(playlistId)
-        ytmusic.add_songs(playlistId, playlist['tracks'])
+        ytmusic.add_playlist_items(playlistId, videoIds)
 
     else:
+        videoIds = ytmusic.search_songs(playlist['tracks'])
         playlistId = ytmusic.create_playlist(name, info, 'PUBLIC' if args.public else 'PRIVATE')
-        ytmusic.add_songs(playlistId, playlist['tracks'])
+        ytmusic.add_playlist_items(playlistId, videoIds)
 
         comment = "[YouTube Music](https://music.youtube.com/playlist?list=" + playlistId + ")"
         with open(path + "comment.txt", 'a') as f:
