@@ -1,6 +1,7 @@
 from ytmusicapi import YTMusic
 from datetime import datetime
 import os
+import re
 import argparse
 import difflib
 from SpotifyExport import Spotify
@@ -90,6 +91,21 @@ class YTMusicTransfer:
         if len(items) > 0:
             self.api.remove_playlist_items(playlistId, items)
 
+    def remove_playlists(self, pattern):
+        playlists = self.api.get_playlists()
+        p = re.compile("{0}".format(pattern))
+        matches = [pl for pl in playlists if p.match(pl['title'])]
+        print("The following playlists will be removed:")
+        print("\n".join([pl['title'] for pl in matches]))
+        print("Please confirm (y/n):")
+
+        choice = input().lower()
+        if choice[:1] == 'y':
+            [self.api.delete_playlist(pl['playlistId']) for pl in matches]
+            print(str(len(matches)) + " playlists deleted.")
+        else:
+            print("Aborted. No playlists were deleted.")
+
 
 def get_args():
     parser = argparse.ArgumentParser(description='Transfer spotify playlist to YouTube Music.')
@@ -99,13 +115,19 @@ def get_args():
     parser.add_argument("-i", "--info", type=str, help="Provide description information for the YouTube Music Playlist. Default: Spotify playlist description")
     parser.add_argument("-d", "--date", action='store_true', help="Append the current date to the playlist name")
     parser.add_argument("-p", "--public", action='store_true', help="Make the playlist public. Default: private")
-    #parser.add_argument("-r", "--remove", action='store_true', help="Remove playlists with specified regex pattern.")
+    parser.add_argument("-r", "--remove", action='store_true', help="Remove playlists with specified regex pattern.")
     #parser.add_argument("-a", "--all", action='store_true', help="Transfer all public playlists of the specified user (Spotify User ID).")
     return parser.parse_args()
 
 
 def main():
     args = get_args()
+    ytmusic = YTMusicTransfer()
+
+    if args.remove:
+        ytmusic.remove_playlists(args.playlist)
+        return
+
     date = ""
     if args.date:
         date = " " + datetime.today().strftime('%m/%d/%Y')
@@ -117,7 +139,6 @@ def main():
 
     name = args.name + date if args.name else playlist['name'] + date
     info = playlist['description'] if (args.info is None) else args.info
-    ytmusic = YTMusicTransfer()
 
     if args.update:
         playlistId = ytmusic.get_playlist_id(args.update)
