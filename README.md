@@ -4,6 +4,9 @@ Also includes interfaces for
 - creating a Play Music playlist from a text file
 - uploading local MP3s to Play Music
 
+**New:** YouTube Music support. Spotify playlists can now be transferred to YouTube Music thanks to [ytmusicapi](https://github.com/sigma67/ytmusicapi).
+Usage is identical to GoogleMusic.py, just use `python YouTube.py` with the same parameters.
+
 ## Requirements
 
 - Python 3 - https://www.python.org
@@ -18,6 +21,7 @@ For Google Play Music, open a console in the source code folder and run
 `python Setup.py <client>`
 
 where `<client>` should be `mobileclient` to setup playlist transfers **or** `musicmanager` to be able to upload files with GoogleMusicManager.py.
+For YouTube Music setup, use `youtube`.
 
 Then follow the command line instructions to grant the app access to your account. All credentials are stored locally in the file `settings.ini`. 
 
