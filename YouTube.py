@@ -78,13 +78,12 @@ class YTMusicTransfer:
             f.close()
 
     def get_playlist_id(self, name):
-        result = {}
+        pl = self.api.get_playlists()
         try:
-            result = self.api.search(name, 'playlists')[0]
-        except Exception as e:
-            print(e)
-
-        return result['browseId'][2:]
+            playlist = next(x for x in pl if x['title'].find(name) != -1)['playlistId']
+            return playlist
+        except:
+            raise Exception("Playlist title not found in playlists")
 
     def remove_songs(self, playlistId):
         items = self.api.get_playlist_items(playlistId)
