@@ -67,16 +67,14 @@ class YTMusicTransfer:
             if i > 0 and i % 10 == 0:
                 print(str(i) + ' searched')
 
-        return videoIds, notFound
-
-    def add_songs(self, playlist, tracks):
-        videoIds, notFound = self.search_songs(tracks)
-
-        self.api.add_playlist_items(playlist, videoIds)
-
         with open(path + 'noresults_youtube.txt', 'w', encoding="utf-8") as f:
             f.write("\n".join(notFound))
             f.close()
+
+        return videoIds
+
+    def add_playlist_items(self, playlistId, videoIds):
+        self.api.add_playlist_items(playlistId, videoIds)
 
     def get_playlist_id(self, name):
         pl = self.api.get_playlists()
@@ -142,12 +140,15 @@ def main():
 
     if args.update:
         playlistId = ytmusic.get_playlist_id(args.update)
+        videoIds = ytmusic.search_songs(playlist['tracks'])
         ytmusic.remove_songs(playlistId)
-        ytmusic.add_songs(playlistId, playlist['tracks'])
+        ytmusic.add_playlist_items(playlistId, videoIds)
 
     else:
+        videoIds = ytmusic.search_songs(playlist['tracks'])
         playlistId = ytmusic.create_playlist(name, info, 'PUBLIC' if args.public else 'PRIVATE')
-        ytmusic.add_songs(playlistId, playlist['tracks'])
+        ytmusic.add_playlist_items(playlistId, videoIds)
+
         print("Success: created playlist \"" + name + "\"")
 
 
