@@ -1,3 +1,3 @@
 gmusicapi
-ytmusicapi
+ytmusicapi>=0.7
 spotipy
