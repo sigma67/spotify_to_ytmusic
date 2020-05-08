@@ -159,7 +159,7 @@ def main():
 
         comment = "[YouTube Music](https://music.youtube.com/playlist?list=" + playlistId + ")"
         with open(path + "comment.txt", 'a') as f:
-            f.write(comment)
+            f.write('\n\n' + comment)
 
         print("Success: created playlist \"" + name + "\"")
 
