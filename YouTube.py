@@ -119,6 +119,7 @@ def get_args():
     parser.add_argument("-u", "--update", type=str, help="Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.")
     parser.add_argument("-n", "--name", type=str, help="Provide a name for the YouTube Music playlist. Default: Spotify playlist name")
     parser.add_argument("-i", "--info", type=str, help="Provide description information for the YouTube Music Playlist. Default: Spotify playlist description")
+    parser.add_argument("-c", "--comment", type=str, help="Reddit comment text")
     parser.add_argument("-d", "--date", action='store_true', help="Append the current date to the playlist name")
     parser.add_argument("-p", "--public", action='store_true', help="Make the playlist public. Default: private")
     parser.add_argument("-r", "--remove", action='store_true', help="Remove playlists with specified regex pattern.")
@@ -157,7 +158,8 @@ def main():
         playlistId = ytmusic.create_playlist(name, info, 'PUBLIC' if args.public else 'PRIVATE')
         ytmusic.add_playlist_items(playlistId, videoIds)
 
-        comment = "[YouTube Music](https://music.youtube.com/playlist?list=" + playlistId + ")"
+        comment_text = args.comment if args.comment else "YouTube Music"
+        comment = "[" + comment_text + "](https://music.youtube.com/playlist?list=" + playlistId + ")"
         with open(path + "comment.txt", 'a') as f:
             f.write('\n\n' + comment)
 
