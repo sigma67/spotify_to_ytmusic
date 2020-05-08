@@ -34,15 +34,17 @@ class YTMusicTransfer:
                 titleSplit = title.split('-')
                 if len(titleSplit) == 2:
                     title = titleSplit[1]
+                artists = res['artist']
+            else:
+                artists = ' '.join([a['name'] for a in res['artists']])
 
             title_score[res['videoId']] = difflib.SequenceMatcher(a=title.lower(), b=song['name'].lower()).ratio()
-
             scores = [durationMatch * 5, title_score[res['videoId']],
-                      difflib.SequenceMatcher(a=res['artist'].lower(), b=song['artist'].lower()).ratio()]
+                      difflib.SequenceMatcher(a=artists.lower(), b=song['artist'].lower()).ratio()]
 
             #add album for songs only
-            if res['resultType'] == 'song' and 'album' in res:
-                scores.append(difflib.SequenceMatcher(a=res['album'].lower(), b=song['album'].lower()).ratio())
+            if res['resultType'] == 'song' and res['album'] is not None:
+                scores.append(difflib.SequenceMatcher(a=res['album']['name'].lower(), b=song['album'].lower()).ratio())
 
             match_score[res['videoId']] = sum(scores) / (len(scores) + 1) * max(1, int(res['resultType'] == 'song') * 1.5)
 
