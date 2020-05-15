@@ -93,7 +93,7 @@ class YTMusicTransfer:
             raise Exception("Playlist title not found in playlists")
 
     def remove_songs(self, playlistId):
-        items = self.api.get_playlist(playlistId)['tracks']
+        items = self.api.get_playlist(playlistId, 10000)['tracks']
         if len(items) > 0:
             self.api.remove_playlist_items(playlistId, items)
 
