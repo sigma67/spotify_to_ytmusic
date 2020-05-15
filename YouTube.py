@@ -14,8 +14,8 @@ class YTMusicTransfer:
     def __init__(self):
         self.api = YTMusic(settings['youtube']['headers'])
 
-    def create_playlist(self, name, info, privacy="PRIVATE"):
-        return self.api.create_playlist(name, info, privacy)
+    def create_playlist(self, name, info, privacy="PRIVATE", tracks=None):
+        return self.api.create_playlist(name, info, privacy, video_ids=tracks)
 
     def get_best_fit_song_id(self, results, song):
         match_score = {}
@@ -122,13 +122,32 @@ def get_args():
     parser.add_argument("-d", "--date", action='store_true', help="Append the current date to the playlist name")
     parser.add_argument("-p", "--public", action='store_true', help="Make the playlist public. Default: private")
     parser.add_argument("-r", "--remove", action='store_true', help="Remove playlists with specified regex pattern.")
-    #parser.add_argument("-a", "--all", action='store_true', help="Transfer all public playlists of the specified user (Spotify User ID).")
+    parser.add_argument("-a", "--all", action='store_true', help="Transfer all public playlists of the specified user (Spotify User ID).")
     return parser.parse_args()
 
 
 def main():
     args = get_args()
     ytmusic = YTMusicTransfer()
+
+    if args.all:
+        s = Spotify()
+        pl = s.getUserPlaylists(args.playlist)
+        print(str(len(pl)) + " playlists found. Starting transfer...")
+        count = 1
+        for p in pl:
+            print("Playlist " + str(count) + ": " + p['name'])
+            count = count + 1
+            try:
+                playlist = Spotify().getSpotifyPlaylist(p['external_urls']['spotify'])
+                videoIds = ytmusic.search_songs(playlist['tracks'])
+                playlist_id = ytmusic.create_playlist(p['name'], p['description'],
+                                                    'PUBLIC' if args.public else 'PRIVATE',
+                                                    videoIds)
+                print(playlist_id)
+            except Exception as ex:
+                print("Could not transfer playlist " + p['name'] + ". Exception" + str(ex))
+        return
 
     if args.remove:
         ytmusic.remove_playlists(args.playlist)
