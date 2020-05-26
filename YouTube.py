@@ -176,7 +176,8 @@ def main():
         playlistId = ytmusic.create_playlist(name, info, 'PUBLIC' if args.public else 'PRIVATE')
         ytmusic.add_playlist_items(playlistId, videoIds)
 
-        print("Success: created playlist \"" + name + "\"")
+        print("Success: created playlist \"" + name + "\"\n" +
+              "https://music.youtube.com/playlist?list=" + playlistId)
 
 
 if __name__ == "__main__":
