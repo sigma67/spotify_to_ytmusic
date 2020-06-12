@@ -19,13 +19,15 @@ class Reddit:
 
     def comment_EDM(self, content):
         sub = self.reddit.subreddit('EDM')
-        results = sub.search("New EDM This Week", time_filter="week")
+        query = 'title:"New EDM This Week"'
+        results = sub.search(query, time_filter="week")
         commented = False
         for x in results:
             if time.time() - x.created_utc < 86400:
                 print("Commenting post: " + x.title)
                 x.reply(content)
                 commented = True
+                break
 
         return commented
 
