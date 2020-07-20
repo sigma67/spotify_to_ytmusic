@@ -98,7 +98,7 @@ class YTMusicTransfer:
             self.api.remove_playlist_items(playlistId, items)
 
     def remove_playlists(self, pattern):
-        playlists = self.api.get_library_playlists()
+        playlists = self.api.get_library_playlists(10000)
         p = re.compile("{0}".format(pattern))
         matches = [pl for pl in playlists if p.match(pl['title'])]
         print("The following playlists will be removed:")
