@@ -14,8 +14,8 @@ class YTMusicTransfer:
     def __init__(self):
         self.api = YTMusic(settings['youtube']['headers'])
 
-    def create_playlist(self, name, info, privacy="PRIVATE"):
-        return self.api.create_playlist(name, info, privacy)
+    def create_playlist(self, name, info, privacy="PRIVATE", tracks=None):
+        return self.api.create_playlist(name, info, privacy, video_ids=tracks)
 
     def get_best_fit_song_id(self, results, song):
         match_score = {}
@@ -85,7 +85,7 @@ class YTMusicTransfer:
         self.api.add_playlist_items(playlistId, videoIds)
 
     def get_playlist_id(self, name):
-        pl = self.api.get_library_playlists()
+        pl = self.api.get_library_playlists(10000)
         try:
             playlist = next(x for x in pl if x['title'].find(name) != -1)['playlistId']
             return playlist
@@ -98,7 +98,7 @@ class YTMusicTransfer:
             self.api.remove_playlist_items(playlistId, items)
 
     def remove_playlists(self, pattern):
-        playlists = self.api.get_library_playlists()
+        playlists = self.api.get_library_playlists(10000)
         p = re.compile("{0}".format(pattern))
         matches = [pl for pl in playlists if p.match(pl['title'])]
         print("The following playlists will be removed:")
@@ -123,13 +123,32 @@ def get_args():
     parser.add_argument("-d", "--date", action='store_true', help="Append the current date to the playlist name")
     parser.add_argument("-p", "--public", action='store_true', help="Make the playlist public. Default: private")
     parser.add_argument("-r", "--remove", action='store_true', help="Remove playlists with specified regex pattern.")
-    #parser.add_argument("-a", "--all", action='store_true', help="Transfer all public playlists of the specified user (Spotify User ID).")
+    parser.add_argument("-a", "--all", action='store_true', help="Transfer all public playlists of the specified user (Spotify User ID).")
     return parser.parse_args()
 
 
 def main():
     args = get_args()
     ytmusic = YTMusicTransfer()
+
+    if args.all:
+        s = Spotify()
+        pl = s.getUserPlaylists(args.playlist)
+        print(str(len(pl)) + " playlists found. Starting transfer...")
+        count = 1
+        for p in pl:
+            print("Playlist " + str(count) + ": " + p['name'])
+            count = count + 1
+            try:
+                playlist = Spotify().getSpotifyPlaylist(p['external_urls']['spotify'])
+                videoIds = ytmusic.search_songs(playlist['tracks'])
+                playlist_id = ytmusic.create_playlist(p['name'], p['description'],
+                                                    'PUBLIC' if args.public else 'PRIVATE',
+                                                    videoIds)
+                print(playlist_id)
+            except Exception as ex:
+                print("Could not transfer playlist " + p['name'] + ". Exception" + str(ex))
+        return
 
     if args.remove:
         ytmusic.remove_playlists(args.playlist)
@@ -163,7 +182,8 @@ def main():
         with open(path + "comment.txt", 'a') as f:
             f.write('\n\n' + comment)
 
-        print("Success: created playlist \"" + name + "\"")
+        print("Success: created playlist \"" + name + "\"\n" +
+              "https://music.youtube.com/playlist?list=" + playlistId)
 
 
 if __name__ == "__main__":
