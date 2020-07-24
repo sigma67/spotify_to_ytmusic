@@ -85,7 +85,7 @@ class YTMusicTransfer:
         self.api.add_playlist_items(playlistId, videoIds)
 
     def get_playlist_id(self, name):
-        pl = self.api.get_library_playlists()
+        pl = self.api.get_library_playlists(10000)
         try:
             playlist = next(x for x in pl if x['title'].find(name) != -1)['playlistId']
             return playlist
