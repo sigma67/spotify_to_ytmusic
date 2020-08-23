@@ -82,6 +82,7 @@ class YTMusicTransfer:
         return videoIds
 
     def add_playlist_items(self, playlistId, videoIds):
+        videoIds = set(videoIds)
         self.api.add_playlist_items(playlistId, videoIds)
 
     def get_playlist_id(self, name):
