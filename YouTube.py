@@ -12,7 +12,7 @@ path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 class YTMusicTransfer:
     def __init__(self):
-        self.api = YTMusic(settings['youtube']['headers'])
+        self.api = YTMusic(settings['youtube']['headers'], settings['youtube']['user_id'])
 
     def create_playlist(self, name, info, privacy="PRIVATE", tracks=None):
         return self.api.create_playlist(name, info, privacy, video_ids=tracks)
