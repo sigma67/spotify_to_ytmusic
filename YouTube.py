@@ -4,6 +4,7 @@ import os
 import re
 import argparse
 import difflib
+from collections import OrderedDict
 from SpotifyExport import Spotify
 import settings
 
@@ -12,7 +13,7 @@ path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 class YTMusicTransfer:
     def __init__(self):
-        self.api = YTMusic(settings['youtube']['headers'])
+        self.api = YTMusic(settings['youtube']['headers'], settings['youtube']['user_id'])
 
     def create_playlist(self, name, info, privacy="PRIVATE", tracks=None):
         return self.api.create_playlist(name, info, privacy, video_ids=tracks)
@@ -82,7 +83,7 @@ class YTMusicTransfer:
         return videoIds
 
     def add_playlist_items(self, playlistId, videoIds):
-        videoIds = set(videoIds)
+        videoIds = OrderedDict.fromkeys(videoIds)
         self.api.add_playlist_items(playlistId, videoIds)
 
     def get_playlist_id(self, name):
