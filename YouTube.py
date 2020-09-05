@@ -4,6 +4,7 @@ import os
 import re
 import argparse
 import difflib
+from collections import OrderedDict
 from SpotifyExport import Spotify
 import settings
 
@@ -82,7 +83,7 @@ class YTMusicTransfer:
         return videoIds
 
     def add_playlist_items(self, playlistId, videoIds):
-        videoIds = set(videoIds)
+        videoIds = OrderedDict.fromkeys(videoIds)
         self.api.add_playlist_items(playlistId, videoIds)
 
     def get_playlist_id(self, name):
