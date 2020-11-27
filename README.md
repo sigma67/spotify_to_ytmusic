@@ -16,14 +16,26 @@ Usage is identical to GoogleMusic.py, just use `python YouTube.py` with the same
 
 Initially you should create a new settings.ini containing your Spotify credentials. Simply copy settings.ini.example to a new file settings.ini and fill in your client_id and client_secret from https://developer.spotify.com/my-applications
 
-For Google Play Music, open a console in the source code folder and run 
+For Google Play Music, open a console in the source code folder and run this script. Then follow the command line instructions to grant the app access to your account. All credentials are stored locally in the file `settings.ini`.
 
-`python Setup.py <client>`
+### Google Play Music upload
 
-where `<client>` should be `mobileclient` to setup playlist transfers **or** `musicmanager` to be able to upload files with GoogleMusicManager.py.
-For YouTube Music setup, use `youtube`.
+`python Setup.py --musicmanager`
 
-Then follow the command line instructions to grant the app access to your account. All credentials are stored locally in the file `settings.ini`. 
+### Google Play Music playlist transfers
+
+`python Setup.py --mobileclient`
+
+### YouTube Music playlist transfers
+`python Setup.py --youtube`
+
+> Then YTMusic will ask for the request header of https://music.youtube.com/browse
+
+[YTMusic's Document](https://ytmusicapi.readthedocs.io/en/latest/setup.html#copy-authentication-headers)
+
+Or passing raw headers as the 2nd argument.
+
+`python Setup.py --youtube --headers_raw "HEADERS"`
 
 ## Transfer playlists
 
@@ -72,4 +84,30 @@ optional arguments:
   -r, --remove          Remove playlists with specified regex pattern.
   -a, --all             Transfer all public playlists of the specified user
                         (Spotify User ID).
+```
+
+## Batch playlists transfers to Youtube in single script (You can skip the Setup.py)
+
+1) Update Spotify's credentials  `client_id` and `client_secret` in `setting.ini` file.
+2) Prepare list of Spotify's playlists `spotify_playlists.txt` please check `spotify_playlists.txt.example` for the example.
+3) Prepare the headers `youtube_headers_raw.txt` please check `youtube_headers_raw.txt.example` for the example. [YTMusic's Document](https://ytmusicapi.readthedocs.io/en/latest/setup.html#copy-authentication-headers)
+
+> Incase you want to create playlist using brand account. You've to update `user_id` in `setting.ini` file. Otherwise just leave it blank.
+
+> You can retrieve the user ID by going to https://myaccount.google.com/brandaccounts and selecting your brand account. The user ID will be in the URL: https://myaccount.google.com/b/user_id/
+
+4) Run the script. `python SpotifyToYoutube.py`
+> By default, it will upload as private playlist using name and info from Spotify.
+
+```
+Transfer spotify playlist to YouTube Music.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -n NAME, --name NAME  Provide a name for the YouTube Music playlist. Default: Spotify playlist name
+  -i INFO, --info INFO  Provide description information for the YouTube Music Playlist. Default: Spotify playlist description
+  -d, --date            Append the current date to the playlist name
+  -p, --public          Make the playlist public. Default: private
+  -r, --remove          Remove playlists with specified regex pattern.
+  -a, --all             Transfer all public playlists of the specified user (Spotify User ID).
 ```
