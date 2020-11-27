@@ -1,0 +1,26 @@
+Host: music.youtube.com
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:81.0) Gecko/20100101 Firefox/81.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Content-Type: application/json
+Content-Length: 843
+X-Goog-Visitor-Id: XXXXXXXX
+X-Goog-AuthUser: 0
+x-origin: https://music.youtube.com
+X-YouTube-Client-Name: 67
+X-YouTube-Client-Version: 0.1
+X-YouTube-Device: XXXXXXXX
+X-Youtube-Identity-Token: XXXXXXXX
+X-YouTube-Page-CL: XXXXXXXX
+X-YouTube-Page-Label: youtube.music.web.client_20201118_00_RC02
+X-YouTube-Utc-Offset: 240
+X-YouTube-Time-Zone: Asia/Dubai
+X-YouTube-Ad-Signals: XXXXXXXX
+Origin: https://music.youtube.com
+DNT: 1
+Authorization: SAPISIDHASH XXXXXXXX
+Referer: https://music.youtube.com/library/playlists
+Connection: keep-alive
+Cookie: XXXXXXXX
+TE: Trailers

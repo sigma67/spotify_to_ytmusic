@@ -111,3 +111,5 @@ noresults.txt
 *.ini
 *.txt
 *.json
+youtube_headers_raw.txt
+spotify_playlists.txt
