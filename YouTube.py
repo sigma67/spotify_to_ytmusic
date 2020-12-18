@@ -35,9 +35,8 @@ class YTMusicTransfer:
                 titleSplit = title.split('-')
                 if len(titleSplit) == 2:
                     title = titleSplit[1]
-                artists = res['artist']
-            else:
-                artists = ' '.join([a['name'] for a in res['artists']])
+
+            artists = ' '.join([a['name'] for a in res['artists']])
 
             title_score[res['videoId']] = difflib.SequenceMatcher(a=title.lower(), b=song['name'].lower()).ratio()
             scores = [durationMatch * 5, title_score[res['videoId']],
