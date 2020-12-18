@@ -1,4 +1,4 @@
 gmusicapi
-ytmusicapi>=0.7
+ytmusicapi>=0.12.2
 spotipy
 praw
