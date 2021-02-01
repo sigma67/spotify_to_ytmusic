@@ -25,9 +25,11 @@ class YTMusicTransfer:
             if res['resultType'] not in ['song', 'video']:
                 continue
 
-            durationItems = res['duration'].split(':')
-            duration = int(durationItems[0]) * 60 + int(durationItems[1])
-            durationMatch = 1 - abs(duration - song['duration']) * 2 / song['duration']
+            durationMatch = None
+            if res['duration']:
+                durationItems = res['duration'].split(':')
+                duration = int(durationItems[0]) * 60 + int(durationItems[1])
+                durationMatch = 1 - abs(duration - song['duration']) * 2 / song['duration']
 
             title = res['title']
             # for videos,
@@ -39,8 +41,10 @@ class YTMusicTransfer:
             artists = ' '.join([a['name'] for a in res['artists']])
 
             title_score[res['videoId']] = difflib.SequenceMatcher(a=title.lower(), b=song['name'].lower()).ratio()
-            scores = [durationMatch * 5, title_score[res['videoId']],
+            scores = [title_score[res['videoId']],
                       difflib.SequenceMatcher(a=artists.lower(), b=song['artist'].lower()).ratio()]
+            if durationMatch:
+                scores.append(durationMatch * 5)
 
             #add album for songs only
             if res['resultType'] == 'song' and res['album'] is not None:
