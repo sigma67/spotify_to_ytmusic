@@ -1,5 +1,3 @@
-[google]
-
 [youtube]
 headers = headers_json_from_browser
 user_id = 
