@@ -64,9 +64,10 @@ class YTMusicTransfer:
         songs = list(tracks)
         notFound = list()
         for i, song in enumerate(songs):
-            query = song['artist'] + ' ' + song['name']
+            name = re.sub(r' \(feat.*\..+\)', '', song['name'])
+            query = song['artist'] + ' ' + name
             query = query.replace(" &", "")
-            result = self.api.search(query)
+            result = self.api.search(query, ignore_spelling=True)
             if len(result) == 0:
                 notFound.append(query)
             else:
