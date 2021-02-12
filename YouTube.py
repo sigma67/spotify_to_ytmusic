@@ -50,7 +50,7 @@ class YTMusicTransfer:
             if res['resultType'] == 'song' and res['album'] is not None:
                 scores.append(difflib.SequenceMatcher(a=res['album']['name'].lower(), b=song['album'].lower()).ratio())
 
-            match_score[res['videoId']] = sum(scores) / (len(scores) + 1) * max(1, int(res['resultType'] == 'song') * 1.5)
+            match_score[res['videoId']] = sum(scores) / len(scores) * max(1, int(res['resultType'] == 'song') * 1.5)
 
         if len(match_score) == 0:
             return None
