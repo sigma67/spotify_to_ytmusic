@@ -1,7 +1,6 @@
 import praw
 import settings
 import time
-import sys
 import os
 
 agent = 'Gmusic playlist app by /u/Sigmatics'
@@ -30,6 +29,12 @@ class Reddit:
                 break
 
         return commented
+
+    def get_top_new(self, time="week"):
+        sub = self.reddit.subreddit('EDM')
+        query = 'flair:"new music"'
+        results = sub.search(query, time_filter=time, sort="top")
+        return [x.url for x in results if "open.spotify.com" in x.url]
 
 if __name__ == "__main__":
     path = os.path.dirname(os.path.realpath(__file__)) + os.sep

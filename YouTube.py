@@ -164,7 +164,17 @@ def main():
     if args.date:
         date = " " + datetime.today().strftime('%m/%d/%Y')
     try:
-        playlist = Spotify().getSpotifyPlaylist(args.playlist)
+        s = Spotify()
+        if args.playlist == "top":
+            from reddit import Reddit
+            r = Reddit()
+            results = r.get_top_new()
+            playlist = {'tracks': []}
+            for r in results:
+                playlist['tracks'].extend(s.get_tracks(r))
+
+        else:
+            playlist = Spotify().getSpotifyPlaylist(args.playlist)
     except Exception as ex:
         print("Could not get Spotify playlist. Please check the playlist link.\n Error: " + repr(ex))
         return
