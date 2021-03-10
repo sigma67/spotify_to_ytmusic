@@ -161,6 +161,8 @@ def main():
         return
 
     date = ""
+    results = []
+    track_counts = []
     if args.date:
         date = " " + datetime.today().strftime('%m/%d/%Y')
     try:
@@ -170,26 +172,49 @@ def main():
             r = Reddit()
             results = r.get_top_new()
             playlist = {'tracks': []}
-            for r in results:
-                playlist['tracks'].extend(s.get_tracks(r))
+            for r in results['spotify']:
+                tracks = s.get_tracks(r)
+                playlist['tracks'].extend(tracks)
+                track_counts.append(len(tracks))
 
         else:
             playlist = Spotify().getSpotifyPlaylist(args.playlist)
     except Exception as ex:
-        print("Could not get Spotify playlist. Please check the playlist link.\n Error: " + repr(ex))
-        return
+        raise ex
+        #print("Could not get Spotify playlist. Please check the playlist link.\n Error: " + repr(ex))
+        #return
 
     name = args.name + date if args.name else playlist['name'] + date
     info = playlist['description'] if (args.info is None) else args.info
 
+    # will error if playlist not found
     if args.update:
         playlistId = ytmusic.get_playlist_id(args.update)
-        videoIds = ytmusic.search_songs(playlist['tracks'])
+
+    # search before removing/creating anything
+    search_results = ytmusic.search_songs(playlist['tracks'])
+
+    if args.playlist == "top":
+        videoIds = []
+        counter = 0
+        track_counter = 0
+        for i in range(len(results['youtube'] + results['spotify'])):
+            if i in results['youtube_pos']:
+                r = results['youtube'][results['youtube_pos'].index(i)]
+                id = r.split('/')[-1].split('=')[-1]
+                videoIds.append(id)
+            else:
+                videoIds.extend(search_results[track_counter:track_counter+track_counts[counter]])
+                track_counter += track_counts[counter]
+                counter += 1
+    else:
+        videoIds = search_results
+
+    if args.update:
         ytmusic.remove_songs(playlistId)
         ytmusic.add_playlist_items(playlistId, videoIds)
 
     else:
-        videoIds = ytmusic.search_songs(playlist['tracks'])
         playlistId = ytmusic.create_playlist(name, info, 'PUBLIC' if args.public else 'PRIVATE')
         ytmusic.add_playlist_items(playlistId, videoIds)
 

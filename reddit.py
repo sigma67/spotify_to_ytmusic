@@ -34,7 +34,25 @@ class Reddit:
         sub = self.reddit.subreddit('EDM')
         query = 'flair:"new music"'
         results = sub.search(query, time_filter=time, sort="top")
-        return [x.url for x in results if "open.spotify.com" in x.url]
+        urls = [x.url for x in results]
+        spotify = []
+        youtube = []
+        youtube_pos = []
+        count = 0
+        for url in urls:
+            if "open.spotify.com" in url:
+                spotify.append(url)
+                count += 1
+            elif "youtu.be" in url or "youtube.com" in url:
+                youtube.append(url)
+                youtube_pos.append(count)
+                count += 1
+        return {
+            "spotify": spotify,
+            "youtube": youtube,
+            "youtube_pos": youtube_pos,
+        }
+
 
 if __name__ == "__main__":
     path = os.path.dirname(os.path.realpath(__file__)) + os.sep
