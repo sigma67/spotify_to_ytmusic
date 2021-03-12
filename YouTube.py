@@ -201,7 +201,7 @@ def main():
         for i in range(len(results['youtube'] + results['spotify'])):
             if i in results['youtube_pos']:
                 r = results['youtube'][results['youtube_pos'].index(i)]
-                id = r.split('/')[-1].split('=')[-1]
+                id = r.split('/')[-1].split('=')[1]
                 videoIds.append(id)
             else:
                 videoIds.extend(search_results[track_counter:track_counter+track_counts[counter]])
