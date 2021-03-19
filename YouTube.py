@@ -201,9 +201,8 @@ def main():
         for i in range(len(results['youtube'] + results['spotify'])):
             if i in results['youtube_pos']:
                 r = results['youtube'][results['youtube_pos'].index(i)]
-                match = re.search(r'(https?://)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)/('
-                                  r'watch\?v=|embed/|v/|.+\?v=)?(?P<id>[A-Za-z0-9\-=_]{11})', r)
-                videoIds.append(match.group('id'))
+                match = re.search(r'(?:v=|\/)([0-9A-Za-z_-]{11}).*', r)  # from pytube extract.video_id
+                videoIds.append(match.group(1))
             else:
                 videoIds.extend(search_results[track_counter:track_counter+track_counts[counter]])
                 track_counter += track_counts[counter]
