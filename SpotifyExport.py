@@ -3,6 +3,7 @@ import spotipy
 import settings
 import html
 
+
 class Spotify:
     def __init__(self):
         conf = settings['spotify']
@@ -21,7 +22,7 @@ class Spotify:
         count = 1
         more = len(results['tracks']['items']) == 100
         while more:
-            more_tracks = self.api.playlist_tracks(playlistId, offset = count * 100, limit=100)
+            more_tracks = self.api.playlist_items(playlistId, offset = count * 100, limit=100)
             print('requested from ' + str(count * 100))
             tracks += build_results(more_tracks['items'])
             more = len(more_tracks["items"]) == 100
@@ -58,6 +59,8 @@ def build_results(tracks, album=None):
     for track in tracks:
         if 'track' in track:
             track = track['track']
+        if not track:
+            continue
         album_name = album if album else track['album']['name']
         results.append({
             'artist': ' '.join([artist['name'] for artist in track['artists']]),

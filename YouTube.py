@@ -121,7 +121,7 @@ class YTMusicTransfer:
 
 def get_args():
     parser = argparse.ArgumentParser(description='Transfer spotify playlist to YouTube Music.')
-    parser.add_argument("playlist", type=str, help="Provide a playlist Spotify link. Alternatively, provide a text file (one song per line)")
+    parser.add_argument("playlist", type=str, help="Provide a playlist Spotify link.")
     parser.add_argument("-u", "--update", type=str, help="Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.")
     parser.add_argument("-n", "--name", type=str, help="Provide a name for the YouTube Music playlist. Default: Spotify playlist name")
     parser.add_argument("-i", "--info", type=str, help="Provide description information for the YouTube Music Playlist. Default: Spotify playlist description")
