@@ -43,7 +43,7 @@ class Reddit:
             if "open.spotify.com" in url:
                 spotify.append(url)
                 count += 1
-            elif "youtu.be" in url or "youtube.com" in url:
+            elif ("youtu.be" in url or "youtube.com" in url) and "playlist" not in url:
                 youtube.append(url)
                 youtube_pos.append(count)
                 count += 1
