@@ -78,10 +78,11 @@ class YTMusicTransfer:
                     videoIds.append(targetSong)
 
             if i > 0 and i % 10 == 0:
-                print(str(i) + ' searched')
+                print(f"YouTube tracks: {i}/{len(songs)}")
 
         with open(path + 'noresults_youtube.txt', 'w', encoding="utf-8") as f:
             f.write("\n".join(notFound))
+            f.write("\n")
             f.close()
 
         return videoIds
