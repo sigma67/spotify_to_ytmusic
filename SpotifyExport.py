@@ -17,16 +17,15 @@ class Spotify:
 
         results = self.api.playlist(playlistId)
         name = results['name']
-        tracks = build_results(results['tracks']['items'])
+        total = int(results['tracks']['total'])
+        tracks = list()
 
-        count = 1
-        more = len(results['tracks']['items']) == 100
-        while more:
-            more_tracks = self.api.playlist_items(playlistId, offset = count * 100, limit=100)
-            print('requested from ' + str(count * 100))
-            tracks += build_results(more_tracks['items'])
-            more = len(more_tracks["items"]) == 100
-            count = count + 1
+        count = 0
+        while count < total:
+            req = self.api.playlist_items(playlistId, offset=count, limit=100)
+            tracks += build_results(req['items'])
+            print(f"Spotify tracks: {len(tracks)}/{total}")
+            count = count + 100
 
         return {'tracks': tracks, 'name': name, 'description': html.unescape(results['description'])}
 

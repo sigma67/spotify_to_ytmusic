@@ -1,6 +1,6 @@
 # Transfer a Spotify Playlist to YouTube Music
 
-A simple command line script to clone a Spotify playlist to YouTube Music. 
+A simple command line script to clone a Spotify playlist to YouTube Music.
 
 - Transfer a single Spotify playlist
 - Transfer all playlists for a Spotify user
@@ -8,12 +8,13 @@ A simple command line script to clone a Spotify playlist to YouTube Music.
 
 ## Requirements
 
-- Python 3 - https://www.python.org
+- Python 3.6+ - https://www.python.org
 - Python extensions: `pip install -U -r requirements`
+- Have made at least one playlist manually on YouTube Music
 
 ## Setup
 
-1. Initially you should create a new `settings.ini` containing your Spotify credentials. 
+1. Initially you should create a new `settings.ini` containing your Spotify credentials.
 
 Simply copy `settings.ini.example` to a new file `settings.ini`:
 
@@ -25,13 +26,13 @@ $ cp settings.ini.example settings.ini
 
 3. Fill in your `client_id` and `client_secret` from your Spotify app
 
-4. For YouTube Music, open a console in the source code folder and run 
+4. For YouTube Music, open a console in the source code folder and run
 
 `python Setup.py youtube`
 
-Then, open your browser and copy your request headers according to the instructions at https://ytmusicapi.readthedocs.io/en/latest/setup.html 
+Then, open your browser and copy your request headers according to the instructions at https://ytmusicapi.readthedocs.io/en/latest/setup.html
 
-All credentials are stored locally in the file `settings.ini`. 
+All credentials are stored locally in the file `settings.ini`.
 
 ## Transfer a playlist
 

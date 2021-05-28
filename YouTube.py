@@ -26,7 +26,7 @@ class YTMusicTransfer:
                 continue
 
             durationMatch = None
-            if res['duration']:
+            if 'duration' in res and res['duration']:
                 durationItems = res['duration'].split(':')
                 duration = int(durationItems[0]) * 60 + int(durationItems[1])
                 durationMatch = 1 - abs(duration - song['duration']) * 2 / song['duration']
@@ -78,10 +78,11 @@ class YTMusicTransfer:
                     videoIds.append(targetSong)
 
             if i > 0 and i % 10 == 0:
-                print(str(i) + ' searched')
+                print(f"YouTube tracks: {i}/{len(songs)}")
 
         with open(path + 'noresults_youtube.txt', 'w', encoding="utf-8") as f:
             f.write("\n".join(notFound))
+            f.write("\n")
             f.close()
 
         return videoIds
