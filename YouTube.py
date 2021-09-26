@@ -67,7 +67,7 @@ class YTMusicTransfer:
             name = re.sub(r' \(feat.*\..+\)', '', song['name'])
             query = song['artist'] + ' ' + name
             query = query.replace(" &", "")
-            result = self.api.search(query, ignore_spelling=True)
+            result = self.api.search(query)
             if len(result) == 0:
                 notFound.append(query)
             else:
