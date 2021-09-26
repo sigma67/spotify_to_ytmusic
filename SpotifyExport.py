@@ -26,7 +26,7 @@ class Spotify:
             more_tracks = self.api.playlist_items(playlistId, offset=count, limit=100)
             tracks += build_results(more_tracks['items'])
             count = count + 100
-            print(f"Spotify tracks: {count}/{total}")
+            print(f"Spotify tracks: {len(tracks)}/{total}")
 
         return {'tracks': tracks, 'name': name, 'description': html.unescape(results['description'])}
 
