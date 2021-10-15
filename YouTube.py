@@ -216,8 +216,7 @@ def main():
         ytmusic.add_playlist_items(playlistId, videoIds)
 
     else:
-        playlistId = ytmusic.create_playlist(name, info, 'PUBLIC' if args.public else 'PRIVATE')
-        ytmusic.add_playlist_items(playlistId, videoIds)
+        playlistId = ytmusic.create_playlist(name, info, 'PUBLIC' if args.public else 'PRIVATE', videoIds)
 
         comment_text = args.comment if args.comment else "YouTube Music"
         comment = "[" + comment_text + "](https://music.youtube.com/playlist?list=" + playlistId + ")"
