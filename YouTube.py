@@ -180,8 +180,7 @@ def main():
 
     else:
         videoIds = ytmusic.search_songs(playlist['tracks'])
-        playlistId = ytmusic.create_playlist(name, info, 'PUBLIC' if args.public else 'PRIVATE')
-        ytmusic.add_playlist_items(playlistId, videoIds)
+        playlistId = ytmusic.create_playlist(name, info, 'PUBLIC' if args.public else 'PRIVATE', videoIds)
 
         print("Success: created playlist \"" + name + "\"\n" +
               "https://music.youtube.com/playlist?list=" + playlistId)
