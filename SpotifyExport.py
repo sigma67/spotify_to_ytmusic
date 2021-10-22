@@ -2,6 +2,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy
 import settings
 import html
+from urllib.parse import urlparse
 
 
 class Spotify:
@@ -44,11 +45,13 @@ class Spotify:
 
     def get_tracks(self, url):
         tracks = []
-        id = get_id_from_url(url)
-        if 'album' in url:
+        url_parts = parse_url(url)
+        path = url_parts.path.split('/')
+        id = path[2]
+        if 'album' == path[1]:
             album = self.api.album(id)
             tracks.extend(build_results(album['tracks']['items'], album['name']))
-        elif 'track' in url:
+        elif 'track' == path[1]:
             track = self.api.track(id)
             tracks.extend(build_results([track]))
         return tracks
@@ -73,5 +76,9 @@ def build_results(tracks, album=None):
 
 
 def get_id_from_url(url):
-    url_parts = url.split('/')
-    return url_parts[4].split('?')[0]
+    url_parts = parse_url(url)
+    return url_parts.path.split('/')[2]
+
+
+def parse_url(url):
+    return urlparse(url)
