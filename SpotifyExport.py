@@ -40,7 +40,7 @@ class Spotify:
             more = len(results) == 50
             count = count + 1
 
-        return [p for p in pl if p['owner']['display_name'] == user and p['tracks']['total'] > 0]
+        return [p for p in pl if p['owner']['id'] == user and p['tracks']['total'] > 0]
 
     def get_tracks(self, url):
         tracks = []
