@@ -212,8 +212,9 @@ def main():
         videoIds = search_results
 
     if args.update:
-        ytmusic.remove_songs(playlistId)
-        ytmusic.add_playlist_items(playlistId, videoIds)
+        if len(videoIds) > 0:
+            ytmusic.remove_songs(playlistId)
+            ytmusic.add_playlist_items(playlistId, videoIds)
 
     else:
         playlistId = ytmusic.create_playlist(name, info, 'PUBLIC' if args.public else 'PRIVATE', videoIds)
