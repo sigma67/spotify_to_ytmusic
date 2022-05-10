@@ -130,6 +130,7 @@ def get_args():
     parser.add_argument("-p", "--public", action='store_true', help="Make the playlist public. Default: private")
     parser.add_argument("-r", "--remove", action='store_true', help="Remove playlists with specified regex pattern.")
     parser.add_argument("-a", "--all", action='store_true', help="Transfer all public playlists of the specified user (Spotify User ID).")
+    parser.add_argument("-ex", "--exportonly", action='store_true', help="Only Export playlists not create on yt (works with --all flag only)")
     return parser.parse_args()
 
 
@@ -147,11 +148,19 @@ def main():
             count = count + 1
             try:
                 playlist = Spotify().getSpotifyPlaylist(p['external_urls']['spotify'])
-                videoIds = ytmusic.search_songs(playlist['tracks'])
-                playlist_id = ytmusic.create_playlist(p['name'], p['description'],
-                                                    'PUBLIC' if args.public else 'PRIVATE',
-                                                    videoIds)
-                print(playlist_id)
+                if args.exportonly:
+                  if not os.path.exists(path + 'spotify_playlists'):
+                    os.makedirs(path + 'spotify_playlists')
+                  print("Exporting playlist...")
+                  with open(path + "spotify_playlists/" + p["name"]+".json", "w", encoding="utf-8") as f:
+                    print(playlist, file=f)
+                    f.close()
+                else:
+                    videoIds = ytmusic.search_songs(playlist['tracks'])
+                    playlist_id = ytmusic.create_playlist(p['name'], p['description'],
+                                                        'PUBLIC' if args.public else 'PRIVATE',
+                                                        videoIds)
+                    print(playlist_id)
             except Exception as ex:
                 print("Could not transfer playlist " + p['name'] + ". Exception" + str(ex))
         return
