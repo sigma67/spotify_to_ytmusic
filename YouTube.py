@@ -26,7 +26,7 @@ class YTMusicTransfer:
                 continue
 
             durationMatch = None
-            if 'duration' in res and res['duration']:
+            if 'duration' in res and res['duration'] and song['duration'] != 0:
                 durationItems = res['duration'].split(':')
                 duration = int(durationItems[0]) * 60 + int(durationItems[1])
                 durationMatch = 1 - abs(duration - song['duration']) * 2 / song['duration']
@@ -179,6 +179,8 @@ def main():
         ytmusic.add_playlist_items(playlistId, videoIds)
 
     else:
+        if(not len(name)):
+            name= datetime.today().strftime('%m/%d/%Y')
         videoIds = ytmusic.search_songs(playlist['tracks'])
         playlistId = ytmusic.create_playlist(name, info, 'PUBLIC' if args.public else 'PRIVATE', videoIds)
 
