@@ -18,6 +18,9 @@ class YTMusicTransfer:
     def create_playlist(self, name, info, privacy="PRIVATE", tracks=None):
         return self.api.create_playlist(name, info, privacy, video_ids=tracks)
 
+    def rate_song(self, id, rating):
+        return self.api.rate_song(id, rating)
+
     def get_best_fit_song_id(self, results, song):
         match_score = {}
         title_score = {}
@@ -129,6 +132,7 @@ def get_args():
     parser.add_argument("-d", "--date", action='store_true', help="Append the current date to the playlist name")
     parser.add_argument("-p", "--public", action='store_true', help="Make the playlist public. Default: private")
     parser.add_argument("-r", "--remove", action='store_true', help="Remove playlists with specified regex pattern.")
+    parser.add_argument("-l", "--like", action='store_true', help="Like the songs in the specified playlist")
     parser.add_argument("-a", "--all", action='store_true', help="Transfer all public playlists of the specified user (Spotify User ID).")
     return parser.parse_args()
 
@@ -171,6 +175,12 @@ def main():
 
     name = args.name + date if args.name else playlist['name'] + date
     info = playlist['description'] if (args.info is None) else args.info
+
+    if args.like:
+        videoIds = ytmusic.search_songs(playlist['tracks'])
+        for id in videoIds:
+            ytmusic.rate_song(id, 'LIKE')
+        return
 
     if args.update:
         playlistId = ytmusic.get_playlist_id(args.update)
