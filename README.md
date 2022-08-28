@@ -4,6 +4,7 @@ A simple command line script to clone a Spotify playlist to YouTube Music.
 
 - Transfer a single Spotify playlist
 - Transfer all playlists for a Spotify user
+- Like all the songs in a Spotify playlist
 
 
 ## Requirements
@@ -77,6 +78,7 @@ optional arguments:
   -i INFO, --info INFO  Provide description information for the YouTube
                         Music Playlist. Default: Spotify playlist description
   -d, --date            Append the current date to the playlist name
+  -l, --like            Like the songs in the specified playlist
   -p, --public          Make the playlist public. Default: private
   -r, --remove          Remove playlists with specified regex pattern.
   -a, --all             Transfer all public playlists of the specified user
