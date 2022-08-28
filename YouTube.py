@@ -29,6 +29,8 @@ class YTMusicTransfer:
             if 'duration' in res and res['duration']:
                 durationItems = res['duration'].split(':')
                 duration = int(durationItems[0]) * 60 + int(durationItems[1])
+                if song['duration'] == 0.0:
+                    continue
                 durationMatch = 1 - abs(duration - song['duration']) * 2 / song['duration']
 
             title = res['title']
