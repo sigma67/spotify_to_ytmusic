@@ -123,7 +123,7 @@ class YTMusicTransfer:
 def get_args():
     parser = argparse.ArgumentParser(description='Transfer spotify playlist to YouTube Music.')
     parser.add_argument("playlist", type=str, help="Provide a playlist Spotify link.")
-    parser.add_argument("-u", "--update", type=str, help="Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.")
+    parser.add_argument("-u", "--update", action='store_true', help="Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.")
     parser.add_argument("-n", "--name", type=str, help="Provide a name for the YouTube Music playlist. Default: Spotify playlist name")
     parser.add_argument("-i", "--info", type=str, help="Provide description information for the YouTube Music Playlist. Default: Spotify playlist description")
     parser.add_argument("-d", "--date", action='store_true', help="Append the current date to the playlist name")
@@ -173,7 +173,7 @@ def main():
     info = playlist['description'] if (args.info is None) else args.info
 
     if args.update:
-        playlistId = ytmusic.get_playlist_id(args.update)
+        playlistId = ytmusic.get_playlist_id(name)
         videoIds = ytmusic.search_songs(playlist['tracks'])
         ytmusic.remove_songs(playlistId)
         ytmusic.add_playlist_items(playlistId, videoIds)
