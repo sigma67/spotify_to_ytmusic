@@ -59,7 +59,7 @@ def build_results(tracks, album=None):
     for track in tracks:
         if 'track' in track:
             track = track['track']
-        if not track:
+        if not track or track['duration_ms'] == 0:
             continue
         album_name = album if album else track['album']['name']
         results.append({
