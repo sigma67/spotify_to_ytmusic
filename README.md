@@ -8,7 +8,7 @@ A simple command line script to clone a Spotify playlist to YouTube Music.
 
 ## Requirements
 
-- Python 3.6+ - https://www.python.org
+- Python 3 - https://www.python.org
 - Python extensions: `pip install -U -r requirements`
 - Have made at least one playlist manually on YouTube Music
 
@@ -33,7 +33,7 @@ $ cp settings.ini.example settings.ini
 5. Open your browser and copy your request headers according to the instructions at https://ytmusicapi.readthedocs.io/en/latest/setup.html. 
    Paste them into the terminal to proceed.
 
-This Setup.py procedure stores all credentials are stored locally in the file `settings.ini`.
+This Setup.py procedure stores all credentials locally in the file `settings.ini`.
 
 ## Transfer a playlist
 
