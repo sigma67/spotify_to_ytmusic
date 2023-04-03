@@ -22,7 +22,7 @@ Simply copy `settings.ini.example` to a new file `settings.ini`:
 $ cp settings.ini.example settings.ini
 ```
 
-2. Generate a new app at https://developer.spotify.com/my-applications
+2. Generate a new app at https://developer.spotify.com/dashboard
 
 3. Fill in your `client_id` and `client_secret` from your Spotify app
 
