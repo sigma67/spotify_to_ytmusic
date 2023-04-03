@@ -22,6 +22,9 @@ class YTMusicTransfer:
         match_score = {}
         title_score = {}
         for res in results:
+            if res is not dict and len(res) == 0:
+                continue
+
             if res['resultType'] not in ['song', 'video']:
                 continue
 
