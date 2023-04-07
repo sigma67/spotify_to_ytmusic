@@ -22,7 +22,7 @@ class YTMusicTransfer:
         match_score = {}
         title_score = {}
         for res in results:
-            if res['resultType'] not in ['song', 'video']:
+            if 'resultType' not in res or res['resultType'] not in ['song', 'video']:
                 continue
 
             durationMatch = None
