@@ -14,8 +14,9 @@ class Spotify:
     def getSpotifyPlaylist(self, url):
         playlistId = get_id_from_url(url)
         if len(playlistId) != 22:
-            raise Exception('Bad playlist id: ' + playlistId)
+            raise Exception(f'Bad playlist id: {playlistId}')
 
+        print("Getting Spotify tracks...")
         results = self.api.playlist(playlistId)
         name = results['name']
         total = int(results['tracks']['total'])
