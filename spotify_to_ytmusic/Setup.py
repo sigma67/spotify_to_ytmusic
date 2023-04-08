@@ -1,16 +1,17 @@
 import sys
 
-from settings import Settings
 import ytmusicapi
+
+from spotify_to_ytmusic.settings import Settings
 
 settings = Settings()
 
+
 def setup():
-    choice = input("Choose which API to set up\n"
-                   "(1) Spotify\n"
-                   "(2) YouTube\n"
-                   "(3) both")
-    choices = ["1","2","3"]
+    choice = input(
+        "Choose which API to set up\n" "(1) Spotify\n" "(2) YouTube\n" "(3) both"
+    )
+    choices = ["1", "2", "3"]
     if choice not in choices:
         sys.exit("Invalid choice")
 
@@ -22,10 +23,12 @@ def setup():
         setup_spotify()
         setup_youtube()
 
+
 def setup_youtube():
-    settings['youtube']['headers'] = ytmusicapi.setup_oauth()
+    settings["youtube"]["headers"] = ytmusicapi.setup_oauth()
     settings.save()
+
 
 def setup_spotify():
     pass
-    #settings['spotipy']
+    # settings['spotipy']

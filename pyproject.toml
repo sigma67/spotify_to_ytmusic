@@ -18,7 +18,7 @@ dynamic = ["version", "readme"]
 dev = ['pre-commit', 'flake8', 'yapf', 'coverage', 'sphinx', 'sphinx-rtd-theme']
 
 [project.scripts]
-ytmusicapi = "spotify_to_ytmusic.main:main"
+spotify_to_ytmusic = "spotify_to_ytmusic.main:main"
 
 [project.urls]
 homepage = "https://github.com/sigma67/spotify_to_ytmusic"
@@ -39,9 +39,12 @@ include-package-data=false
 [tool.setuptools.package-data]
 "*" = ["**.example", "**.py"]
 
-[tool.yapf]
-column_limit = 99
-split_before_arithmetic_operator = true
+[tool.isort]
+profile = "hug"
+src_paths = ["spotify_to_ytmusic"]
+
+[tool.black]
+src_paths = ["spotify_to_ytmusic"]
 
 [tool.coverage.run]
 command_line = "-m unittest discover tests"
