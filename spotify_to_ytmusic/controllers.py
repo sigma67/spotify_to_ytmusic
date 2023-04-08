@@ -21,7 +21,7 @@ def _init():
 
 def all(args):
     spotify, ytmusic = _init()
-    pl = spotify.getUserPlaylists(args.playlist)
+    pl = spotify.getUserPlaylists(args.user)
     print(str(len(pl)) + " playlists found. Starting transfer...")
     count = 1
     for p in pl:

@@ -69,6 +69,9 @@ def get_args(args=None):
         help="Transfer all public playlists of the specified user (Spotify User ID).",
         parents=[playlist_creator],
     )
+    update_parser.add_argument(
+        "user", type=str, help="Spotify userid of the specified user."
+    )
     all_parser.set_defaults(func=controllers.all)
 
     return parser.parse_args(args)
