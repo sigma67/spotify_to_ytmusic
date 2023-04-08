@@ -90,16 +90,16 @@ To view subcommand help, run i.e.
 
 Available subcommands:
 
-```
-positional arguments:
-  {setup,create,update,remove,all}
-                        Provide a subcommand
-    setup               Set up credentials
-    create              Create a new playlist on YouTube Music.
-    update              Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.
-    remove              Remove playlists with specified regex pattern.
-    all                 Transfer all public playlists of the specified user (Spotify User ID).
+.. code-block::
 
-options:
-  -h, --help            show this help message and exit
-```
+    positional arguments:
+      {setup,create,update,remove,all}
+                            Provide a subcommand
+        setup               Set up credentials
+        create              Create a new playlist on YouTube Music.
+        update              Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.
+        remove              Remove playlists with specified regex pattern.
+        all                 Transfer all public playlists of the specified user (Spotify User ID).
+
+    options:
+      -h, --help            show this help message and exit
