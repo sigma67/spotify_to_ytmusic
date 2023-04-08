@@ -3,44 +3,39 @@
 A simple command line script to clone a Spotify playlist to YouTube Music.
 
 - Transfer a single Spotify playlist
+- Update a transferred playlist on YouTube Music
 - Transfer all playlists for a Spotify user
+- Remove playlists from YouTube Music
 
 
-## Requirements
+## Install
 
 - Python 3 and pip - https://www.python.org
+- Install:
+
+```zsh
+$ pip install spotify_to_ytmusic
+```
 
 ## Setup
 
-1. Initially you should create a new `settings.ini` containing your Spotify credentials.
-
-Simply copy `settings.ini.example` to a new file `settings.ini`:
+1. Generate a new app at https://developer.spotify.com/dashboard
+2. Run
 
 ```zsh
-$ cp settings.ini.example settings.ini
+$ spotify_to_ytmusic setup
 ```
 
-2. Generate a new app at https://developer.spotify.com/dashboard
+For backwards compatibility you can also create your own file and pass it using `--file settings.ini`.
 
-3. Fill in your `client_id` and `client_secret` from your Spotify app
+## Usage
 
-4. For YouTube Music, open a console in the source code folder and run
+After you've completed setup, you can simply run the script from the command line using:
+```zsh
+$ spotify_to_ytmusic create <spotifylink>
+```
 
-`python Setup.py youtube`
-
-5. Open your browser and copy your request headers according to the instructions at https://ytmusicapi.readthedocs.io/en/latest/setup.html. 
-   Paste them into the terminal to proceed.
-
-This Setup.py procedure stores all credentials locally in the file `settings.ini`.
-
-## Transfer a playlist
-
-After you've created the settings file, you can simply run the script from the command line using:
-
-`python YouTube.py <spotifylink>`
-
-where `<spotifylink>` is a link like https://open.spotify.com/user/edmsauce/playlist/3yGp845Tz2duWCORALQHFO
-Alternatively you can also **use a file name** in place of a spotify link. The file should contain one song per line.
+where `<spotifylink>` is a link like https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M
 
 The script will log its progress and output songs that were not found in YouTube Music to **noresults.txt**.
 
@@ -48,35 +43,36 @@ The script will log its progress and output songs that were not found in YouTube
 
 For migration purposes, it is possible to transfer all public playlists of a user by using the Spotify user's ID (unique username).
 
-`python YouTube.py --all <spotifyuserid>`
-
+```zsh
+$ spotify_to_ytmusic all <spotifyuserid>
+```
 
 ## Command line options
 
 There are some additional command line options for setting the playlist name and determining whether it's public or not. To view them, run
 
-`> python YouTube.py -h`
+```zsh
+$ spotify_to_ytmusic -h
+```
 
-Arguments:
+To view subcommand help, run i.e.
+
+```zsh
+$ spotify_to_ytmusic setup -h
+```
+
+Available subcommands:
 
 ```
 positional arguments:
-  playlist              Provide a playlist Spotify link. Alternatively,
-                        provide a text file (one song per line)
+  {setup,create,update,remove,all}
+                        Provide a subcommand
+    setup               Set up credentials
+    create              Create a new playlist on YouTube Music.
+    update              Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.
+    remove              Remove playlists with specified regex pattern.
+    all                 Transfer all public playlists of the specified user (Spotify User ID).
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
-  -u UPDATE, --update UPDATE
-                        Delete all entries in the provided YouTube Music
-                        playlist and update the playlist with entries from the
-                        Spotify playlist.
-  -n NAME, --name NAME  Provide a name for the YouTube Music playlist.
-                        Default: Spotify playlist name
-  -i INFO, --info INFO  Provide description information for the YouTube
-                        Music Playlist. Default: Spotify playlist description
-  -d, --date            Append the current date to the playlist name
-  -p, --public          Make the playlist public. Default: private
-  -r, --remove          Remove playlists with specified regex pattern.
-  -a, --all             Transfer all public playlists of the specified user
-                        (Spotify User ID).
 ```
