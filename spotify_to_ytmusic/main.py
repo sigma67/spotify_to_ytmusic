@@ -12,21 +12,15 @@ def get_args(args=None):
     setup_parser.set_defaults(func=controllers.setup)
     setup_parser.add_argument("--file", type=Path, help="Optional path to a settings.ini file")
 
-    playlist_creator = argparse.ArgumentParser(add_help=False)
-    playlist_creator.add_argument(
-        "-p",
-        "--public",
-        action="store_true",
-        help="Make created playlist public. Default: private",
-    )
+    spotify_playlist = argparse.ArgumentParser(add_help=False)
+    spotify_playlist.add_argument("playlist", type=str, help="Provide a playlist Spotify link.")
 
     create_parser = subparsers.add_parser(
         "create",
         help="Create a new playlist on YouTube Music.",
-        parents=[playlist_creator],
+        parents=[spotify_playlist],
     )
     create_parser.set_defaults(func=controllers.create)
-    create_parser.add_argument("playlist", type=str, help="Provide a playlist Spotify link.")
     create_parser.add_argument(
         "-d",
         "--date",
@@ -45,10 +39,17 @@ def get_args(args=None):
         type=str,
         help="Provide a name for the YouTube Music playlist. Default: Spotify playlist name",
     )
+    create_parser.add_argument(
+        "-p",
+        "--public",
+        action="store_true",
+        help="Make created playlist public. Default: private",
+    )
 
     update_parser = subparsers.add_parser(
         "update",
         help="Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.",
+        parents=[spotify_playlist],
     )
     update_parser.set_defaults(func=controllers.update)
     update_parser.add_argument(
@@ -66,10 +67,9 @@ def get_args(args=None):
 
     all_parser = subparsers.add_parser(
         "all",
-        help="Transfer all public playlists of the specified user (Spotify User ID).",
-        parents=[playlist_creator],
+        help="Transfer all public playlists of the specified user (Spotify User ID)."
     )
-    update_parser.add_argument(
+    all_parser.add_argument(
         "user", type=str, help="Spotify userid of the specified user."
     )
     all_parser.set_defaults(func=controllers.all)

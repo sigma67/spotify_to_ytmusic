@@ -22,6 +22,7 @@ class YTMusicTransfer:
         videoIds = []
         songs = list(tracks)
         notFound = list()
+        print("Searching YouTube...")
         for i, song in enumerate(songs):
             name = re.sub(r" \(feat.*\..+\)", "", song["name"])
             query = song["artist"] + " " + name
@@ -36,7 +37,6 @@ class YTMusicTransfer:
                 else:
                     videoIds.append(targetSong)
 
-            print("Searching YouTube...")
             if i > 0 and i % 10 == 0:
                 print(f"YouTube tracks: {i}/{len(songs)}")
 

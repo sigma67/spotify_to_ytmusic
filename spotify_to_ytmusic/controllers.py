@@ -33,7 +33,7 @@ def all(args):
             playlist_id = ytmusic.create_playlist(
                 p["name"],
                 p["description"],
-                "PUBLIC" if args.public else "PRIVATE",
+                "PUBLIC" if p['public'] else "PRIVATE",
                 videoIds,
             )
             print(playlist_id)
@@ -47,7 +47,7 @@ def create(args):
     if args.date:
         date = " " + datetime.today().strftime("%m/%d/%Y")
 
-    playlist = _get_spotify_playlist(args.playlist)
+    playlist = _get_spotify_playlist(spotify, args.playlist)
     name = args.name + date if args.name else playlist["name"] + date
     info = playlist["description"] if (args.info is None) else args.info
     videoIds = ytmusic.search_songs(playlist["tracks"])
@@ -63,10 +63,11 @@ def create(args):
 
 def update(args):
     spotify, ytmusic = _init()
-    playlist = _get_spotify_playlist(args.playlist)
+    playlist = _get_spotify_playlist(spotify, args.playlist)
     playlistId = ytmusic.get_playlist_id(args.name)
     videoIds = ytmusic.search_songs(playlist["tracks"])
-    ytmusic.remove_songs(playlistId)
+    if not args.append:
+        ytmusic.remove_songs(playlistId)
     ytmusic.add_playlist_items(playlistId, videoIds)
 
 
