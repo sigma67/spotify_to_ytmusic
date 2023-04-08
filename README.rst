@@ -50,17 +50,18 @@ Setup
 
     spotify_to_ytmusic setup
 
-For backwards compatibility you can also create your own file and pass it using `--file settings.ini`.
+For backwards compatibility you can also create your own file and pass it using ``--file settings.ini``.
 
 Usage
 ------
 
 After you've completed setup, you can simply run the script from the command line using:
+
 .. code-block::
 
     spotify_to_ytmusic create <spotifylink>
 
-where `<spotifylink>` is a link like https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M
+where ``<spotifylink>`` is a link like https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M
 
 The script will log its progress and output songs that were not found in YouTube Music to **noresults.txt**.
 
@@ -73,7 +74,8 @@ For migration purposes, it is possible to transfer all public playlists of a use
 
     spotify_to_ytmusic all <spotifyuserid>
 
-## Command line options
+Command line options
+---------------------
 
 There are some additional command line options for setting the playlist name and determining whether it's public or not. To view them, run
 
