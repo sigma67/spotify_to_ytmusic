@@ -14,9 +14,7 @@ class Spotify:
         client_credentials_manager = SpotifyClientCredentials(
             client_id=conf["client_id"], client_secret=conf["client_secret"]
         )
-        self.api = spotipy.Spotify(
-            client_credentials_manager=client_credentials_manager
-        )
+        self.api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
     def getSpotifyPlaylist(self, url):
         playlistId = get_id_from_url(url)

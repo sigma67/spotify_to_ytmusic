@@ -5,13 +5,15 @@ from typing import Optional
 
 class Settings:
     config: configparser.ConfigParser
+    filepath: Path = Path(__file__).parent.joinpath("settings.ini")
 
     def __init__(self, filepath: Optional[Path] = None):
         self.config = configparser.ConfigParser(interpolation=None)
-        self.filepath = filepath if filepath else Path(__file__).parent.joinpath("settings.ini")
+        if filepath:
+            self.filepath = filepath
         if not self.filepath.is_file():
             raise FileNotFoundError(
-                f"{self.filepath} not found! Please set up your credentials first."
+                f"No settings.ini not found! Please run \n\n spotify_to_ytmusic setup"
             )
         self.config.read(self.filepath)
 

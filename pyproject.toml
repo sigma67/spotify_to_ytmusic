@@ -45,6 +45,7 @@ src_paths = ["spotify_to_ytmusic"]
 
 [tool.black]
 src_paths = ["spotify_to_ytmusic"]
+line-length = 99
 
 [tool.coverage.run]
 command_line = "-m unittest discover tests"
