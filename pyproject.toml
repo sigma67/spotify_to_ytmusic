@@ -15,7 +15,7 @@ dependencies = [
 dynamic = ["version", "readme"]
 
 [project.optional-dependencies]
-dev = ['pre-commit', 'flake8', 'yapf', 'coverage', 'sphinx', 'sphinx-rtd-theme']
+dev = ['black', 'isort', 'coverage']
 
 [project.scripts]
 spotify_to_ytmusic = "spotify_to_ytmusic.main:main"

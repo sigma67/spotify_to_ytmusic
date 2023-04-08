@@ -1,12 +1,13 @@
 spotify_to_ytmusic
-############################################
+####################
+
 .. image:: https://img.shields.io/pypi/dm/spotify_to_ytmusic?style=flat-square
     :alt: PyPI Downloads
     :target: https://pypi.org/project/spotify_to_ytmusic/
 
-.. image:: https://badges.gitter.im/sigma67/spotify_to_ytmusic.svg
-   :alt: Ask questions at https://gitter.im/sigma67/spotify_to_ytmusic
-   :target: https://gitter.im/sigma67/spotify_to_ytmusic
+.. image:: https://img.shields.io/github/discussions/sigma67/spotify_to_ytmusic?style=flat-square
+   :alt: Ask questions at Discussions
+   :target: https://github.com/sigma67/spotify_to_ytmusic/discussions
 
 .. image:: https://img.shields.io/codecov/c/github/sigma67/spotify_to_ytmusic?style=flat-square
     :alt: Code coverage
