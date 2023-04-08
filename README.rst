@@ -1,4 +1,24 @@
-# Transfer a Spotify Playlist to YouTube Music
+spotify_to_ytmusic
+############################################
+.. image:: https://img.shields.io/pypi/dm/spotify_to_ytmusic?style=flat-square
+    :alt: PyPI Downloads
+    :target: https://pypi.org/project/spotify_to_ytmusic/
+
+.. image:: https://badges.gitter.im/sigma67/spotify_to_ytmusic.svg
+   :alt: Ask questions at https://gitter.im/sigma67/spotify_to_ytmusic
+   :target: https://gitter.im/sigma67/spotify_to_ytmusic
+
+.. image:: https://img.shields.io/codecov/c/github/sigma67/spotify_to_ytmusic?style=flat-square
+    :alt: Code coverage
+    :target: https://codecov.io/gh/sigma67/spotify_to_ytmusic
+
+.. image:: https://img.shields.io/github/v/release/sigma67/spotify_to_ytmusic?style=flat-square
+    :alt: Latest release
+    :target: https://github.com/sigma67/spotify_to_ytmusic/releases/latest
+
+.. image:: https://img.shields.io/github/commits-since/sigma67/spotify_to_ytmusic/latest?style=flat-square
+    :alt: Commits since latest release
+    :target: https://github.com/sigma67/spotify_to_ytmusic/commits
 
 A simple command line script to clone a Spotify playlist to YouTube Music.
 
@@ -8,58 +28,65 @@ A simple command line script to clone a Spotify playlist to YouTube Music.
 - Remove playlists from YouTube Music
 
 
-## Install
+Install
+-------
 
 - Python 3 and pip - https://www.python.org
 - Install:
 
-```zsh
-$ pip install spotify_to_ytmusic
-```
+.. code-block::
 
-## Setup
+    pip install spotify_to_ytmusic
+
+
+Setup
+-------
 
 1. Generate a new app at https://developer.spotify.com/dashboard
 2. Run
 
-```zsh
-$ spotify_to_ytmusic setup
-```
+.. code-block::
+
+    spotify_to_ytmusic setup
 
 For backwards compatibility you can also create your own file and pass it using `--file settings.ini`.
 
-## Usage
+Usage
+------
 
 After you've completed setup, you can simply run the script from the command line using:
-```zsh
-$ spotify_to_ytmusic create <spotifylink>
-```
+.. code-block::
+
+    spotify_to_ytmusic create <spotifylink>
 
 where `<spotifylink>` is a link like https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M
 
 The script will log its progress and output songs that were not found in YouTube Music to **noresults.txt**.
 
-## Transfer all playlists of a Spotify user
+Transfer all playlists of a Spotify user
+----------------------------------------
 
 For migration purposes, it is possible to transfer all public playlists of a user by using the Spotify user's ID (unique username).
 
-```zsh
-$ spotify_to_ytmusic all <spotifyuserid>
-```
+.. code-block::
+
+    spotify_to_ytmusic all <spotifyuserid>
 
 ## Command line options
 
 There are some additional command line options for setting the playlist name and determining whether it's public or not. To view them, run
 
-```zsh
-$ spotify_to_ytmusic -h
-```
+.. code::
+
+    spotify_to_ytmusic -h
+
 
 To view subcommand help, run i.e.
 
-```zsh
-$ spotify_to_ytmusic setup -h
-```
+.. code-block::
+
+    spotify_to_ytmusic setup -h
+
 
 Available subcommands:
 
