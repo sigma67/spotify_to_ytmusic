@@ -14,8 +14,7 @@ jobs:
         python-version: 3.x
     - name: Generate coverage report
       env:
-        HEADERS_AUTH: ${{ secrets.HEADERS_AUTH }}
-        TEST_CFG: ${{ secrets.TEST_CFG }}
+        SETTINGS_INI: ${{ secrets.SETTINGS_INI }}
       run: |
         pip install -e .
         pip install coverage
