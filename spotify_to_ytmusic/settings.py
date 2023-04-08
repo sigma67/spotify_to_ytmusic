@@ -8,9 +8,11 @@ class Settings:
 
     def __init__(self, filepath: Optional[Path] = None):
         self.config = configparser.ConfigParser(interpolation=None)
-        self.filepath = (
-            filepath if filepath else Path(__file__).parent.joinpath("settings.ini")
-        )
+        self.filepath = filepath if filepath else Path(__file__).parent.joinpath("settings.ini")
+        if not self.filepath.is_file():
+            raise FileNotFoundError(
+                f"{self.filepath} not found! Please set up your credentials first."
+            )
         self.config.read(self.filepath)
 
     def __getitem__(self, key):

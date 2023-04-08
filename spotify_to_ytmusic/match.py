@@ -19,9 +19,7 @@ def get_best_fit_song_id(ytm_results, spoti) -> str:
         if "duration" in ytm and ytm["duration"] and spoti["duration"]:
             duration_items = ytm["duration"].split(":")
             duration = int(duration_items[0]) * 60 + int(duration_items[1])
-            duration_match_score = (
-                1 - abs(duration - spoti["duration"]) * 2 / spoti["duration"]
-            )
+            duration_match_score = 1 - abs(duration - spoti["duration"]) * 2 / spoti["duration"]
 
         title = ytm["title"]
         # for videos,
@@ -37,9 +35,7 @@ def get_best_fit_song_id(ytm_results, spoti) -> str:
         ).ratio()
         scores = [
             title_score[ytm["videoId"]],
-            difflib.SequenceMatcher(
-                a=artists.lower(), b=spoti["artist"].lower()
-            ).ratio(),
+            difflib.SequenceMatcher(a=artists.lower(), b=spoti["artist"].lower()).ratio(),
         ]
         if duration_match_score:
             scores.append(duration_match_score * 5)

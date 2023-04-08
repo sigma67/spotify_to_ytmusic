@@ -1,71 +1,86 @@
 import argparse
 import sys
 from datetime import datetime
+from pathlib import Path
 
-from spotify_to_ytmusic.Setup import setup
-from spotify_to_ytmusic.SpotifyExport import Spotify
-from spotify_to_ytmusic.YouTube import YTMusicTransfer
+from spotify_to_ytmusic.setup import setup
+from spotify_to_ytmusic.spotify import Spotify
+from spotify_to_ytmusic.ytmusic import YTMusicTransfer
 
 
-def get_args():
-    parser = argparse.ArgumentParser(
-        description="Transfer spotify playlist to YouTube Music."
-    )
-    parser.add_argument("playlist", type=str, help="Provide a playlist Spotify link.")
-    parser.add_argument(
-        "-u",
-        "--update",
+def get_args(args=None):
+    parser = argparse.ArgumentParser(description="Transfer spotify playlist to YouTube Music.")
+
+    subparsers = parser.add_subparsers(help="Provide a subcommand", dest="command")
+    setup_parser = subparsers.add_parser("setup", help="Set up credentials")
+    setup_parser.add_argument("--file", type=Path, help="Optional path to a settings.ini file")
+
+    playlist_creator = argparse.ArgumentParser(add_help=False)
+    playlist_creator.add_argument(
+        "-p",
+        "--public",
         action="store_true",
-        help="Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.",
+        help="Make created playlist public. Default: private",
     )
-    parser.add_argument(
-        "-n",
-        "--name",
-        type=str,
-        help="Provide a name for the YouTube Music playlist. Default: Spotify playlist name",
+
+    create_parser = subparsers.add_parser(
+        "create",
+        help="Create a new playlist on YouTube Music.",
+        parents=[playlist_creator],
     )
-    parser.add_argument(
-        "-i",
-        "--info",
-        type=str,
-        help="Provide description information for the YouTube Music Playlist. Default: Spotify playlist description",
-    )
-    parser.add_argument(
+    create_parser.add_argument("playlist", type=str, help="Provide a playlist Spotify link.")
+    create_parser.add_argument(
         "-d",
         "--date",
         action="store_true",
         help="Append the current date to the playlist name",
     )
-    parser.add_argument(
-        "-p",
-        "--public",
-        action="store_true",
-        help="Make the playlist public. Default: private",
+    create_parser.add_argument(
+        "-i",
+        "--info",
+        type=str,
+        help="Provide description information for the YouTube Music Playlist. Default: Spotify playlist description",
     )
-    parser.add_argument(
-        "-r",
-        "--remove",
-        action="store_true",
-        help="Remove playlists with specified regex pattern.",
+    create_parser.add_argument(
+        "-n",
+        "--name",
+        type=str,
+        help="Provide a name for the YouTube Music playlist. Default: Spotify playlist name",
     )
-    parser.add_argument(
-        "-a",
-        "--all",
-        action="store_true",
+
+    update_parser = subparsers.add_parser(
+        "update",
+        help="Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.",
+    )
+    update_parser.add_argument(
+        "name", type=str, help="The name of the YouTube Music playlist to update."
+    )
+    update_parser.add_argument(
+        "--append", help="Do not delete items, append to target playlist instead"
+    )
+
+    remove_parser = subparsers.add_parser(
+        "remove", help="Remove playlists with specified regex pattern."
+    )
+    remove_parser.add_argument("pattern", help="regex pattern")
+
+    all_parser = subparsers.add_parser(
+        "all",
         help="Transfer all public playlists of the specified user (Spotify User ID).",
+        parents=[playlist_creator],
     )
-    parser.add_argument("--setup", help="Set up credentials")
-    return parser.parse_args()
+
+    return parser.parse_args(args)
 
 
 def main():
     args = get_args()
-    ytmusic = YTMusicTransfer()
 
     if args.setup:
         setup()
         sys.exit()
 
+    ytmusic = YTMusicTransfer()
     if args.all:
         s = Spotify()
         pl = s.getUserPlaylists(args.playlist)
@@ -85,13 +100,11 @@ def main():
                 )
                 print(playlist_id)
             except Exception as ex:
-                print(
-                    "Could not transfer playlist " + p["name"] + ". Exception" + str(ex)
-                )
+                print(f"Could not transfer playlist {p['name']}. {str(ex)}")
         return
 
     if args.remove:
-        ytmusic.remove_playlists(args.playlist)
+        ytmusic.remove_playlists(args.pattern)
         return
 
     date = ""
@@ -101,8 +114,7 @@ def main():
         playlist = Spotify().getSpotifyPlaylist(args.playlist)
     except Exception as ex:
         print(
-            "Could not get Spotify playlist. Please check the playlist link.\n Error: "
-            + repr(ex)
+            "Could not get Spotify playlist. Please check the playlist link.\n Error: " + repr(ex)
         )
         return
 
@@ -122,11 +134,8 @@ def main():
         )
 
         print(
-            'Success: created playlist "'
-            + name
-            + '"\n'
-            + "https://music.youtube.com/playlist?list="
-            + playlistId
+            f"Success: created playlist {name}\n"
+            f"https://music.youtube.com/playlist?list={playlistId}"
         )
 
 
