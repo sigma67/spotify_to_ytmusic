@@ -35,6 +35,7 @@ class TestCli(unittest.TestCase):
         with mock.patch("sys.argv", ["", "update", TEST_PLAYLIST, "test"]):
             main()
 
+        time.sleep(2)
         with mock.patch("sys.argv", ["", "remove", "test"]), mock.patch(
             "sys.stdout", new=StringIO()
         ) as fakeOutput, mock.patch("builtins.input", side_effect="y"):
