@@ -66,12 +66,9 @@ def get_args(args=None):
     remove_parser.add_argument("pattern", help="regex pattern")
 
     all_parser = subparsers.add_parser(
-        "all",
-        help="Transfer all public playlists of the specified user (Spotify User ID)."
+        "all", help="Transfer all public playlists of the specified user (Spotify User ID)."
     )
-    all_parser.add_argument(
-        "user", type=str, help="Spotify userid of the specified user."
-    )
+    all_parser.add_argument("user", type=str, help="Spotify userid of the specified user.")
     all_parser.set_defaults(func=controllers.all)
 
     return parser.parse_args(args)

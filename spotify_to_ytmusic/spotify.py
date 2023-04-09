@@ -53,19 +53,6 @@ class Spotify:
 
         return [p for p in pl if p["owner"]["id"] == user and p["tracks"]["total"] > 0]
 
-    def get_tracks(self, url):
-        tracks = []
-        url_parts = parse_url(url)
-        path = url_parts.path.split("/")
-        id = path[2]
-        if "album" == path[1]:
-            album = self.api.album(id)
-            tracks.extend(build_results(album["tracks"]["items"], album["name"]))
-        elif "track" == path[1]:
-            track = self.api.track(id)
-            tracks.extend(build_results([track]))
-        return tracks
-
 
 def build_results(tracks, album=None):
     results = []

@@ -33,7 +33,7 @@ def all(args):
             playlist_id = ytmusic.create_playlist(
                 p["name"],
                 p["description"],
-                "PUBLIC" if p['public'] else "PRIVATE",
+                "PUBLIC" if p["public"] else "PRIVATE",
                 videoIds,
             )
             print(playlist_id)
