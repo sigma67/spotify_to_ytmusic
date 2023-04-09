@@ -1,3 +1,4 @@
+import time
 from datetime import datetime
 
 from spotify_to_ytmusic.setup import setup as setup_func
@@ -68,6 +69,7 @@ def update(args):
     videoIds = ytmusic.search_songs(playlist["tracks"])
     if not args.append:
         ytmusic.remove_songs(playlistId)
+    time.sleep(2)
     ytmusic.add_playlist_items(playlistId, videoIds)
 
 
