@@ -1,3 +1,4 @@
+import json
 import shutil
 import sys
 from pathlib import Path
@@ -29,7 +30,7 @@ def setup(file: Optional[Path] = None):
 
 def setup_youtube():
     settings = Settings()
-    settings["youtube"]["headers"] = ytmusicapi.setup_oauth()
+    settings["youtube"]["headers"] = json.dumps(ytmusicapi.setup_oauth())
     settings.save()
 
 

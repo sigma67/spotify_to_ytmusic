@@ -1,9 +1,12 @@
+import shutil
 import time
 import unittest
 from io import StringIO
+from pathlib import Path
 from unittest import mock
 
 from spotify_to_ytmusic.main import get_args, main
+from spotify_to_ytmusic.settings import Settings
 
 TEST_PLAYLIST = "https://open.spotify.com/playlist/4UzyZJfSQ4584FaWGwepfL"
 
@@ -32,4 +35,18 @@ class TestCli(unittest.TestCase):
 
         with mock.patch("sys.argv", ["", "remove", "test"]), mock.patch('sys.stdout', new=StringIO()) as fakeOutput, mock.patch("builtins.input", side_effect="y"):
             main()
-            assert int(fakeOutput.getvalue().splitlines()[-1][0]) >= 2
+            assert int(fakeOutput.getvalue().splitlines()[-1][0]) >= 2  # assert number of lines deleted
+
+    def test_setup(self):
+        tmp_path = Path(__file__).parent.joinpath("settings.tmp")
+        example_path = Settings.filepath.parent.joinpath("settings.ini.example")
+        shutil.copy(example_path, tmp_path)
+        with mock.patch("sys.argv", ["", "setup"]), mock.patch("builtins.input", return_value="3"), mock.patch("spotify_to_ytmusic.settings.Settings.filepath", tmp_path):
+            main()
+            assert tmp_path.is_file()
+            tmp_path.unlink()
+
+        with mock.patch("sys.argv", ["", "setup", "--file", example_path.as_posix()]), mock.patch("spotify_to_ytmusic.settings.Settings.filepath", tmp_path):
+            main()
+            assert tmp_path.is_file()
+            tmp_path.unlink()
