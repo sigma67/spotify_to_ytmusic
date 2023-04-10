@@ -1,5 +1,6 @@
 import time
 from datetime import datetime
+from pathlib import Path
 
 from spotify_to_ytmusic.setup import setup as setup_func
 from spotify_to_ytmusic.spotify import Spotify
@@ -60,6 +61,7 @@ def create(args):
         f"Success: created playlist {name}\n"
         f"https://music.youtube.com/playlist?list={playlistId}"
     )
+    comment("YouTube Music", playlistId)
 
 
 def update(args):
@@ -80,3 +82,9 @@ def remove(args):
 
 def setup(args):
     setup_func(args.file)
+
+
+def comment(comment_text, playlist_id):
+    comment = "[" + comment_text + "](https://music.youtube.com/playlist?list=" + playlist_id + ")"
+    with open(Path.cwd().joinpath("comment.txt"), 'a') as f:
+        f.write('\n\n' + comment)
