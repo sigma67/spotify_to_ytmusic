@@ -1,32 +1,35 @@
+import os
+import time
 from pathlib import Path
 
 import praw
-from spotify_to_ytmusic.settings import Settings
-import time
-import os
 
-agent = 'ytmusic playlist app by /u/Sigmatics'
+from spotify_to_ytmusic.settings import Settings
+
+agent = "ytmusic playlist app by /u/Sigmatics"
 
 
 class Reddit:
     def __init__(self):
         settings = Settings()
-        if settings['reddit']['refresh_token'] == "":
+        if settings["reddit"]["refresh_token"] == "":
             print("Please run setup first!")
             return
 
-        self.reddit = praw.Reddit(client_id=settings['reddit']['client_id'],
-                                  client_secret=settings['reddit']['client_secret'],
-                                  refresh_token=settings['reddit']['refresh_token'],
-                                  user_agent=agent)
+        self.reddit = praw.Reddit(
+            client_id=settings["reddit"]["client_id"],
+            client_secret=settings["reddit"]["client_secret"],
+            refresh_token=settings["reddit"]["refresh_token"],
+            user_agent=agent,
+        )
 
     def comment_EDM(self, content, days):
-        sub = self.reddit.subreddit('EDM')
+        sub = self.reddit.subreddit("EDM")
         query = 'title:"New EDM This Week"'
         results = sub.search(query, time_filter="week")
         commented = False
         for x in results:
-            if time.time() - x.created_utc < days*86400:
+            if time.time() - x.created_utc < days * 86400:
                 print("Commenting post: " + x.title)
                 x.reply(content)
                 commented = True
@@ -35,7 +38,7 @@ class Reddit:
         return commented
 
     def get_top_new(self, time="week"):
-        sub = self.reddit.subreddit('EDM')
+        sub = self.reddit.subreddit("EDM")
         query = 'flair:"new music"'
         results = sub.search(query, time_filter=time, sort="top")
         urls = [x.url for x in results]
@@ -62,7 +65,7 @@ def comment_edm(args):
     filename = Path.cwd().joinpath("comment.txt")
     if not os.path.isfile(filename):
         exit()
-    f = open(filename, 'r')
+    f = open(filename, "r")
     comment = f.read()
     r = Reddit()
     success = r.comment_EDM(comment, args.days)

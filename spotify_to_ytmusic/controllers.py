@@ -45,12 +45,9 @@ def all(args):
 
 def create(args):
     spotify, ytmusic = _init()
-    date = ""
-    if args.date:
-        date = " " + datetime.today().strftime("%m/%d/%Y")
 
     playlist = _get_spotify_playlist(spotify, args.playlist)
-    name = args.name + date if args.name else playlist["name"] + date
+    name = args.name + args.date if args.name else playlist["name"] + args.date
     info = playlist["description"] if (args.info is None) else args.info
     videoIds = ytmusic.search_songs(playlist["tracks"])
     playlistId = ytmusic.create_playlist(
@@ -86,5 +83,5 @@ def setup(args):
 
 def comment(comment_text, playlist_id):
     comment = "[" + comment_text + "](https://music.youtube.com/playlist?list=" + playlist_id + ")"
-    with open(Path.cwd().joinpath("comment.txt"), 'a') as f:
-        f.write('\n\n' + comment)
+    with open(Path.cwd().joinpath("comment.txt"), "a") as f:
+        f.write("\n\n" + comment)

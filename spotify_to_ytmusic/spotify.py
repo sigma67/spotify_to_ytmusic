@@ -67,12 +67,12 @@ class Spotify:
     def get_tracks(self, url):
         tracks = []
         url_parts = parse_url(url)
-        path = url_parts.path.split('/')
+        path = url_parts.path.split("/")
         id = path[2]
-        if 'album' == path[1]:
+        if "album" == path[1]:
             album = self.api.album(id)
-            tracks.extend(build_results(album['tracks']['items'], album['name']))
-        elif 'track' == path[1]:
+            tracks.extend(build_results(album["tracks"]["items"], album["name"]))
+        elif "track" == path[1]:
             track = self.api.track(id)
             tracks.extend(build_results([track]))
         return tracks
