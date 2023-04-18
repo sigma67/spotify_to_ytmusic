@@ -1,4 +1,5 @@
 import html
+import string
 from urllib.parse import urlparse
 
 import spotipy
@@ -11,8 +12,18 @@ class Spotify:
     def __init__(self):
         settings = Settings()
         conf = settings["spotify"]
+        client_id = conf["client_id"]
+
+        assert set(client_id).issubset(
+            string.hexdigits
+        ), f"Spotify client_id not set or invalid: {client_id}"
+        client_secret = conf["client_secret"]
+        assert set(client_secret).issubset(
+            string.hexdigits
+        ), f"Spotify client_secret not set or invalid: {client_secret}"
+
         client_credentials_manager = SpotifyClientCredentials(
-            client_id=conf["client_id"], client_secret=conf["client_secret"]
+            client_id=client_id, client_secret=client_secret
         )
         self.api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
