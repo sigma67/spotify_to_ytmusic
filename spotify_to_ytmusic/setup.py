@@ -14,6 +14,8 @@ def setup(file: Optional[Path] = None):
         setup_file(file)
         return
 
+    if not Settings.filepath.is_file():
+        shutil.copy(Settings.filepath.with_suffix(".ini.example"), Settings.filepath)
     choice = input("Choose which API to set up\n" "(1) Spotify\n" "(2) YouTube\n" "(3) both\n")
     choices = ["1", "2", "3"]
     if choice not in choices:

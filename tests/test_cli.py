@@ -48,9 +48,7 @@ class TestCli(unittest.TestCase):
         tmp_path = Path(__file__).parent.joinpath("settings.tmp")
         example_path = Settings.filepath.parent.joinpath("settings.ini.example")
         shutil.copy(example_path, tmp_path)
-        with mock.patch("sys.argv", ["", "setup"]), mock.patch(
-            "builtins.input", return_value="3"
-        ), mock.patch("spotify_to_ytmusic.settings.Settings.filepath", tmp_path):
+        with mock.patch("sys.argv", ["", "setup"]), mock.patch("builtins.input", return_value="3"):
             main()
             assert tmp_path.is_file()
             tmp_path.unlink()
