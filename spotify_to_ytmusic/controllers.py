@@ -39,7 +39,7 @@ def all(args):
             )
             print(playlist_id)
         except Exception as ex:
-            print(f"Could not transfer playlist {p['name']}. {str(ex)}")
+            raise Exception(f"Could not transfer playlist {p['name']}") from ex
 
 
 def create(args):

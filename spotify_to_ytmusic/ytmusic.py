@@ -4,6 +4,7 @@ from collections import OrderedDict
 
 from ytmusicapi import YTMusic
 
+from spotify_to_ytmusic.cache import Cache
 from spotify_to_ytmusic.match import get_best_fit_song_id
 from spotify_to_ytmusic.settings import Settings
 
@@ -24,23 +25,28 @@ class YTMusicTransfer:
         videoIds = []
         songs = list(tracks)
         notFound = list()
-        print("Searching YouTube...")
-        for i, song in enumerate(songs):
-            name = re.sub(r" \(feat.*\..+\)", "", song["name"])
-            query = song["artist"] + " " + name
-            query = query.replace(" &", "")
-            result = self.api.search(query)
-            if len(result) == 0:
-                notFound.append(query)
-            else:
-                targetSong = get_best_fit_song_id(result, song)
-                if targetSong is None:
-                    notFound.append(query)
+        cache = Cache()
+        try:
+            for i, song in enumerate(songs):
+                if not i % 10:
+                    print(f"YouTube tracks: {i}/{len(songs)}")
+                name = re.sub(r" \(feat.*\..+\)", "", song["name"])
+                query = song["artist"] + " " + name
+                query = query.replace(" &", "")
+                if query in cache:
+                    targetSong = cache[query]
                 else:
-                    videoIds.append(targetSong)
+                    result = self.api.search(query)
+                    if not len(result) or not (targetSong := get_best_fit_song_id(result, song)):
+                        notFound.append(query)
+                        continue
 
-            if i > 0 and i % 10 == 0:
-                print(f"YouTube tracks: {i}/{len(songs)}")
+                    cache[query] = targetSong
+
+                videoIds.append(targetSong)
+
+        finally:
+            cache.save()
 
         with open(path + "noresults_youtube.txt", "w", encoding="utf-8") as f:
             f.write("\n".join(notFound))

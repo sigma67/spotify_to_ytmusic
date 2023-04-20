@@ -12,9 +12,7 @@ class Settings:
         if filepath:
             self.filepath = filepath
         if not self.filepath.is_file():
-            raise FileNotFoundError(
-                f"No settings.ini not found! Please run \n\n spotify_to_ytmusic setup"
-            )
+            raise FileNotFoundError(f"No settings.ini found! Please run spotify_to_ytmusic setup")
         self.config.read(self.filepath)
 
     def __getitem__(self, key):
