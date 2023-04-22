@@ -1,3 +1,4 @@
+import json
 import shutil
 import time
 import unittest
@@ -27,16 +28,16 @@ class TestCli(unittest.TestCase):
             main()
 
         with mock.patch(
-            "sys.argv", ["", "create", TEST_PLAYLIST, "-n", "test", "-i", "test-playlist", "-d"]
+            "sys.argv", ["", "create", TEST_PLAYLIST, "-n", "spotify_to_ytmusic", "-i", "test-playlist", "-d"]
         ):
             main()
 
         time.sleep(2)
-        with mock.patch("sys.argv", ["", "update", TEST_PLAYLIST, "test"]):
+        with mock.patch("sys.argv", ["", "update", TEST_PLAYLIST, "spotify_to_ytmusic"]):
             main()
 
         time.sleep(2)
-        with mock.patch("sys.argv", ["", "remove", "test"]), mock.patch(
+        with mock.patch("sys.argv", ["", "remove", "spotify\_to\_ytmusic"]), mock.patch(
             "sys.stdout", new=StringIO()
         ) as fakeOutput, mock.patch("builtins.input", side_effect="y"):
             main()
@@ -48,9 +49,17 @@ class TestCli(unittest.TestCase):
         tmp_path = Path(__file__).parent.joinpath("settings.tmp")
         example_path = Settings.filepath.parent.joinpath("settings.ini.example")
         shutil.copy(example_path, tmp_path)
-        with mock.patch("sys.argv", ["", "setup"]), mock.patch("builtins.input", return_value="3"):
+        with mock.patch("sys.argv", ["", "setup"]), mock.patch(
+            "builtins.input", return_value="3"
+        ), mock.patch(
+            "ytmusicapi.auth.oauth.YTMusicOAuth.get_token_from_code",
+            return_value=json.loads(Settings()["youtube"]["headers"]),
+        ):
             main()
             assert tmp_path.is_file()
+            settings = Settings()
+            assert settings["spotify"]["client_id"] == "3"
+            assert settings["spotify"]["client_secret"] == "3"
             tmp_path.unlink()
 
         with mock.patch("sys.argv", ["", "setup", "--file", example_path.as_posix()]), mock.patch(
