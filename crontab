@@ -1,8 +1,9 @@
-0 6 * * 5 spotify_to_ytmusic create https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M -n "New EDM This Week" -i "Weekly r/EDM new release roundup. Created with github.com/sigma67/spotify_to_ytmusic" -d -p >> log_youtube.txt 2>&1
-0 14,20 * * 5 spotify_to_ytmusic update https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M "New EDM This Week $(date +'\%m/\%d/\%Y')" >> log_youtube.txt 2>&1
-0 20 * * 6 spotify_to_ytmusic update https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M "New EDM This Week $(date -d 'yesterday' +'\%m/\%d/\%Y')" >> log_youtube.txt 2>&1
-0 14 * * 5 spotify_to_ytmusic top "r/EDM top submissions" -c "YouTube Music - r/EDM top submissions" -i "Top submissions to r/EDM in one convenient playlist. Created with github.com/sigma67/spotify_to_ytmusic" -d -p >> log_youtube.txt  2>&1
-0 6 * * 6 spotify_to_ytmusic top "r/EDM top submissions $(date -d 'yesterday' +'\%m/\%d/\%Y')" -u >> log_youtube.txt  2>&1
-5 6-22/2 * * 5 spotify_to_ytmusic reddit >> log.txt 2>&1
-0 6,18 * * 6,7 spotify_to_ytmusic reddit >> log.txt 2>&1
-
+PATH=/home/azureuser/.local/bin
+HOME=/home/azureuser/spotify_to_ytmusic
+0 6 * * 5 azureuser spotify_to_ytmusic create https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M -n "New EDM This Week" -i "Weekly r/EDM new release roundup. Created with github.com/sigma67/spotify_to_ytmusic" -d -p >> log_youtube.txt 2>&1
+0 14,20 * * 5 azureuser spotify_to_ytmusic update https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M "New EDM This Week $(date +'\%m/\%d/\%Y')" >> log_youtube.txt 2>&1'
+0 20 * * 6 azureuser spotify_to_ytmusic update https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M "New EDM This Week $(date -d 'yesterday' +'\%m/\%d/\%Y')" >> log_youtube.txt 2>&1
+0 14 * * 5 azureuser spotify_to_ytmusic top "r/EDM top submissions" -c "YouTube Music - r/EDM top submissions" -i "Top submissions to r/EDM in one convenient playlist. Created with github.com/sigma67/spotify_to_ytmusic" -d -p >> log_youtube.txt  2>&1
+0 6 * * 6 azureuser spotify_to_ytmusic top "r/EDM top submissions $(date -d 'yesterday' +'\%m/\%d/\%Y')" -u >> log_youtube.txt  2>&1
+5 6-22/2 * * 5 azureuser spotify_to_ytmusic reddit >> log.txt 2>&1
+0 6,18 * * 6,7 azureuser spotify_to_ytmusic reddit >> log.txt 2>&1
