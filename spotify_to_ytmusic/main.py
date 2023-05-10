@@ -81,7 +81,7 @@ def get_args(args=None):
     top_parser = subparsers.add_parser("top")
     top_parser.set_defaults(func=top.top)
     top_parser.add_argument("name", type=str)
-    top_parser.add_argument("-i", "--info", type=str, help="description")
+    top_parser.add_argument("-i", "--info", type=str, help="description", default="")
     top_parser.add_argument("-d", "--date", action="store_const", const=_date(), help="add date")
     top_parser.add_argument("-c", "--comment", type=str, help="add comment")
     top_parser.add_argument(
@@ -98,6 +98,7 @@ def get_args(args=None):
 
 def main():
     args = get_args()
+    print(args.date)
     args.func(args)
 
 
