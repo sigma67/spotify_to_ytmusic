@@ -31,6 +31,7 @@ def get_args(args=None):
         "--date",
         action="store_const",
         const=_date(),
+        default="",
         help="Append the current date to the playlist name",
     )
     create_parser.add_argument(
