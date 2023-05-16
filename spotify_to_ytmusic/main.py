@@ -98,7 +98,6 @@ def get_args(args=None):
 
 def main():
     args = get_args()
-    print(args.date)
     args.func(args)
 
 
