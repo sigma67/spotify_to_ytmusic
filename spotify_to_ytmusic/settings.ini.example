@@ -5,3 +5,4 @@ user_id =
 [spotify]
 client_id = id_from_developer_console
 client_secret = secret_from_developer_console
+use_oauth = no
