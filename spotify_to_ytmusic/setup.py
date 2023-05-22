@@ -43,6 +43,7 @@ def setup_spotify():
             "Paste your client id from the Spotify developer dashboard:"
         ),
         "client_secret": input("Paste your client secret from the Spotify developer dashboard:"),
+        "use_oauth": input("Use OAuth method for authorization (required for transfer liked songs) yes/no:"),
     }
     settings["spotify"].update(credentials)
     settings.save()

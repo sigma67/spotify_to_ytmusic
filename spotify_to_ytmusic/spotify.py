@@ -4,6 +4,7 @@ from urllib.parse import urlparse
 
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+from spotipy.oauth2 import SpotifyOAuth
 
 from spotify_to_ytmusic.settings import Settings
 
@@ -22,10 +23,15 @@ class Spotify:
             string.hexdigits
         ), f"Spotify client_secret not set or invalid: {client_secret}"
 
-        client_credentials_manager = SpotifyClientCredentials(
-            client_id=client_id, client_secret=client_secret
-        )
-        self.api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+        use_oauth = conf["use_oauth"] == "y" or conf["use_oauth"] == "yes"
+        if use_oauth:
+            auth = SpotifyOAuth(client_id=client_id, client_secret=client_secret, redirect_uri="http://localhost", scope="user-library-read")
+            self.api = spotipy.Spotify(auth_manager=auth)
+        else:
+            client_credentials_manager = SpotifyClientCredentials(
+                client_id=client_id, client_secret=client_secret
+            )
+            self.api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
     def getSpotifyPlaylist(self, url):
         playlistId = get_id_from_url(url)
