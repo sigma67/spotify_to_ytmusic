@@ -41,6 +41,25 @@ def all(args):
         except Exception as ex:
             print(f"Could not transfer playlist {p['name']}. {str(ex)}")
 
+def liked(args):
+    spotify, ytmusic = _init()
+    tracks = spotify.getLikedTracks()
+    if len(tracks) == 0:
+        exit("Could not find any liked tracks for the user.")
+
+    print(str(len(tracks)) + " tracks found. Creating playlist...")
+    try:
+        videos_ids = ytmusic.search_songs(tracks)
+        playlist_id = ytmusic.create_playlist(
+            "Liked songs (Spotify)",
+            "your liked tracks from spotify",
+            "PRIVATE",
+            videos_ids,
+        )
+        print(playlist_id)
+    except Exception as ex:
+        print("Could not transfer liked songs. " + str(ex))
+
 
 def create(args):
     spotify, ytmusic = _init()
