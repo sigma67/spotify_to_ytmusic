@@ -70,6 +70,15 @@ class Spotify:
 
         return [p for p in pl if p["owner"]["id"] == user and p["tracks"]["total"] > 0]
 
+    def getLikedTracks(self):
+        response = self.api.current_user_saved_tracks(limit=50)
+        tracks = response["items"]
+        while response["next"] != None:
+            response = self.api.current_user_saved_tracks(limit=50, offset=response["offset"] + 50)
+            tracks.extend(response["items"])
+
+        return build_results(tracks)
+
 
 def build_results(tracks, album=None):
     results = []

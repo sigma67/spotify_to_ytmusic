@@ -71,6 +71,11 @@ def get_args(args=None):
     all_parser.add_argument("user", type=str, help="Spotify userid of the specified user.")
     all_parser.set_defaults(func=controllers.all)
 
+    liked_parser = subparsers.add_parser(
+        "liked", help="Transfer all liked songs of the user."
+    )
+    liked_parser.set_defaults(func=controllers.liked)
+
     return parser.parse_args(args)
 
 
