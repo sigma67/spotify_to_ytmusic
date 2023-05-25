@@ -52,7 +52,8 @@ Setup
 
 For backwards compatibility you can also create your own file and pass it using ``--file settings.ini``.
 
-If you want to transfer liked songs from Spotify, choose "yes" for oAuth authentification, otherwise choose "no".
+If you want to transfer private playlists from Spotify (i.e. liked songs), choose "yes" for oAuth authentication, otherwise choose "no".
+For oAuth authentication you should set `http://localhost` as redirect URI for your app in Spotify's developer dashboard.
 
 Usage
 ------
