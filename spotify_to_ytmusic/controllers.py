@@ -47,7 +47,7 @@ def liked(args):
     if len(tracks) == 0:
         exit("Could not find any liked tracks for the user.")
 
-    print(str(len(tracks)) + " tracks found. Creating playlist...")
+    print(f"{len(tracks)} tracks found. Creating playlist...")
     try:
         videos_ids = ytmusic.search_songs(tracks)
         playlist_id = ytmusic.create_playlist(
