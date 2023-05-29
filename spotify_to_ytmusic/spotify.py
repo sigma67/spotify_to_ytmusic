@@ -3,8 +3,7 @@ import string
 from urllib.parse import urlparse
 
 import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
-from spotipy.oauth2 import SpotifyOAuth
+from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 
 from spotify_to_ytmusic.settings import Settings
 
@@ -23,9 +22,14 @@ class Spotify:
             string.hexdigits
         ), f"Spotify client_secret not set or invalid: {client_secret}"
 
-        use_oauth = conf["use_oauth"] == "y" or conf["use_oauth"] == "yes"
+        use_oauth = conf.getboolean("use_oauth")
         if use_oauth:
-            auth = SpotifyOAuth(client_id=client_id, client_secret=client_secret, redirect_uri="http://localhost", scope="user-library-read")
+            auth = SpotifyOAuth(
+                client_id=client_id,
+                client_secret=client_secret,
+                redirect_uri="http://localhost",
+                scope="user-library-read",
+            )
             self.api = spotipy.Spotify(auth_manager=auth)
         else:
             client_credentials_manager = SpotifyClientCredentials(
@@ -70,14 +74,18 @@ class Spotify:
 
         return [p for p in pl if p["owner"]["id"] == user and p["tracks"]["total"] > 0]
 
-    def getLikedTracks(self):
+    def getLikedPlaylist(self):
         response = self.api.current_user_saved_tracks(limit=50)
         tracks = response["items"]
-        while response["next"] != None:
+        while response["next"] is not None:
             response = self.api.current_user_saved_tracks(limit=50, offset=response["offset"] + 50)
             tracks.extend(response["items"])
 
-        return build_results(tracks)
+        return {
+            "tracks": build_results(tracks),
+            "name": "Liked songs (Spotify)",
+            "description": "Your liked tracks from spotify",
+        }
 
 
 def build_results(tracks, album=None):
