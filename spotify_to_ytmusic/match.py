@@ -12,7 +12,11 @@ def get_best_fit_song_id(ytm_results, spoti) -> str:
     match_score = {}
     title_score = {}
     for ytm in ytm_results:
-        if "resultType" not in ytm or ytm["resultType"] not in ["song", "video"]:
+        if (
+            "resultType" not in ytm
+            or ytm["resultType"] not in ["song", "video"]
+            or not ytm["title"]
+        ):
             continue
 
         duration_match_score = None
