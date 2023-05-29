@@ -52,6 +52,9 @@ Setup
 
 For backwards compatibility you can also create your own file and pass it using ``--file settings.ini``.
 
+If you want to transfer private playlists from Spotify (i.e. liked songs), choose "yes" for oAuth authentication, otherwise choose "no".
+For oAuth authentication you should set ``http://localhost`` as redirect URI for your app in Spotify's developer dashboard.
+
 Usage
 ------
 
@@ -73,6 +76,18 @@ For migration purposes, it is possible to transfer all public playlists of a use
 .. code-block::
 
     spotify_to_ytmusic all <spotifyuserid>
+
+Transfer liked tracks of the Spotify user
+-----------------------------------------
+
+**You must you oAuth authentication for transferring liked songs.**
+
+.. code-block::
+
+   spotify_to_ytmusic liked
+
+This command will open browser where you should give access to your account (if you haven't done that before).
+After authorization you will be redirected to localhost, copy link you were redirected to (looks like localhost/?code=...) and paste to command line.
 
 Command line options
 ---------------------

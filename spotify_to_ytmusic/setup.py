@@ -39,10 +39,11 @@ def setup_youtube():
 def setup_spotify():
     settings = Settings()
     credentials = {
-        "client_credentials": input(
-            "Paste your client credentials from the Spotify developer dashboard:"
+        "client_id": input("Paste your client id from the Spotify developer dashboard:"),
+        "client_secret": input("Paste your client secret from the Spotify developer dashboard:"),
+        "use_oauth": input(
+            "Use OAuth method for authorization to transfer private playlists (yes/no):"
         ),
-        "client_secrets": input("Paste your client secret from the Spotify developer dashboard:"),
     }
     settings["spotify"].update(credentials)
     settings.save()

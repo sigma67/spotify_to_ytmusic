@@ -1,6 +1,8 @@
 import time
 from datetime import datetime
 
+import spotipy
+
 from spotify_to_ytmusic.setup import setup as setup_func
 from spotify_to_ytmusic.spotify import Spotify
 from spotify_to_ytmusic.ytmusic import YTMusicTransfer
@@ -14,6 +16,13 @@ def _get_spotify_playlist(spotify, playlist):
             "Could not get Spotify playlist. Please check the playlist link.\n Error: " + repr(ex)
         )
         return
+
+
+def _print_success(name, playlistId):
+    print(
+        f"Success: created playlist '{name}' at\n"
+        f"https://music.youtube.com/playlist?list={playlistId}"
+    )
 
 
 def _init():
@@ -37,29 +46,37 @@ def all(args):
                 "PUBLIC" if p["public"] else "PRIVATE",
                 videoIds,
             )
-            print(playlist_id)
+            _print_success(p["name"], playlist_id)
         except Exception as ex:
             raise Exception(f"Could not transfer playlist {p['name']}") from ex
 
 
-def create(args):
-    spotify, ytmusic = _init()
+def _create_ytmusic(args, playlist, ytmusic):
     date = ""
     if args.date:
         date = " " + datetime.today().strftime("%m/%d/%Y")
-
-    playlist = _get_spotify_playlist(spotify, args.playlist)
     name = args.name + date if args.name else playlist["name"] + date
     info = playlist["description"] if (args.info is None) else args.info
     videoIds = ytmusic.search_songs(playlist["tracks"])
+
     playlistId = ytmusic.create_playlist(
         name, info, "PUBLIC" if args.public else "PRIVATE", videoIds
     )
+    _print_success(name, playlistId)
 
-    print(
-        f"Success: created playlist {name}\n"
-        f"https://music.youtube.com/playlist?list={playlistId}"
-    )
+
+def create(args):
+    spotify, ytmusic = _init()
+    playlist = _get_spotify_playlist(spotify, args.playlist)
+    _create_ytmusic(args, playlist, ytmusic)
+
+
+def liked(args):
+    spotify, ytmusic = _init()
+    if not isinstance(spotify.api.auth_manager, spotipy.SpotifyOAuth):
+        raise Exception("OAuth not configured, please run setup and set OAuth to 'yes'")
+    playlist = spotify.getLikedPlaylist()
+    _create_ytmusic(args, playlist, ytmusic)
 
 
 def update(args):

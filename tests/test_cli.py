@@ -23,6 +23,12 @@ class TestCli(unittest.TestCase):
         args = get_args(["setup"])
         self.assertEqual(len(vars(args)), 3)
 
+    def test_liked(self):
+        with mock.patch(
+            "sys.argv", ["", "liked", "-n", "spotify_to_ytmusic", "-d", "-i", "test liked"]
+        ):
+            main()
+
     def test_create(self):
         with mock.patch("sys.argv", ["", "all", "sigmatics"]):
             main()
@@ -51,13 +57,16 @@ class TestCli(unittest.TestCase):
         example_path = Settings.filepath.parent.joinpath("settings.ini.example")
         shutil.copy(example_path, tmp_path)
         with mock.patch("sys.argv", ["", "setup"]), mock.patch(
-            "builtins.input", return_value="3"
+            "builtins.input", side_effect=["3", "a", "b", "yes", ""]
         ), mock.patch(
             "ytmusicapi.auth.oauth.YTMusicOAuth.get_token_from_code",
             return_value=json.loads(Settings()["youtube"]["headers"]),
         ):
             main()
             assert tmp_path.is_file()
+            settings = Settings()
+            assert settings["spotify"]["client_id"] == "a"
+            assert settings["spotify"]["client_secret"] == "b"
             tmp_path.unlink()
 
         with mock.patch("sys.argv", ["", "setup", "--file", example_path.as_posix()]), mock.patch(
