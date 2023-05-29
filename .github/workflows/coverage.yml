@@ -15,10 +15,12 @@ jobs:
     - name: Generate coverage report
       env:
         SETTINGS_INI: ${{ secrets.SETTINGS_INI }}
+        SPOTIPY_CACHE: ${{ secrets.SPOTIPY_CACHE }}
       run: |
         pip install -e .
         pip install coverage
         cat <<< "$SETTINGS_INI" > spotify_to_ytmusic/settings.ini
+        cat <<< "$SPOTIPY_CACHE" > .cache
         coverage run
         coverage xml
     - name: Upload coverage to Codecov
