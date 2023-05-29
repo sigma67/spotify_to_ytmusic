@@ -23,12 +23,19 @@ class TestCli(unittest.TestCase):
         args = get_args(["setup"])
         self.assertEqual(len(vars(args)), 3)
 
+    def test_liked(self):
+        with mock.patch(
+            "sys.argv", ["", "liked", "-n", "spotify_to_ytmusic", "-d", "-i", "test liked"]
+        ):
+            main()
+
     def test_create(self):
         with mock.patch("sys.argv", ["", "all", "sigmatics"]):
             main()
 
         with mock.patch(
-            "sys.argv", ["", "create", TEST_PLAYLIST, "-n", "spotify_to_ytmusic", "-i", "test-playlist", "-d"]
+            "sys.argv",
+            ["", "create", TEST_PLAYLIST, "-n", "spotify_to_ytmusic", "-i", "test-playlist", "-d"],
         ):
             main()
 
