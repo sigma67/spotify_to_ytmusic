@@ -45,7 +45,7 @@ def get_best_fit_song_id(ytm_results, spoti) -> str:
             scores.append(duration_match_score * 5)
 
         # add album for songs only
-        if ytm["resultType"] == "song" and ytm["album"] is not None:
+        if ytm["resultType"] == "song" and ytm.get("album", None) is not None:
             scores.append(
                 difflib.SequenceMatcher(
                     a=ytm["album"]["name"].lower(), b=spoti["album"].lower()
