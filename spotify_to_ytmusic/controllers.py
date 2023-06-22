@@ -48,7 +48,7 @@ def all(args):
             )
             _print_success(p["name"], playlist_id)
         except Exception as ex:
-            print(f"Could not transfer playlist {p['name']}. {str(ex)}")
+            raise Exception(f"Could not transfer playlist {p['name']}") from ex
 
 
 def _create_ytmusic(args, playlist, ytmusic):
