@@ -20,7 +20,7 @@ jobs:
         pip install -e .
         pip install coverage
         cat <<< "$SETTINGS_INI" > spotify_to_ytmusic/settings.ini
-        cat <<< "$SPOTIPY_CACHE" > .cache
+        cat <<< "$SPOTIPY_CACHE" > .cache/spotipy.cache
         coverage run
         coverage xml
     - name: Upload coverage to Codecov
