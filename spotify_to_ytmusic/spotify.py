@@ -3,9 +3,10 @@ import string
 from urllib.parse import urlparse
 
 import spotipy
+from spotipy import CacheFileHandler
 from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 
-from spotify_to_ytmusic.settings import Settings
+from spotify_to_ytmusic.settings import CACHE_DIR, Settings
 
 
 class Spotify:
@@ -23,17 +24,20 @@ class Spotify:
         ), f"Spotify client_secret not set or invalid: {client_secret}"
 
         use_oauth = conf.getboolean("use_oauth")
+
+        cache_handler = CacheFileHandler(cache_path=CACHE_DIR.joinpath("spotipy.cache").as_posix())
         if use_oauth:
             auth = SpotifyOAuth(
                 client_id=client_id,
                 client_secret=client_secret,
                 redirect_uri="http://localhost",
                 scope="user-library-read",
+                cache_handler=cache_handler,
             )
             self.api = spotipy.Spotify(auth_manager=auth)
         else:
             client_credentials_manager = SpotifyClientCredentials(
-                client_id=client_id, client_secret=client_secret
+                client_id=client_id, client_secret=client_secret, cache_handler=cache_handler
             )
             self.api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 

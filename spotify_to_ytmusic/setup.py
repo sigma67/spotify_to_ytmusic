@@ -6,16 +6,16 @@ from typing import Optional
 
 import ytmusicapi
 
-from spotify_to_ytmusic.settings import Settings
+from spotify_to_ytmusic.settings import DEFAULT_PATH, EXAMPLE_PATH, Settings
 
 
 def setup(file: Optional[Path] = None):
     if file:
-        setup_file(file)
+        shutil.copy(file, DEFAULT_PATH)
         return
 
-    if not Settings.filepath.is_file():
-        shutil.copy(Settings.filepath.with_suffix(".ini.example"), Settings.filepath)
+    if not DEFAULT_PATH.is_file():
+        shutil.copy(EXAMPLE_PATH, DEFAULT_PATH)
     choice = input("Choose which API to set up\n" "(1) Spotify\n" "(2) YouTube\n" "(3) both\n")
     choices = ["1", "2", "3"]
     if choice not in choices:
@@ -47,9 +47,3 @@ def setup_spotify():
     }
     settings["spotify"].update(credentials)
     settings.save()
-
-
-def setup_file(file: Path):
-    if not file:
-        raise FileNotFoundError(f"{file} not found")
-    shutil.copy(file, Settings.filepath)
