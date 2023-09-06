@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 from collections import OrderedDict
 
 from ytmusicapi import YTMusic
@@ -39,8 +40,11 @@ class YTMusicTransfer:
                 else:
                     videoIds.append(targetSong)
 
-            if i > 0 and i % 10 == 0:
-                print(f"YouTube tracks: {i}/{len(songs)}")
+            if i > 0:
+                sys.stdout.write(f"\rYouTube tracks: {i}/{len(songs)}")
+                sys.stdout.flush()
+
+        print(f"\r{i}/{len(songs)} tracks imported succesfully")
 
         with open(path + "noresults_youtube.txt", "w", encoding="utf-8") as f:
             f.write("\n".join(notFound))
