@@ -1,5 +1,6 @@
 import html
 import string
+import os
 from urllib.parse import urlparse
 
 import spotipy
@@ -27,12 +28,14 @@ class Spotify:
 
         cache_handler = CacheFileHandler(cache_path=CACHE_DIR.joinpath("spotipy.cache").as_posix())
         if use_oauth:
+            open_browser = False if os.environ.get("HEADLESS") else True
             auth = SpotifyOAuth(
                 client_id=client_id,
                 client_secret=client_secret,
                 redirect_uri="http://localhost",
                 scope="user-library-read",
                 cache_handler=cache_handler,
+                open_browser=open_browser,
             )
             self.api = spotipy.Spotify(auth_manager=auth)
         else:

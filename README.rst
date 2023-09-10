@@ -52,7 +52,7 @@ Setup
 
 For backwards compatibility you can also create your own file and pass it using ``--file settings.ini``.
 
-If you want to transfer private playlists from Spotify (i.e. liked songs), choose "yes" for oAuth authentication, otherwise choose "no".
+If you want to transfer private playlists from Spotify (e.g. liked songs), choose "yes" for oAuth authentication, otherwise choose "no".
 For oAuth authentication you should set ``http://localhost`` as redirect URI for your app in Spotify's developer dashboard.
 
 Usage
@@ -64,7 +64,7 @@ After you've completed setup, you can simply run the script from the command lin
 
     spotify_to_ytmusic create <spotifylink>
 
-where ``<spotifylink>`` is a link like https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M
+where ``<spotifylink>`` is a link like https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M, prepend ``HEADLESS=1`` when run in a WSL environment.
 
 The script will log its progress and output songs that were not found in YouTube Music to **noresults.txt**.
 
