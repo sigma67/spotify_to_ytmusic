@@ -1,6 +1,6 @@
 import html
 import string
-from urllib.parse import urlparse
+import re
 
 import spotipy
 from spotipy import CacheFileHandler
@@ -112,10 +112,10 @@ def build_results(tracks, album=None):
     return results
 
 
+_id_extraction_regex = re.compile(r"playlist\/(?P<id>\w{22})\W")
+
+
 def get_id_from_url(url):
     url_parts = parse_url(url)
-    return url_parts.path.split("/")[2]
-
-
-def parse_url(url):
-    return urlparse(url)
+    matches = re.search(url)
+    return matches.group("id)
