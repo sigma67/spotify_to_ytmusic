@@ -42,7 +42,7 @@ class Spotify:
             self.api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
     def getSpotifyPlaylist(self, url):
-        playlistId = self.getPlaylistIdFromUrl(url)
+        playlistId = extract_playlist_id_from_url(url)
 
         print("Getting Spotify tracks...")
         results = self.api.playlist(playlistId)
@@ -89,17 +89,6 @@ class Spotify:
             "description": "Your liked tracks from spotify",
         }
 
-    __id_extraction_regex = re.compile(r"playlist\/(?P<id>\w{22})\W?")
-
-    @classmethod
-    def getPlaylistIdFromUrl(cls, url) -> str:
-        if (match := cls.__id_extraction_regex.search(url)):
-            return match.group("id")
-        elif (match := re.search(r"playlist\/(?P<id>\w+)\W?", url)):
-            raise ValueError(f"Bad playlist id: {id}")
-        else:
-            raise ValueError(f"No id found in playlist url: {url}")
-
 def build_results(tracks, album=None):
     results = []
     for track in tracks:
@@ -118,3 +107,13 @@ def build_results(tracks, album=None):
         )
 
     return results
+
+
+def extract_playlist_id_from_url(url: str) -> str:
+    if (match := re.search(r"playlist\/(?P<id>\w{22})\W?", url)):
+        return match.group("id")
+    elif (match := re.search(r"playlist\/(?P<id>\w+)\W?", url)):
+        id = match.group("id")
+        raise ValueError(f"Bad playlist id: {id}\nA playlist id should be 22 characters long, not {len(id)}")
+    else:
+        raise ValueError(f"Couldn't understand playlist url: {url}\nA playlist url should look like this: https://open.spotify.com/playlist/37i9dQZF1DZ06evO41HwPk")
