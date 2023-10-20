@@ -1,6 +1,6 @@
 import html
 import string
-from urllib.parse import urlparse
+import re
 
 import spotipy
 from spotipy import CacheFileHandler
@@ -42,9 +42,7 @@ class Spotify:
             self.api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
     def getSpotifyPlaylist(self, url):
-        playlistId = get_id_from_url(url)
-        if len(playlistId) != 22:
-            raise Exception(f"Bad playlist id: {playlistId}")
+        playlistId = extract_playlist_id_from_url(url)
 
         print("Getting Spotify tracks...")
         results = self.api.playlist(playlistId)
@@ -91,7 +89,6 @@ class Spotify:
             "description": "Your liked tracks from spotify",
         }
 
-
 def build_results(tracks, album=None):
     results = []
     for track in tracks:
@@ -112,10 +109,11 @@ def build_results(tracks, album=None):
     return results
 
 
-def get_id_from_url(url):
-    url_parts = parse_url(url)
-    return url_parts.path.split("/")[2]
-
-
-def parse_url(url):
-    return urlparse(url)
+def extract_playlist_id_from_url(url: str) -> str:
+    if (match := re.search(r"playlist\/(?P<id>\w{22})\W?", url)):
+        return match.group("id")
+    elif (match := re.search(r"playlist\/(?P<id>\w+)\W?", url)):
+        id = match.group("id")
+        raise ValueError(f"Bad playlist id: {id}\nA playlist id should be 22 characters long, not {len(id)}")
+    else:
+        raise ValueError(f"Couldn't understand playlist url: {url}\nA playlist url should look like this: https://open.spotify.com/playlist/37i9dQZF1DZ06evO41HwPk")
