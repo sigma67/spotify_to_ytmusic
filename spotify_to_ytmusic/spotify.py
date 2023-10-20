@@ -42,9 +42,7 @@ class Spotify:
             self.api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
     def getSpotifyPlaylist(self, url):
-        playlistId = get_id_from_url(url)
-        if len(playlistId) != 22:
-            raise Exception(f"Bad playlist id: {playlistId}")
+        playlistId = self.getPlaylistIdFromUrl(url)
 
         print("Getting Spotify tracks...")
         results = self.api.playlist(playlistId)
@@ -91,6 +89,16 @@ class Spotify:
             "description": "Your liked tracks from spotify",
         }
 
+    __id_extraction_regex = re.compile(r"playlist\/(?P<id>\w{22})\W?")
+
+    @classmethod
+    def getPlaylistIdFromUrl(cls, url) -> str:
+        if (match := cls.__id_extraction_regex.search(url)):
+            return match.group("id")
+        elif (match := re.search(r"playlist\/(?P<id>\w+)\W?", url)):
+            raise ValueError(f"Bad playlist id: {id}")
+        else:
+            raise ValueError(f"No id found in playlist url: {url}")
 
 def build_results(tracks, album=None):
     results = []
@@ -110,12 +118,3 @@ def build_results(tracks, album=None):
         )
 
     return results
-
-
-_id_extraction_regex = re.compile(r"playlist\/(?P<id>\w{22})\W")
-
-
-def get_id_from_url(url):
-    url_parts = parse_url(url)
-    matches = re.search(url)
-    return matches.group("id)
