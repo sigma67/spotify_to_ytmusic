@@ -7,6 +7,7 @@ from spotipy import CacheFileHandler
 from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 
 from spotify_to_ytmusic.settings import CACHE_DIR, Settings
+from spotify_to_ytmusic.utils.browser import has_browser
 
 
 class Spotify:
@@ -33,6 +34,7 @@ class Spotify:
                 redirect_uri="http://localhost",
                 scope="user-library-read",
                 cache_handler=cache_handler,
+                open_browser=has_browser(),
             )
             self.api = spotipy.Spotify(auth_manager=auth)
         else:

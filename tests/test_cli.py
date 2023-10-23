@@ -66,6 +66,7 @@ class TestCli(unittest.TestCase):
                 return_value=json.loads(Settings()["youtube"]["headers"]),
             ),
             mock.patch.object(setup, "DEFAULT_PATH", tmp_path),
+            mock.patch("spotify_to_ytmusic.setup.has_browser", return_value=False),
             mock.patch.object(settings_module, "DEFAULT_PATH", tmp_path),
             mock.patch.object(Settings, "filepath", tmp_path),
         ):

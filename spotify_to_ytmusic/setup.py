@@ -7,6 +7,7 @@ from typing import Optional
 import ytmusicapi
 
 from spotify_to_ytmusic.settings import DEFAULT_PATH, EXAMPLE_PATH, Settings
+from spotify_to_ytmusic.utils.browser import has_browser
 
 
 def setup(file: Optional[Path] = None):
@@ -32,7 +33,8 @@ def setup(file: Optional[Path] = None):
 
 def setup_youtube():
     settings = Settings()
-    settings["youtube"]["headers"] = json.dumps(ytmusicapi.setup_oauth())
+    credentials = ytmusicapi.setup_oauth(open_browser=has_browser())
+    settings["youtube"]["headers"] = json.dumps(credentials)
     settings.save()
 
 
