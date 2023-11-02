@@ -15,7 +15,7 @@ classifiers = [
 dependencies = [
     "ytmusicapi>=1.0",
     "spotipy>=2.23.0",
-    "platformdirs>=2.0"
+    "platformdirs>=3.2"
 ]
 dynamic = ["version", "readme"]
 
