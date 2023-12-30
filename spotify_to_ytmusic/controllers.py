@@ -40,9 +40,7 @@ def all(args):
         try:
             playlist = spotify.getSpotifyPlaylist(p["external_urls"]["spotify"])
             videoIds = ytmusic.search_songs(playlist["tracks"])
-            playlistId = ytmusic.get_playlist_id(p["name"])
-            if playlistId == "" or not playlistId:
-                print("Playlist does not exist. Creating...")               
+            if not args.update:
                 playlist_id = ytmusic.create_playlist(
                     p["name"],
                     p["description"],
@@ -51,15 +49,26 @@ def all(args):
                 )
                 _print_success(p["name"], playlist_id)
             else:
-                print("Playlist exists. Updating...")
-                update_args = argparse.Namespace(
-                    playlist = playlist,
-                    playlistId = playlistId,
-                    videoIds = videoIds,
-                    append = True,
-                )
-                update(update_args)
-                _print_success(p["name"], playlistId, "updated")
+                playlistId = ytmusic.get_playlist_id(p["name"])
+                if playlistId == "" or not playlistId:
+                    print("Playlist does not exist. Creating...")               
+                    playlist_id = ytmusic.create_playlist(
+                        p["name"],
+                        p["description"],
+                        "PUBLIC" if p["public"] else "PRIVATE",
+                        videoIds,
+                    )
+                    _print_success(p["name"], playlist_id)
+                else:
+                    print("Playlist exists. Updating...")
+                    update_args = argparse.Namespace(
+                        playlist = playlist,
+                        playlistId = playlistId,
+                        videoIds = videoIds,
+                        append = args.update == "append",
+                    )
+                    update(update_args)
+                    _print_success(p["name"], playlistId, "updated")
         except Exception as ex:
             print(f"Could not transfer playlist {p['name']}. {str(ex)}")
 
@@ -102,7 +111,7 @@ def update(args):
         playlist = args.playlist
         playlistId = args.playlistId
         videoIds = args.videoIds
-    if not args.append:
+    if not args.append or args.append == False:
         ytmusic.remove_songs(playlistId)
     time.sleep(2)
     ytmusic.add_playlist_items(playlistId, videoIds)
