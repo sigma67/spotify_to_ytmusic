@@ -34,7 +34,7 @@ def setup(file: Optional[Path] = None):
 def setup_youtube():
     settings = Settings()
     credentials = ytmusicapi.setup_oauth(open_browser=has_browser())
-    settings["youtube"]["headers"] = json.dumps(credentials)
+    settings["youtube"]["headers"] = json.dumps(credentials.as_dict())
     settings.save()
 
 
