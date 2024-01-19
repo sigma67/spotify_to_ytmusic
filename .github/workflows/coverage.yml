@@ -3,6 +3,9 @@ name: Code coverage
 on:
   push
 
+env:
+  XDG_CACHE_HOME: .cache
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,10 +18,13 @@ jobs:
     - name: Generate coverage report
       env:
         SETTINGS_INI: ${{ secrets.SETTINGS_INI }}
+        SPOTIPY_CACHE: ${{ secrets.SPOTIPY_CACHE }}
       run: |
         pip install -e .
         pip install coverage
         cat <<< "$SETTINGS_INI" > spotify_to_ytmusic/settings.ini
+        mkdir -p $XDG_CACHE_HOME/spotify_to_ytmusic
+        cat <<< "$SPOTIPY_CACHE" > $XDG_CACHE_HOME/spotify_to_ytmusic/spotipy.cache
         coverage run
         coverage xml
     - name: Upload coverage to Codecov

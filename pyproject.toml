@@ -13,9 +13,10 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
 ]
 dependencies = [
-    "ytmusicapi>=1.0",
+    "ytmusicapi>=1.4",
     "spotipy>=2.23.0",
-    "praw>=7.7.0"
+    "platformdirs>=3.2",
+    "praw>=7.7.0",
 ]
 dynamic = ["version", "readme"]
 

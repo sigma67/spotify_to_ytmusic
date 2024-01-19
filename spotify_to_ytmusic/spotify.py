@@ -1,11 +1,14 @@
 import html
 import string
+import re
 from urllib.parse import urlparse
 
 import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
+from spotipy import CacheFileHandler
+from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 
-from spotify_to_ytmusic.settings import Settings
+from spotify_to_ytmusic.settings import CACHE_DIR, Settings
+from spotify_to_ytmusic.utils.browser import has_browser
 
 
 class Spotify:
@@ -22,15 +25,27 @@ class Spotify:
             string.hexdigits
         ), f"Spotify client_secret not set or invalid: {client_secret}"
 
-        client_credentials_manager = SpotifyClientCredentials(
-            client_id=client_id, client_secret=client_secret
-        )
-        self.api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+        use_oauth = conf.getboolean("use_oauth")
+
+        cache_handler = CacheFileHandler(cache_path=CACHE_DIR.joinpath("spotipy.cache").as_posix())
+        if use_oauth:
+            auth = SpotifyOAuth(
+                client_id=client_id,
+                client_secret=client_secret,
+                redirect_uri="http://localhost",
+                scope="user-library-read",
+                cache_handler=cache_handler,
+                open_browser=has_browser(),
+            )
+            self.api = spotipy.Spotify(auth_manager=auth)
+        else:
+            client_credentials_manager = SpotifyClientCredentials(
+                client_id=client_id, client_secret=client_secret, cache_handler=cache_handler
+            )
+            self.api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
     def getSpotifyPlaylist(self, url):
-        playlistId = get_id_from_url(url)
-        if len(playlistId) != 22:
-            raise Exception(f"Bad playlist id: {playlistId}")
+        playlistId = extract_playlist_id_from_url(url)
 
         print("Getting Spotify tracks...")
         results = self.api.playlist(playlistId)
@@ -66,7 +81,7 @@ class Spotify:
 
     def get_tracks(self, url):
         tracks = []
-        url_parts = parse_url(url)
+        url_parts = urlparse(url)
         path = url_parts.path.split("/")
         id = path[2]
         if "album" == path[1]:
@@ -76,6 +91,19 @@ class Spotify:
             track = self.api.track(id)
             tracks.extend(build_results([track]))
         return tracks
+
+    def getLikedPlaylist(self):
+        response = self.api.current_user_saved_tracks(limit=50)
+        tracks = response["items"]
+        while response["next"] is not None:
+            response = self.api.current_user_saved_tracks(limit=50, offset=response["offset"] + 50)
+            tracks.extend(response["items"])
+
+        return {
+            "tracks": build_results(tracks),
+            "name": "Liked songs (Spotify)",
+            "description": "Your liked tracks from spotify",
+        }
 
 
 def build_results(tracks, album=None):
@@ -98,10 +126,11 @@ def build_results(tracks, album=None):
     return results
 
 
-def get_id_from_url(url):
-    url_parts = parse_url(url)
-    return url_parts.path.split("/")[2]
-
-
-def parse_url(url):
-    return urlparse(url)
+def extract_playlist_id_from_url(url: str) -> str:
+    if (match := re.search(r"playlist\/(?P<id>\w{22})\W?", url)):
+        return match.group("id")
+    elif (match := re.search(r"playlist\/(?P<id>\w+)\W?", url)):
+        id = match.group("id")
+        raise ValueError(f"Bad playlist id: {id}\nA playlist id should be 22 characters long, not {len(id)}")
+    else:
+        raise ValueError(f"Couldn't understand playlist url: {url}\nA playlist url should look like this: https://open.spotify.com/playlist/37i9dQZF1DZ06evO41HwPk")

@@ -20,13 +20,8 @@ def get_args(args=None):
     spotify_playlist = argparse.ArgumentParser(add_help=False)
     spotify_playlist.add_argument("playlist", type=str, help="Provide a playlist Spotify link.")
 
-    create_parser = subparsers.add_parser(
-        "create",
-        help="Create a new playlist on YouTube Music.",
-        parents=[spotify_playlist],
-    )
-    create_parser.set_defaults(func=controllers.create)
-    create_parser.add_argument(
+    spotify_playlist_create = argparse.ArgumentParser(add_help=False)
+    spotify_playlist_create.add_argument(
         "-d",
         "--date",
         action="store_const",
@@ -34,24 +29,36 @@ def get_args(args=None):
         default="",
         help="Append the current date to the playlist name",
     )
-    create_parser.add_argument(
+    spotify_playlist_create.add_argument(
         "-i",
         "--info",
         type=str,
         help="Provide description information for the YouTube Music Playlist. Default: Spotify playlist description",
     )
-    create_parser.add_argument(
+    spotify_playlist_create.add_argument(
         "-n",
         "--name",
         type=str,
         help="Provide a name for the YouTube Music playlist. Default: Spotify playlist name",
     )
-    create_parser.add_argument(
+    spotify_playlist_create.add_argument(
         "-p",
         "--public",
         action="store_true",
         help="Make created playlist public. Default: private",
     )
+
+    create_parser = subparsers.add_parser(
+        "create",
+        help="Create a new playlist on YouTube Music.",
+        parents=[spotify_playlist, spotify_playlist_create],
+    )
+    create_parser.set_defaults(func=controllers.create)
+
+    liked_parser = subparsers.add_parser(
+        "liked", help="Transfer all liked songs of the user.", parents=[spotify_playlist_create]
+    )
+    liked_parser.set_defaults(func=controllers.liked)
 
     update_parser = subparsers.add_parser(
         "update",

@@ -4,7 +4,7 @@ from collections import OrderedDict
 
 from ytmusicapi import YTMusic
 
-from spotify_to_ytmusic.match import get_best_fit_song_id
+from spotify_to_ytmusic.utils.match import get_best_fit_song_id
 from spotify_to_ytmusic.settings import Settings
 
 path = os.path.dirname(os.path.realpath(__file__)) + os.sep
