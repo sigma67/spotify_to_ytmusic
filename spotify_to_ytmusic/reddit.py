@@ -18,9 +18,9 @@ class Reddit:
             sys.exit(1)
 
         self.reddit = praw.Reddit(
-            client_id=settings["reddit"]["client_id"],
-            client_secret=settings["reddit"]["client_secret"],
-            refresh_token=settings["reddit"]["refresh_token"],
+            client_id=settings["reddit"]["client_id"].strip(),
+            client_secret=settings["reddit"]["client_secret"].strip(),
+            refresh_token=settings["reddit"]["refresh_token"].strip(),
             user_agent=agent,
         )
 
@@ -39,6 +39,7 @@ class Reddit:
         return commented
 
     def get_top_new(self, time="week"):
+        print("Fetching reddit content...")
         sub = self.reddit.subreddit("EDM")
         query = 'flair:"new music"'
         results = sub.search(query, time_filter=time, sort="top")
