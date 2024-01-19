@@ -17,8 +17,8 @@ def setup(file: Optional[Path] = None):
 
     if not DEFAULT_PATH.is_file():
         shutil.copy(EXAMPLE_PATH, DEFAULT_PATH)
-    choice = input("Choose which API to set up\n" "(1) Spotify\n" "(2) YouTube\n" "(3) both\n")
-    choices = ["1", "2", "3"]
+    choice = input("Choose which API to set up\n" "(1) Spotify\n" "(2) YouTube\n" "(3) both\n" "(4) reddit\n")
+    choices = ["1", "2", "3", "4"]
     if choice not in choices:
         sys.exit("Invalid choice")
 
@@ -29,6 +29,8 @@ def setup(file: Optional[Path] = None):
     elif choice == choices[2]:
         setup_spotify()
         setup_youtube()
+    elif choice == choices[3]:
+        setup_reddit()
 
 
 def setup_youtube():
@@ -48,4 +50,44 @@ def setup_spotify():
         ),
     }
     settings["spotify"].update(credentials)
+    settings.save()
+
+
+def setup_reddit():
+    import socket
+
+    def receive_connection():
+        """Wait for and then return a connected socket..
+
+        Opens a TCP connection on port 8080, and waits for a single client.
+
+        """
+        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        server.bind(("localhost", 8080))
+        server.listen(1)
+        client = server.accept()[0]
+        server.close()
+        return client
+
+    import praw
+    agent = 'ytmusic playlist app by /u/Sigmatics'
+
+    settings = Settings()
+    reddit = praw.Reddit(client_id=settings['reddit']['client_id'],
+                         client_secret=settings['reddit']['client_secret'],
+                         redirect_uri='http://localhost:8080',
+                         user_agent=agent)
+
+    print(reddit.auth.url(['identity', 'read', 'submit'], '322', 'permanent'))
+
+    client = receive_connection()
+    data = client.recv(1024).decode("utf-8")
+    param_tokens = data.split(" ", 2)[1].split("?", 1)[1].split("&")
+    params = {
+        key: value
+        for (key, value) in [token.split("=") for token in param_tokens]
+    }
+    settings['reddit']['refresh_token'] = reddit.auth.authorize(params["code"])
+
     settings.save()

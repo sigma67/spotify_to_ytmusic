@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 from pathlib import Path
 
@@ -14,7 +15,7 @@ class Reddit:
         settings = Settings()
         if settings["reddit"]["refresh_token"] == "":
             print("Please run setup first!")
-            return
+            sys.exit(1)
 
         self.reddit = praw.Reddit(
             client_id=settings["reddit"]["client_id"],
