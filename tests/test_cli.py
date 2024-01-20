@@ -85,3 +85,10 @@ class TestCli(unittest.TestCase):
             main()
             assert tmp_path.is_file()
             tmp_path.unlink()
+
+    def test_reddit(self):
+        with mock.patch(
+            "sys.argv",
+            ["", "top", "r/EDM top submissions", "-c" ,"YouTube Music - r/EDM top submissions", "-i", "Top submissions to r/EDM in one convenient playlist. Created with github.com/sigma67/spotify_to_ytmusic", "-d", "-p"],
+        ):
+            main()
