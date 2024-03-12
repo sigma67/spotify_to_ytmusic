@@ -66,7 +66,7 @@ After you've completed setup, you can simply run the script from the command lin
 
 where ``<spotifylink>`` is a link like https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M
 
-The script will log its progress and output songs that were not found in YouTube Music to **noresults.txt**.
+The script will log its progress and output songs that were not found in YouTube Music to **noresults_youtube.txt**.
 
 Transfer all playlists of a Spotify user
 ----------------------------------------
