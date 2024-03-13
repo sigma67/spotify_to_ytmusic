@@ -76,6 +76,7 @@ def get_args(args=None):
         "all", help="Transfer all public playlists of the specified user (Spotify User ID)."
     )
     all_parser.add_argument("user", type=str, help="Spotify userid of the specified user.")
+    all_parser.add_argument("--update", type=str, help="Update playlist with the same names instead of creating duplicate ones. Specify methodo (delete or append)")
     all_parser.set_defaults(func=controllers.all)
 
     return parser.parse_args(args)
