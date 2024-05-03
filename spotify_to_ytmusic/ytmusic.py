@@ -18,6 +18,9 @@ class YTMusicTransfer:
         self.api = YTMusic(headers, settings["youtube"]["user_id"])
 
     def create_playlist(self, name, info, privacy="PRIVATE", tracks=None):
+        print(info)
+        print(privacy)
+        print(tracks)
         return self.api.create_playlist(name, info, privacy, video_ids=tracks)
 
     def search_songs(self, tracks):
@@ -34,6 +37,7 @@ class YTMusicTransfer:
                 notFound.append(query)
             else:
                 targetSong = get_best_fit_song_id(result, song)
+                print(f"ytmusic '{query}' '{targetSong}'")
                 if targetSong is None:
                     notFound.append(query)
                 else:

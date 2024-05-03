@@ -26,6 +26,7 @@ def top(args):
         if i in results["youtube_pos"]:
             r = results["youtube"][results["youtube_pos"].index(i)]
             match = re.search(r"(?:v=|\/)([0-9A-Za-z_-]{11}).*", r)  # from pytube extract.video_id
+            print(f"youtube '{match.group(1)}'")
             videoIds.append(match.group(1))
         else:
             videoIds.extend(search_results[track_counter : track_counter + track_counts[counter]])
