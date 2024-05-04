@@ -49,6 +49,7 @@ class Reddit:
         youtube_pos = []
         count = 0
         for url in urls:
+            print(url)
             if "open.spotify.com" in url:
                 spotify.append(url)
                 count += 1
