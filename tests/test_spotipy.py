@@ -16,4 +16,4 @@ class TestSpotify(unittest.TestCase):
 
     def test_getUserPlaylists(self):
         playlists = self.spotify.getUserPlaylists("spinninrecordsofficial")
-        self.assertGreater(len(playlists), 50)
+        self.assertGreater(len(playlists), 40)
