@@ -1,25 +1,28 @@
 spotify_to_ytmusic
 ####################
 
-.. image:: https://img.shields.io/pypi/dm/spotify_to_ytmusic?style=flat-square
+.. |pypi-downloads| image:: https://img.shields.io/pypi/dm/spotify_to_ytmusic?style=flat-square
     :alt: PyPI Downloads
     :target: https://pypi.org/project/spotify_to_ytmusic/
 
-.. image:: https://img.shields.io/github/discussions/sigma67/spotify_to_ytmusic?style=flat-square
+.. |discuss| image:: https://img.shields.io/github/discussions/sigma67/spotify_to_ytmusic?style=flat-square
    :alt: Ask questions at Discussions
    :target: https://github.com/sigma67/spotify_to_ytmusic/discussions
 
-.. image:: https://img.shields.io/codecov/c/github/sigma67/spotify_to_ytmusic?style=flat-square
+.. |code-coverage| image:: https://img.shields.io/codecov/c/github/sigma67/spotify_to_ytmusic?style=flat-square
     :alt: Code coverage
     :target: https://codecov.io/gh/sigma67/spotify_to_ytmusic
 
-.. image:: https://img.shields.io/github/v/release/sigma67/spotify_to_ytmusic?style=flat-square
+.. |latest-release| image:: https://img.shields.io/github/v/release/sigma67/spotify_to_ytmusic?style=flat-square
     :alt: Latest release
     :target: https://github.com/sigma67/spotify_to_ytmusic/releases/latest
 
-.. image:: https://img.shields.io/github/commits-since/sigma67/spotify_to_ytmusic/latest?style=flat-square
+.. |commits-since-latest| image:: https://img.shields.io/github/commits-since/sigma67/spotify_to_ytmusic/latest?style=flat-square
     :alt: Commits since latest release
     :target: https://github.com/sigma67/spotify_to_ytmusic/commits
+
+
+|pypi-downloads| |discuss| |code-coverage| |latest-release| |commits-since-latest|
 
 A simple command line script to clone a Spotify playlist to YouTube Music.
 
