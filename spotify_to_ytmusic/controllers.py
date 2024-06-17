@@ -46,6 +46,10 @@ def all(args):
                 "PUBLIC" if p["public"] else "PRIVATE",
                 videoIds,
             )
+            if args.like:
+                for id in videoIds:
+                    ytmusic.rate_song(id, "LIKE")
+                    print(id)
             _print_success(p["name"], playlist_id)
         except Exception as ex:
             print(f"Could not transfer playlist {p['name']}. {str(ex)}")
