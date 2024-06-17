@@ -40,6 +40,12 @@ def get_args(args=None):
         action="store_true",
         help="Make created playlist public. Default: private",
     )
+    spotify_playlist_create.add_argument(
+        "-l",
+        "--like",
+        action="store_true",
+        help="Like the songs in the specified playlist",
+    )
 
     create_parser = subparsers.add_parser(
         "create",
