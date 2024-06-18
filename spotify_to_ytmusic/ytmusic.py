@@ -20,6 +20,9 @@ class YTMusicTransfer:
     def create_playlist(self, name, info, privacy="PRIVATE", tracks=None):
         return self.api.create_playlist(name, info, privacy, video_ids=tracks)
 
+    def rate_song(self, id, rating):
+        return self.api.rate_song(id, rating)
+
     def search_songs(self, tracks):
         videoIds = []
         songs = list(tracks)
