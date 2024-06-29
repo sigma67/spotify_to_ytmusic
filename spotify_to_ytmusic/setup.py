@@ -44,8 +44,8 @@ def setup_spotify():
         "client_id": input("Paste your client id from the Spotify developer dashboard:"),
         "client_secret": input("Paste your client secret from the Spotify developer dashboard:"),
         "use_oauth": input(
-            "Use OAuth method for authorization to transfer private playlists (yes/no):"
-        ),
+            "Use OAuth method for authorization to transfer private playlists (yes/No):"
+        ).strip() or 'No',
     }
     settings["spotify"].update(credentials)
     settings.save()
