@@ -85,7 +85,7 @@ For migration purposes, it is possible to transfer all public playlists of a use
 Transfer liked tracks of the Spotify user
 -----------------------------------------
 
-**You must you oAuth authentication for transferring liked songs.**
+**You must use oAuth authentication for transferring liked songs.**
 
 .. code-block::
 
