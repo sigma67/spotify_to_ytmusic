@@ -37,12 +37,18 @@ A simple command line script to clone a Spotify playlist to YouTube Music.
 Install
 -------
 
-- Python 3 and pip - https://www.python.org
-- Install:
+- Python 3 - https://www.python.org
+- pipx - https://pipx.pypa.io
 
 .. code-block::
 
-    pip install spotify_to_ytmusic
+    pipx ensurepath
+
+- Open a new shell. Install:
+
+.. code-block::
+
+    pipx install spotify_to_ytmusic
 
 
 Setup
