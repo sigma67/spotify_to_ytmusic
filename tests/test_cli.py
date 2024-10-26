@@ -19,9 +19,9 @@ class TestCli(unittest.TestCase):
 
     def test_get_args(self):
         args = get_args(["all", "user"])
-        self.assertEqual(len(vars(args)), 3)
+        self.assertEqual(len(vars(args)), 4)
         args = get_args(["create", "playlist-link"])
-        self.assertEqual(len(vars(args)), 7)
+        self.assertEqual(len(vars(args)), 8)
         args = get_args(["update", "playlist-link", "playlist-name"])
         self.assertEqual(len(vars(args)), 5)
         args = get_args(["setup"])
