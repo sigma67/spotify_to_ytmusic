@@ -38,6 +38,7 @@ def setup_youtube():
     settings = Settings()
     credentials = ytmusicapi.setup_oauth(open_browser=has_browser())
     settings["youtube"]["headers"] = json.dumps(credentials.as_dict())
+    settings["youtube"]["auth_type"] = "oauth"
     settings.save()
 
 def setup_youtube_browser():
@@ -45,7 +46,8 @@ def setup_youtube_browser():
     print('Please see https://ytmusicapi.readthedocs.io/en/stable/setup/browser.html for instructions.')
     credentials = ytmusicapi.setup()
     settings["youtube"]["headers"] = credentials
-    settings.save
+    settings["youtube"]["auth_type"] = "browser"
+    settings.save()
 
 
 def setup_spotify():
