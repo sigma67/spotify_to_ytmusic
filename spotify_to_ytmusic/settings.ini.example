@@ -1,6 +1,7 @@
 [youtube]
 headers = headers_json_from_browser
 user_id = 
+auth_type = browser
 
 [spotify]
 client_id = id_from_developer_console

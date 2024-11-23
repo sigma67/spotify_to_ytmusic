@@ -60,7 +60,7 @@ class TestCli(unittest.TestCase):
         tmp_path = DEFAULT_PATH.with_suffix(".tmp")
         with (
             mock.patch("sys.argv", ["", "setup"]),
-            mock.patch("builtins.input", side_effect=["3", "a", "b", "yes", ""]),
+            mock.patch("builtins.input", side_effect=["4", "a", "b", "yes", ""]),
             mock.patch(
                 "ytmusicapi.auth.oauth.credentials.OAuthCredentials.token_from_code",
                 return_value=json.loads(Settings()["youtube"]["headers"]),
