@@ -6,23 +6,18 @@ from ytmusicapi import YTMusic
 
 from spotify_to_ytmusic.utils.match import get_best_fit_song_id
 from spotify_to_ytmusic.settings import Settings
-from spotify_to_ytmusic.setup import setup_youtube_browser
 
 path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 
 class YTMusicTransfer:
     def __init__(self):
-        self.settings = Settings()
-        headers = self.settings["youtube"]["headers"]
+        settings = Settings()
+        headers = settings["youtube"]["headers"]
         assert headers.startswith("{"), "ytmusicapi headers not set or invalid"
-        self.api = YTMusic(headers, self.settings["youtube"]["user_id"])
+        self.api = YTMusic(headers, settings["youtube"]["user_id"])
 
     def create_playlist(self, name, info, privacy="PRIVATE", tracks=None):
-        if self.settings["youtube"]["auth_type"] == "browser":
-            setup_youtube_browser()
-            self.api = YTMusic(self.settings["youtube"]["headers"], self.settings["youtube"]["user_id"])
-
         return self.api.create_playlist(name, info, privacy, video_ids=tracks)
 
     def rate_song(self, id, rating):
