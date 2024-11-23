@@ -91,6 +91,7 @@ class Spotify:
             "description": "Your liked tracks from spotify",
         }
 
+
 def build_results(tracks, album=None):
     results = []
     for track in tracks:
@@ -112,10 +113,14 @@ def build_results(tracks, album=None):
 
 
 def extract_playlist_id_from_url(url: str) -> str:
-    if (match := re.search(r"playlist\/(?P<id>\w{22})\W?", url)):
+    if match := re.search(r"playlist\/(?P<id>\w{22})\W?", url):
         return match.group("id")
-    elif (match := re.search(r"playlist\/(?P<id>\w+)\W?", url)):
+    elif match := re.search(r"playlist\/(?P<id>\w+)\W?", url):
         id = match.group("id")
-        raise ValueError(f"Bad playlist id: {id}\nA playlist id should be 22 characters long, not {len(id)}")
+        raise ValueError(
+            f"Bad playlist id: {id}\nA playlist id should be 22 characters long, not {len(id)}"
+        )
     else:
-        raise ValueError(f"Couldn't understand playlist url: {url}\nA playlist url should look like this: https://open.spotify.com/playlist/37i9dQZF1DZ06evO41HwPk")
+        raise ValueError(
+            f"Couldn't understand playlist url: {url}\nA playlist url should look like this: https://open.spotify.com/playlist/37i9dQZF1DZ06evO41HwPk"
+        )
