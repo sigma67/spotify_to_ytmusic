@@ -27,20 +27,28 @@ spotify_to_ytmusic
 A simple command line script to clone a Spotify playlist to YouTube Music.
 
 - Transfer a single Spotify playlist
+- Like all the songs in a Spotify playlist
 - Update a transferred playlist on YouTube Music
 - Transfer all playlists for a Spotify user
+- Like all songs from all playlists for a Spotify user
 - Remove playlists from YouTube Music
 
 
 Install
 -------
 
-- Python 3 and pip - https://www.python.org
-- Install:
+- Python 3 - https://www.python.org
+- pipx - https://pipx.pypa.io
 
 .. code-block::
 
-    pip install spotify_to_ytmusic
+    pipx ensurepath
+
+- Open a new shell. Install:
+
+.. code-block::
+
+    pipx install spotify_to_ytmusic
 
 
 Setup
@@ -83,7 +91,7 @@ For migration purposes, it is possible to transfer all public playlists of a use
 Transfer liked tracks of the Spotify user
 -----------------------------------------
 
-**You must you oAuth authentication for transferring liked songs.**
+**You must use oAuth authentication for transferring liked songs.**
 
 .. code-block::
 
