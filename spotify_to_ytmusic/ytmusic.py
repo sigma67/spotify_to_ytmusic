@@ -1,3 +1,4 @@
+import json
 import os
 import re
 from collections import OrderedDict
@@ -23,24 +24,45 @@ class YTMusicTransfer:
     def rate_song(self, id, rating):
         return self.api.rate_song(id, rating)
 
+    def load_lookup_table(self):
+        try:
+            with open('lookup.json') as f:
+                return json.load(f)
+        except FileNotFoundError:
+            return {}
+    
+    def save_to_lookup_table(self, table):
+        with open('lookup.json', 'w', encoding="utf-8") as f:
+            json.dump(table, f, ensure_ascii=False)
+        
     def search_songs(self, tracks):
         videoIds = []
         songs = list(tracks)
         notFound = list()
+        lookup_ids = self.load_lookup_table()
+
         print("Searching YouTube...")
         for i, song in enumerate(songs):
             name = re.sub(r" \(feat.*\..+\)", "", song["name"])
             query = song["artist"] + " " + name
             query = query.replace(" &", "")
+
+            if query in lookup_ids.keys():
+                print(f"Found cached link from lookup table for {query}\n")
+                videoIds.append(lookup_ids[query])
+                continue
             result = self.api.search(query)
             if len(result) == 0:
                 notFound.append(query)
             else:
+                print()
                 targetSong = get_best_fit_song_id(result, song)
                 if targetSong is None:
                     notFound.append(query)
                 else:
                     videoIds.append(targetSong)
+                    lookup_ids[query] = targetSong
+                    self.save_to_lookup_table(lookup_ids)
 
             if i > 0 and i % 10 == 0:
                 print(f"YouTube tracks: {i}/{len(songs)}")

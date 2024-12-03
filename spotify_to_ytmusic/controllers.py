@@ -100,6 +100,17 @@ def remove(args):
     ytmusic = YTMusicTransfer()
     ytmusic.remove_playlists(args.pattern)
 
+def search(args):
+    spotify, ytmusic = _init()
+    track = spotify.getSingleTrack(args.link)
+    tracks = {
+        "name": track["name"],
+        "artist": track["artists"][0]["name"],
+        "duration": track["duration_ms"] / 1000,
+        "album": track['album']['name']
+    }
+    video_id = ytmusic.search_songs([tracks])
+    print(f"https://music.youtube.com/watch?v={video_id[0]}")
 
 def setup(args):
     setup_func(args.file)

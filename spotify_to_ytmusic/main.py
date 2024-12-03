@@ -90,6 +90,12 @@ def get_args(args=None):
         help="Like the songs in all of the public playlist",
     )
 
+    search_parser = subparsers.add_parser(
+        "search", help="Search for a song in yt music (Algorthm Testing)."
+    )
+    search_parser.add_argument("link", type=str, help="Link of the spotify song to search.")
+    search_parser.set_defaults(func=controllers.search)
+
     return parser.parse_args(args)
 
 

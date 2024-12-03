@@ -90,6 +90,9 @@ class Spotify:
             "name": "Liked songs (Spotify)",
             "description": "Your liked tracks from spotify",
         }
+    
+    def getSingleTrack(self, song_url):
+        return self.api.track(song_url)
 
 
 def build_results(tracks, album=None):
