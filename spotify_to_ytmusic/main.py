@@ -121,6 +121,9 @@ def get_args(args=None):
     )
     search_parser.set_defaults(func=controllers.search)
 
+    cache_remove_parser = subparsers.add_parser("cache-clear", help="Clear cache file")
+    cache_remove_parser.set_defaults(func=controllers.cache_clear)
+
     return parser.parse_args(args)
 
 

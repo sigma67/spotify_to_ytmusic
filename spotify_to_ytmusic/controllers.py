@@ -1,3 +1,4 @@
+import os
 import time
 from datetime import datetime
 
@@ -118,3 +119,7 @@ def search(args):
 
 def setup(args):
     setup_func(args.file)
+
+def cache_clear(args):
+    path = os.path.dirname(os.path.realpath(__file__)) + os.sep
+    os.remove(path + "lookup.json")

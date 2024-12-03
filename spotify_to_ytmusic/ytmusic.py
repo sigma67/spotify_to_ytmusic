@@ -1,5 +1,6 @@
 import json
 import os
+from pathlib import Path
 import re
 from collections import OrderedDict
 
@@ -26,13 +27,14 @@ class YTMusicTransfer:
 
     def load_lookup_table(self):
         try:
-            with open('lookup.json') as f:
+            with open(path + "lookup.json") as f:
                 return json.load(f)
         except FileNotFoundError:
             return {}
     
     def save_to_lookup_table(self, table):
-        with open('lookup.json', 'w', encoding="utf-8") as f:
+        
+        with open(path + "lookup.json", 'w', encoding="utf-8") as f:
             json.dump(table, f, ensure_ascii=False)
         
     def search_songs(self, tracks, extended_search = False):
