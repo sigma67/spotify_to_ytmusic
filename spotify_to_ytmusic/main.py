@@ -53,11 +53,21 @@ def get_args(args=None):
         parents=[spotify_playlist, spotify_playlist_create],
     )
     create_parser.set_defaults(func=controllers.create)
+    create_parser.add_argument(
+        "--extended-search",
+        action="store_true",
+        help="Use new algorithm for searching track on YouTube Music (beta).",
+    )
 
     liked_parser = subparsers.add_parser(
         "liked", help="Transfer all liked songs of the user.", parents=[spotify_playlist_create]
     )
     liked_parser.set_defaults(func=controllers.liked)
+    liked_parser.add_argument(
+        "--extended-search",
+        action="store_true",
+        help="Use new algorithm for searching track on YouTube Music (beta).",
+    )
 
     update_parser = subparsers.add_parser(
         "update",
@@ -70,6 +80,11 @@ def get_args(args=None):
     )
     update_parser.add_argument(
         "--append", help="Do not delete items, append to target playlist instead"
+    )
+    update_parser.add_argument(
+        "--extended-search",
+        action="store_true",
+        help="Use new algorithm for searching track on YouTube Music (beta).",
     )
 
     remove_parser = subparsers.add_parser(
@@ -89,11 +104,21 @@ def get_args(args=None):
         action="store_true",
         help="Like the songs in all of the public playlist",
     )
+    all_parser.add_argument(
+        "--extended-search",
+        action="store_true",
+        help="Use new algorithm for searching track on YouTube Music (beta).",
+    )
 
     search_parser = subparsers.add_parser(
         "search", help="Search for a song in yt music (Algorthm Testing)."
     )
     search_parser.add_argument("link", type=str, help="Link of the spotify song to search.")
+    search_parser.add_argument(
+        "--extended-search",
+        action="store_true",
+        help="Use new algorithm for searching track on YouTube Music (beta).",
+    )
     search_parser.set_defaults(func=controllers.search)
 
     return parser.parse_args(args)

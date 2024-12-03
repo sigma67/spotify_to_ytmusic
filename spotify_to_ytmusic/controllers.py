@@ -39,7 +39,7 @@ def all(args):
         count = count + 1
         try:
             playlist = spotify.getSpotifyPlaylist(p["external_urls"]["spotify"])
-            videoIds = ytmusic.search_songs(playlist["tracks"])
+            videoIds = ytmusic.search_songs(playlist["tracks"], args.extended_search)
             playlist_id = ytmusic.create_playlist(
                 p["name"],
                 p["description"],
@@ -60,7 +60,7 @@ def _create_ytmusic(args, playlist, ytmusic):
         date = " " + datetime.today().strftime("%m/%d/%Y")
     name = args.name + date if args.name else playlist["name"] + date
     info = playlist["description"] if (args.info is None) else args.info
-    videoIds = ytmusic.search_songs(playlist["tracks"])
+    videoIds = ytmusic.search_songs(playlist["tracks"], args.extended_search)
     if args.like:
         for id in videoIds:
             ytmusic.rate_song(id, "LIKE")
@@ -89,7 +89,7 @@ def update(args):
     spotify, ytmusic = _init()
     playlist = _get_spotify_playlist(spotify, args.playlist)
     playlistId = ytmusic.get_playlist_id(args.name)
-    videoIds = ytmusic.search_songs(playlist["tracks"])
+    videoIds = ytmusic.search_songs(playlist["tracks"], args.extended_search)
     if not args.append:
         ytmusic.remove_songs(playlistId)
     time.sleep(2)
@@ -109,8 +109,12 @@ def search(args):
         "duration": track["duration_ms"] / 1000,
         "album": track['album']['name']
     }
-    video_id = ytmusic.search_songs([tracks])
-    print(f"https://music.youtube.com/watch?v={video_id[0]}")
+
+    video_id = ytmusic.search_songs([tracks], args.extended_search)
+    if video_id:
+        print(f"https://music.youtube.com/watch?v={video_id[0]}")
+    else:
+        print("No match found")
 
 def setup(args):
     setup_func(args.file)

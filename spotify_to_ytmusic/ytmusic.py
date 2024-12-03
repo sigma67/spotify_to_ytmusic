@@ -5,7 +5,7 @@ from collections import OrderedDict
 
 from ytmusicapi import YTMusic
 
-from spotify_to_ytmusic.utils.match import get_best_fit_song_id
+from spotify_to_ytmusic.utils.match import get_best_fit_song_id, get_best_fit_song_id_v2
 from spotify_to_ytmusic.settings import Settings
 
 path = os.path.dirname(os.path.realpath(__file__)) + os.sep
@@ -35,11 +35,17 @@ class YTMusicTransfer:
         with open('lookup.json', 'w', encoding="utf-8") as f:
             json.dump(table, f, ensure_ascii=False)
         
-    def search_songs(self, tracks):
+    def search_songs(self, tracks, extended_search = False):
         videoIds = []
         songs = list(tracks)
         notFound = list()
         lookup_ids = self.load_lookup_table()
+
+        if not extended_search:
+            algorithm = get_best_fit_song_id
+        else:
+            print("Using extended search..\n")
+            algorithm = get_best_fit_song_id_v2
 
         print("Searching YouTube...")
         for i, song in enumerate(songs):
@@ -55,8 +61,7 @@ class YTMusicTransfer:
             if len(result) == 0:
                 notFound.append(query)
             else:
-                print()
-                targetSong = get_best_fit_song_id(result, song)
+                targetSong = algorithm(result, song)
                 if targetSong is None:
                     notFound.append(query)
                 else:
