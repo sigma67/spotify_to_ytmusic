@@ -67,10 +67,11 @@ def get_best_fit_song_id(ytm_results, spoti) -> str:
 def normalize_text(text):
     """Normalize text by removing unwanted characters and converting to lowercase."""
     # Replace unwanted characters and patterns
-    text = re.sub(r"[(),\[\]&]+|feat\.", "", text)  
+    text = re.sub(r"[(),\[\]&]+|feat\.", "", text)
     
     text = re.sub(r"(?<=\s)-(?=\s)", "", text)  # Remove hyphen surrounded by spaces i.e. Brain Deady - Get on my Knees
     text = re.sub(r"(?<=\w)-(?=\w)", " ", text)  # Replace hyphen between letters or numbers with space i.e. Eazy-E
+    text = re.sub(r"[\"']", " ", text)  # Replace quotes with a space i.e. Nuthin' But "G" Thang
 
     # Remove accents and convert to lowercase
     return ''.join(c for c in unicodedata.normalize('NFD', text) if unicodedata.category(c) != 'Mn').lower()
@@ -192,14 +193,14 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
 
             # Convert weights.values() to a list for slicing
             match_score[ytm["videoId"]] = sum(scores) / sum(list(weights.values())[: len(scores)])
-            # print(f"Final Score for {ytm['videoId']}: {match_score[ytm['videoId']]}\n\n")
+            #print(f"Final Score for {ytm['videoId']}: {match_score[ytm['videoId']]}\n\n")
 
 
     if not match_score:
         return None
     best_video_id, best_score = max(match_score.items(), key=lambda x: x[1])
 
-    # After processing all results, sort the match scores in descending order
+    # # After processing all results, sort the match scores in descending order
     # sorted_matches = sorted(match_score.items(), key=lambda x: x[1], reverse=True)
 
     # # Print top 3 results

@@ -51,18 +51,18 @@ class YTMusicTransfer:
             query = song["artist"] + " " + name
             query = query.replace(" &", "")
 
-            if query in lookup_ids.keys():
-                print(f"Found cached link from lookup table for {query}\n")
-                videoIds.append(lookup_ids[query])
+            name_for_extended_search = normalize_text(song["name"])
+            artist_for_extended_search = normalize_text(song["artist"])
+            query_for_extended_search = artist_for_extended_search + " " + name_for_extended_search
+            
+            if query in lookup_ids.keys() or query_for_extended_search in lookup_ids.keys():
+                print(f"Found cached link from lookup table for {song['name']}\n")
+                videoIds.append(lookup_ids[query] if query in lookup_ids.keys() else lookup_ids[query_for_extended_search])
                 continue
             if not extended_search:
                 result = self.api.search(query)
             else:
-                name = normalize_text(song["name"])
-                artist = normalize_text(song["artist"])
-                query = artist + " " + name
-                # print(query)
-                result = self.api.search(query)
+                result = self.api.search(query_for_extended_search)
             if len(result) == 0:
                 notFound.append(query)
             else:
