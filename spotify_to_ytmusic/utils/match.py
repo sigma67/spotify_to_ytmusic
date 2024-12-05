@@ -1,4 +1,5 @@
 import difflib
+import re
 import unicodedata
 
 def get_best_fit_song_id(ytm_results, spoti) -> str:
@@ -64,7 +65,14 @@ def get_best_fit_song_id(ytm_results, spoti) -> str:
     return max_score_video_id
 
 def normalize_text(text):
-    """Normalize text by removing accents and converting to lowercase."""
+    """Normalize text by removing unwanted characters and converting to lowercase."""
+    # Replace unwanted characters and patterns
+    text = re.sub(r"[(),\[\]&]+|feat\.", "", text)  
+    
+    text = re.sub(r"(?<=\s)-(?=\s)", "", text)  # Remove hyphen surrounded by spaces i.e. Brain Deady - Get on my Knees
+    text = re.sub(r"(?<=\w)-(?=\w)", " ", text)  # Replace hyphen between letters or numbers with space i.e. Eazy-E
+
+    # Remove accents and convert to lowercase
     return ''.join(c for c in unicodedata.normalize('NFD', text) if unicodedata.category(c) != 'Mn').lower()
 
 def tokenize(text):
@@ -75,12 +83,16 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
     match_score = {}
     weights = {"title": 4, "artist": 4, "album": 2, "duration": 5, "boost": 0}
 
+    if strength is None:
+        strength = 0.7
+
     for ytm in ytm_results:
         if "resultType" not in ytm or ytm["resultType"] not in ["song", "video"] or not ytm.get("title"):
             continue
 
         if "category" not in ytm or ytm["category"] not in ["Top result", "Songs", "Videos"]:
             continue
+        # print(ytm['videoId'], ytm["category"])
 
         # Handle duration matching
         try:
@@ -107,6 +119,8 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
         # Add missing artists to YTM's artist list
         ytm_artists = [normalize_text(a["name"]) for a in ytm.get("artists", [])]
 
+        # print("TITLE: ", ytm_title, spotify_title, "\n")
+
         for artist in add_artist_to_artist_list:
             if artist not in ytm_artists:
                 ytm_artists.append(artist)
@@ -118,7 +132,7 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
         # Calculate title match score
         common_tokens = ytm_tokens & spotify_tokens
         extra_tokens = ytm_tokens - spotify_tokens
-        title_match_score = len(common_tokens) / len(spotify_tokens) - len(extra_tokens) * 0.1
+        title_match_score = len(common_tokens) / len(spotify_tokens) - len(extra_tokens) * 0.3
         title_match_score = max(0, title_match_score)  # Ensure score is non-negative
 
         # Calculate artist similarity
@@ -130,10 +144,12 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
 
         # Add album similarity for songs only
         album_similarity = 0
+        # print(ytm.get("album"))
         if ytm["resultType"] == "song" and ytm.get("album"):
             album_name = ytm["album"].get("name", "")  # Safely access album name
             album_similarity_1 = 0
             album_similarity_2 = 0
+            # print("COMP: ",normalize_text(album_name), "-" ,normalize_text(spoti.get("album", "")), "-", normalize_text(ytm_title), "\n")
             if album_name:
                 album_similarity_1 = difflib.SequenceMatcher(
                     a=normalize_text(album_name),
@@ -151,9 +167,14 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
         if title_match_score > 0.5 and artist_similarity > 0.5 and album_similarity > 0.5 and duration_match_score > 0.9:
             score_boost = 0.4
         
-        # Prefer explicit over non explicit songs
+        # Ensure song is not a clean version if not requested
         if spoti["is_explicit"] == ytm.get('isExplicit', None):
             score_boost += 0.3
+        
+        # Top result bais
+        if ytm["category"] == "Top result" and ytm["resultType"] == "song" and title_match_score > 0.90 and artist_similarity > 0.90 and duration_match_score > 0.95:
+            score_boost += round((weights["title"] + weights["artist"] + weights["duration"])/3)
+            # print(f"Applying top result bais adjustment to {ytm['videoId']}...\n")
 
         # Combine scores with weights
         scores = [
@@ -166,7 +187,7 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
             scores.append(album_similarity * weights["album"])
         scores.append(score_boost + weights["boost"])
 
-        if title_match_score > 0.2:
+        if title_match_score > 0.3:
             # print(f"Title Match: {title_match_score}, Type: {ytm['category']}, Explict: { 'Yes' if spoti['is_explicit'] == True else 'No'}, Artist Similarity: {artist_similarity}, Duration Match: {duration_match_score}, Album Similarity: {album_similarity}")
 
             # Convert weights.values() to a list for slicing
@@ -181,7 +202,7 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
     # After processing all results, sort the match scores in descending order
     # sorted_matches = sorted(match_score.items(), key=lambda x: x[1], reverse=True)
 
-    # Print top 3 results
+    # # Print top 3 results
     # print("Top 3 results in ascending order of match score:")
     # for video_id, score in sorted_matches[:3]:
     #     print(f"Video ID: {video_id}, Score: {score}")

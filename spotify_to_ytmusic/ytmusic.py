@@ -6,7 +6,7 @@ from collections import OrderedDict
 
 from ytmusicapi import YTMusic
 
-from spotify_to_ytmusic.utils.match import get_best_fit_song_id, get_best_fit_song_id_v2
+from spotify_to_ytmusic.utils.match import get_best_fit_song_id, get_best_fit_song_id_v2, normalize_text
 from spotify_to_ytmusic.settings import Settings
 
 path = os.path.dirname(os.path.realpath(__file__)) + os.sep
@@ -55,7 +55,14 @@ class YTMusicTransfer:
                 print(f"Found cached link from lookup table for {query}\n")
                 videoIds.append(lookup_ids[query])
                 continue
-            result = self.api.search(query)
+            if not extended_search:
+                result = self.api.search(query)
+            else:
+                name = normalize_text(song["name"])
+                artist = normalize_text(song["artist"])
+                query = artist + " " + name
+                # print(query)
+                result = self.api.search(query)
             if len(result) == 0:
                 notFound.append(query)
             else:
