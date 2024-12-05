@@ -159,6 +159,20 @@ def get_args(args=None):
     cache_remove_parser = subparsers.add_parser("cache-clear", help="Clear cache file")
     cache_remove_parser.set_defaults(func=controllers.cache_clear)
 
+    fix_match_parser = subparsers.add_parser("fix-match", help="Fix an incorrect match by YouTube Music ID")
+
+    fix_match_parser.add_argument(
+        "existing_id", 
+        type=str, 
+        help="The existing YouTube Music ID of the song to be fixed"
+    )
+    fix_match_parser.add_argument(
+        "new_id", 
+        type=str, 
+        help="The new YouTube Music ID to replace the existing one"
+    )
+    fix_match_parser.set_defaults(func=controllers.fix_match)
+
     return parser.parse_args(args)
 
 

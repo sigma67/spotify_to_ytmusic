@@ -91,11 +91,12 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
         if "resultType" not in ytm or ytm["resultType"] not in ["song", "video"] or not ytm.get("title"):
             continue
 
+        # No need to include episodes or other kinds of results
         if "category" not in ytm or ytm["category"] not in ["Top result", "Songs", "Videos"]:
             continue
         # print(ytm['videoId'], ytm["category"])
 
-        # Handle duration matching
+        # Handle duration matching by @sigma67
         try:
             duration_items = ytm["duration"].split(":")
             duration = int(duration_items[0]) * 60 + int(duration_items[1])
@@ -109,6 +110,7 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
         spotify_artists = [normalize_text(artist) for artist in spoti.get("artists_list", [])]
 
         add_artist_to_artist_list = []
+
         # Remove artist names from titles if present
         for artist in spotify_artists:
             if artist in ytm_title:
@@ -143,11 +145,11 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
 
         # print(" ".join(ytm_artists), " ".join(spotify_artists))
 
-        # Add album similarity for songs only
+        # Add album similarity for songs only to favor songs over videos
         album_similarity = 0
         # print(ytm.get("album"))
         if ytm["resultType"] == "song" and ytm.get("album"):
-            album_name = ytm["album"].get("name", "")  # Safely access album name
+            album_name = ytm["album"].get("name", "")
             album_similarity_1 = 0
             album_similarity_2 = 0
             # print("COMP: ",normalize_text(album_name), "-" ,normalize_text(spoti.get("album", "")), "-", normalize_text(ytm_title), "\n")
@@ -164,11 +166,12 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
 
                 album_similarity = max(album_similarity_1, album_similarity_2)
         
+        # If result is a good match, boost it's score to drown low quality results
         score_boost = 0
         if title_match_score > 0.5 and artist_similarity > 0.5 and album_similarity > 0.5 and duration_match_score > 0.9:
             score_boost = 0.4
         
-        # Ensure song is not a clean version if not requested
+        # Ensure song is not a clean version if not requested, so explicit version will get explicit version only
         if spoti["is_explicit"] == ytm.get('isExplicit', None):
             score_boost += 0.3
         
@@ -188,6 +191,7 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
             scores.append(album_similarity * weights["album"])
         scores.append(score_boost + weights["boost"])
 
+        # This conditions removes false positives i.e. edge case - Mike Candy's - Vibe instead of Baby - Mike Candy's
         if title_match_score > 0.3:
             # print(f"Title Match: {title_match_score}, Type: {ytm['category']}, Explict: { 'Yes' if spoti['is_explicit'] == True else 'No'}, Artist Similarity: {artist_similarity}, Duration Match: {duration_match_score}, Album Similarity: {album_similarity}")
 

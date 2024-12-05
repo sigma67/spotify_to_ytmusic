@@ -1,4 +1,7 @@
+import json
 import os
+import re
+import tempfile
 import time
 from datetime import datetime
 
@@ -125,3 +128,56 @@ def setup(args):
 def cache_clear(args):
     path = os.path.dirname(os.path.realpath(__file__)) + os.sep
     os.remove(path + "lookup.json")
+
+def fix_match(args):
+    existing_id = args.existing_id
+    new_id = args.new_id
+
+    id_pattern = r'^[A-Za-z0-9-]{11}$'
+
+    if not re.match(id_pattern, existing_id) or not re.match(id_pattern, new_id):
+        print("Error: IDs must match the format (e.g., dQw4w9WgXcQ).")
+        return
+
+    print(f"Replacing {existing_id} with {new_id}")
+    path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "lookup.json")
+
+    if not os.path.exists(path):
+        print(f"Error: {path} does not exist.")
+        return
+
+    try:
+        with open(path, "r") as f:
+            data = json.load(f)
+            if not isinstance(data, dict):
+                print("Error: lookup.json must contain a dictionary.")
+                return
+    except json.JSONDecodeError:
+        print("Error: lookup.json contains invalid JSON.")
+        return
+
+    if not data:
+        print("Error: lookup.json is empty.")
+        return
+    
+    found = False
+    for key, value in data.items():
+        if value == existing_id:
+            print(f"Track: {key}")
+            data[key] = new_id
+            found = True
+            break
+
+    if found:
+        try:
+            with tempfile.NamedTemporaryFile("w", delete=False, dir=os.path.dirname(path), encoding="utf-8") as tmpfile:
+                json.dump(data, tmpfile, ensure_ascii=False, indent=4)
+                temp_path = tmpfile.name
+
+            os.replace(temp_path, path)
+            print(f"Replaced {existing_id} with {new_id} in lookup.json")
+        except Exception as e:
+            print(f"Error: Failed to write changes to lookup.json. {e}")
+    else:
+        print(f"{existing_id} not found in lookup.json")
+    
