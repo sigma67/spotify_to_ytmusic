@@ -58,6 +58,13 @@ def get_args(args=None):
         action="store_true",
         help="Use new algorithm for searching track on YouTube Music (beta).",
     )
+    create_parser.add_argument(
+        '--strength', 
+        type=float, 
+        nargs='?',
+        default=None,
+        help="(Optional) How strict algorithm match should be (0-1 ONLY)"
+    )
 
     liked_parser = subparsers.add_parser(
         "liked", help="Transfer all liked songs of the user.", parents=[spotify_playlist_create]
@@ -67,6 +74,13 @@ def get_args(args=None):
         "--extended-search",
         action="store_true",
         help="Use new algorithm for searching track on YouTube Music (beta).",
+    )
+    liked_parser.add_argument(
+        '--strength', 
+        type=float, 
+        nargs='?',
+        default=None,
+        help="(Optional) How strict algorithm match should be (0-1 ONLY)"
     )
 
     update_parser = subparsers.add_parser(
@@ -85,6 +99,13 @@ def get_args(args=None):
         "--extended-search",
         action="store_true",
         help="Use new algorithm for searching track on YouTube Music (beta).",
+    )
+    update_parser.add_argument(
+        '--strength', 
+        type=float, 
+        nargs='?',
+        default=None,
+        help="(Optional) How strict algorithm match should be (0-1 ONLY)"
     )
 
     remove_parser = subparsers.add_parser(
@@ -109,6 +130,13 @@ def get_args(args=None):
         action="store_true",
         help="Use new algorithm for searching track on YouTube Music (beta).",
     )
+    all_parser.add_argument(
+        '--strength', 
+        type=float, 
+        nargs='?',
+        default=None,
+        help="(Optional) How strict algorithm match should be (0-1 ONLY)"
+    )
 
     search_parser = subparsers.add_parser(
         "search", help="Search for a song in yt music (Algorthm Testing)."
@@ -118,6 +146,13 @@ def get_args(args=None):
         "--extended-search",
         action="store_true",
         help="Use new algorithm for searching track on YouTube Music (beta).",
+    )
+    search_parser.add_argument(
+        '--strength', 
+        type=float, 
+        nargs='?',
+        default=None,
+        help="(Optional) How strict algorithm match should be (0-1 ONLY)"
     )
     search_parser.set_defaults(func=controllers.search)
 

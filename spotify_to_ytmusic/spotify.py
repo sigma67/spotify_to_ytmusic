@@ -109,6 +109,8 @@ def build_results(tracks, album=None):
                 "name": track["name"],
                 "album": album_name,
                 "duration": track["duration_ms"] / 1000,
+                "artists_list": [artist["name"] for artist in track["artists"] if "name" in artist],
+                "is_explicit": track["explicit"]
             }
         )
 

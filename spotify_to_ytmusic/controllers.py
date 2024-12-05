@@ -40,7 +40,7 @@ def all(args):
         count = count + 1
         try:
             playlist = spotify.getSpotifyPlaylist(p["external_urls"]["spotify"])
-            videoIds = ytmusic.search_songs(playlist["tracks"], args.extended_search)
+            videoIds = ytmusic.search_songs(playlist["tracks"], args.extended_search, args.strength)
             playlist_id = ytmusic.create_playlist(
                 p["name"],
                 p["description"],
@@ -61,7 +61,7 @@ def _create_ytmusic(args, playlist, ytmusic):
         date = " " + datetime.today().strftime("%m/%d/%Y")
     name = args.name + date if args.name else playlist["name"] + date
     info = playlist["description"] if (args.info is None) else args.info
-    videoIds = ytmusic.search_songs(playlist["tracks"], args.extended_search)
+    videoIds = ytmusic.search_songs(playlist["tracks"], args.extended_search, args.strength)
     if args.like:
         for id in videoIds:
             ytmusic.rate_song(id, "LIKE")
@@ -90,7 +90,7 @@ def update(args):
     spotify, ytmusic = _init()
     playlist = _get_spotify_playlist(spotify, args.playlist)
     playlistId = ytmusic.get_playlist_id(args.name)
-    videoIds = ytmusic.search_songs(playlist["tracks"], args.extended_search)
+    videoIds = ytmusic.search_songs(playlist["tracks"], args.extended_search, args.strength)
     if not args.append:
         ytmusic.remove_songs(playlistId)
     time.sleep(2)
@@ -106,12 +106,14 @@ def search(args):
     track = spotify.getSingleTrack(args.link)
     tracks = {
         "name": track["name"],
-        "artist": track["artists"][0]["name"],
+        "artist": ", ".join([artist["name"] for artist in track["artists"]]),
         "duration": track["duration_ms"] / 1000,
-        "album": track['album']['name']
+        "album": track['album']['name'],
+        "artists_list": [artist["name"] for artist in track["artists"] if "name" in artist],
+        "is_explicit": track["explicit"]
     }
 
-    video_id = ytmusic.search_songs([tracks], args.extended_search)
+    video_id = ytmusic.search_songs([tracks], args.extended_search, args.strength)
     if video_id:
         print(f"https://music.youtube.com/watch?v={video_id[0]}")
     else:
