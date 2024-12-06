@@ -194,7 +194,9 @@ def get_best_fit_song_id_v2(ytm_results, spoti, confidence = 0.7, tolerance = 0.
         
         # Ensure song is not a clean version if not requested, so explicit version will get explicit version only
         if spoti["is_explicit"] == ytm.get('isExplicit', None):
-            score_boost += 0.3
+            score_boost += 1
+        else:
+            score_boost -= 1
         
         # Top result bais
         if ytm["category"] == "Top result" and ytm["resultType"] == "song" and title_match_score > 0.90 and artist_similarity > 0.90 and duration_match_score > 0.95:
