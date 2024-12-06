@@ -65,6 +65,12 @@ def get_args(args=None):
         default=None,
         help="(Optional) How strict algorithm match should be (0-1 ONLY)"
     )
+    create_parser.add_argument(
+        '--use-cached', 
+        action="store_true",
+        default=False,
+        help="(Optional) Enable the use of a cache file to save and retrieve query results."
+    )
 
     liked_parser = subparsers.add_parser(
         "liked", help="Transfer all liked songs of the user.", parents=[spotify_playlist_create]
@@ -81,6 +87,12 @@ def get_args(args=None):
         nargs='?',
         default=None,
         help="(Optional) How strict algorithm match should be (0-1 ONLY)"
+    )
+    liked_parser.add_argument(
+        '--use-cached', 
+        action="store_true",
+        default=False,
+        help="(Optional) Enable the use of a cache file to save and retrieve query results."
     )
 
     update_parser = subparsers.add_parser(
@@ -106,6 +118,12 @@ def get_args(args=None):
         nargs='?',
         default=None,
         help="(Optional) How strict algorithm match should be (0-1 ONLY)"
+    )
+    update_parser.add_argument(
+        '--use-cached', 
+        action="store_true",
+        default=False,
+        help="(Optional) Enable the use of a cache file to save and retrieve query results."
     )
 
     remove_parser = subparsers.add_parser(
@@ -137,6 +155,12 @@ def get_args(args=None):
         default=None,
         help="(Optional) How strict algorithm match should be (0-1 ONLY)"
     )
+    all_parser.add_argument(
+        '--use-cached', 
+        action="store_true",
+        default=False,
+        help="(Optional) Enable the use of a cache file to save and retrieve query results."
+    )
 
     search_parser = subparsers.add_parser(
         "search", help="Search for a song in yt music (Algorthm Testing)."
@@ -153,6 +177,12 @@ def get_args(args=None):
         nargs='?',
         default=None,
         help="(Optional) How strict algorithm match should be (0-1 ONLY)"
+    )
+    search_parser.add_argument(
+        '--use-cached', 
+        action="store_true",
+        default=False,
+        help="(Optional) Enable the use of a cache file to save and retrieve query results."
     )
     search_parser.set_defaults(func=controllers.search)
 

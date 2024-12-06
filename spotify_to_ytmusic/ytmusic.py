@@ -36,11 +36,13 @@ class YTMusicTransfer:
         with open(path + "lookup.json", 'w', encoding="utf-8") as f:
             json.dump(table, f, ensure_ascii=False, indent=4)
         
-    def search_songs(self, tracks, extended_search = False, confidence = None):
+    def search_songs(self, tracks, extended_search = False, confidence = None, use_cached = False):
         videoIds = []
         songs = list(tracks)
         notFound = list()
-        lookup_ids = self.load_lookup_table()
+
+        if use_cached:
+            lookup_ids = self.load_lookup_table()
         
         if extended_search:
             print(f"Extended search enabled! Confidence level: {confidence if confidence else 0.7}")
@@ -55,7 +57,7 @@ class YTMusicTransfer:
             artist_for_extended_search = normalize_text(" ".join(song["artists_list"]))
             query_for_extended_search = artist_for_extended_search + " " + name_for_extended_search
             
-            if query in lookup_ids.keys() or query_for_extended_search in lookup_ids.keys():
+            if use_cached and (query in lookup_ids.keys() or query_for_extended_search in lookup_ids.keys()):
                 print(f"Found cached link from lookup table for {song['name']}\n")
                 videoIds.append(lookup_ids[query] if query in lookup_ids.keys() else lookup_ids[query_for_extended_search])
                 continue
@@ -75,8 +77,9 @@ class YTMusicTransfer:
                     notFound.append(query)
                 else:
                     videoIds.append(targetSong)
-                    lookup_ids[query] = targetSong
-                    self.save_to_lookup_table(lookup_ids)
+                    if use_cached:
+                        lookup_ids[query] = targetSong
+                        self.save_to_lookup_table(lookup_ids)
 
             if i > 0 and i % 10 == 0:
                 print(f"YouTube tracks: {i}/{len(songs)}")
