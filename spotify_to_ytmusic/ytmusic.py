@@ -36,14 +36,14 @@ class YTMusicTransfer:
         with open(path + "lookup.json", 'w', encoding="utf-8") as f:
             json.dump(table, f, ensure_ascii=False, indent=4)
         
-    def search_songs(self, tracks, extended_search = False, strength = None):
+    def search_songs(self, tracks, extended_search = False, confidence = None):
         videoIds = []
         songs = list(tracks)
         notFound = list()
         lookup_ids = self.load_lookup_table()
         
         if extended_search:
-            print(f"Extended search enabled! Strength: {strength if strength else 0.7}")
+            print(f"Extended search enabled! Confidence level: {confidence if confidence else 0.7}")
             
         print("Searching YouTube...")
         for i, song in enumerate(songs):
@@ -52,7 +52,7 @@ class YTMusicTransfer:
             query = query.replace(" &", "")
 
             name_for_extended_search = normalize_text(song["name"])
-            artist_for_extended_search = normalize_text(song["artist"])
+            artist_for_extended_search = normalize_text(" ".join(song["artists_list"]))
             query_for_extended_search = artist_for_extended_search + " " + name_for_extended_search
             
             if query in lookup_ids.keys() or query_for_extended_search in lookup_ids.keys():
@@ -69,7 +69,7 @@ class YTMusicTransfer:
                 if not extended_search:
                     targetSong = get_best_fit_song_id(result, song)
                 else:
-                    targetSong = get_best_fit_song_id_v2(result, song, strength)
+                    targetSong = get_best_fit_song_id_v2(result, song, confidence)
                     
                 if targetSong is None:
                     notFound.append(query)

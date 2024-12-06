@@ -80,13 +80,13 @@ def tokenize(text):
     """Split text into a set of normalized tokens."""
     return set(normalize_text(text).split())
 
-def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7, tolerance = 0.02) -> str:
+def get_best_fit_song_id_v2(ytm_results, spoti, confidence = 0.7, tolerance = 0.02) -> str:
     match_score = {}
     ratios = {}
     weights = {"title": 4, "artist": 4, "album": 2, "duration": 5, "boost": 0}
 
-    if strength is None:
-        strength = 0.7
+    if confidence is None:
+        confidence = 0.7
 
     for ytm in ytm_results:
         if "resultType" not in ytm or ytm["resultType"] not in ["song", "video"] or not ytm.get("title"):
@@ -180,8 +180,12 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7, tolerance = 0.02
                 album_similarity = max(album_similarity_1, album_similarity_2, album_similarity_3)
         
         if title_match_score > 0.8 and artist_similarity > 0.7 and duration_match_score < 0:
-            # Adjust strength for shorter versions to match longer ones (to boost good match but bad duration)
+            # Adjust duration score for shorter versions to match longer ones (to boost good match but bad duration)
             duration_match_score = 0.9
+        
+        if artist_similarity < 0.3 and album_similarity > 0.7:
+            # These are false positives from album similarity
+            continue
 
         # If result is a good match, boost it's score to drown low quality results
         score_boost = 0
@@ -242,6 +246,6 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7, tolerance = 0.02
 
     # print(f"Best Song ID: {best_video_id}, Score: {best_score}")
 
-    if best_score >= (strength - tolerance):
+    if best_score >= (confidence - tolerance):
         return best_video_id
     return None

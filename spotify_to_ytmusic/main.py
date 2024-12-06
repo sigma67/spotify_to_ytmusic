@@ -59,7 +59,7 @@ def get_args(args=None):
         help="Use new algorithm for searching track on YouTube Music (beta).",
     )
     create_parser.add_argument(
-        '--strength', 
+        '--confidence', 
         type=float, 
         nargs='?',
         default=None,
@@ -76,7 +76,7 @@ def get_args(args=None):
         help="Use new algorithm for searching track on YouTube Music (beta).",
     )
     liked_parser.add_argument(
-        '--strength', 
+        '--confidence', 
         type=float, 
         nargs='?',
         default=None,
@@ -101,7 +101,7 @@ def get_args(args=None):
         help="Use new algorithm for searching track on YouTube Music (beta).",
     )
     update_parser.add_argument(
-        '--strength', 
+        '--confidence', 
         type=float, 
         nargs='?',
         default=None,
@@ -131,7 +131,7 @@ def get_args(args=None):
         help="Use new algorithm for searching track on YouTube Music (beta).",
     )
     all_parser.add_argument(
-        '--strength', 
+        '--confidence', 
         type=float, 
         nargs='?',
         default=None,
@@ -148,7 +148,7 @@ def get_args(args=None):
         help="Use new algorithm for searching track on YouTube Music (beta).",
     )
     search_parser.add_argument(
-        '--strength', 
+        '--confidence', 
         type=float, 
         nargs='?',
         default=None,
