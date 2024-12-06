@@ -80,8 +80,9 @@ def tokenize(text):
     """Split text into a set of normalized tokens."""
     return set(normalize_text(text).split())
 
-def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
+def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7, tolerance = 0.02) -> str:
     match_score = {}
+    ratios = {}
     weights = {"title": 4, "artist": 4, "album": 2, "duration": 5, "boost": 0}
 
     if strength is None:
@@ -138,6 +139,9 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
         title_match_score = len(common_tokens) / len(spotify_tokens) - len(extra_tokens) * 0.3
         title_match_score = max(0, title_match_score)  # Ensure score is non-negative
 
+        if title_match_score == 0 or not duration_match_score:
+            continue
+
         # Calculate artist similarity
         artist_similarity = difflib.SequenceMatcher(
             a=" ".join(ytm_artists), b=" ".join(spotify_artists)
@@ -152,20 +156,33 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
             album_name = ytm["album"].get("name", "")
             album_similarity_1 = 0
             album_similarity_2 = 0
+            album_similarity_3 = 0
             # print("COMP: ",normalize_text(album_name), "-" ,normalize_text(spoti.get("album", "")), "-", normalize_text(ytm_title), "\n")
             if album_name:
+                # If album name is same in both ytm and spotify
                 album_similarity_1 = difflib.SequenceMatcher(
                     a=normalize_text(album_name),
                     b=normalize_text(spoti.get("album", "")),
                 ).ratio()
 
+                # Sometimes youtube has album name same as song title
                 album_similarity_2 = difflib.SequenceMatcher(
                     a=normalize_text(album_name),
                     b=normalize_text(ytm_title),
                 ).ratio()
 
-                album_similarity = max(album_similarity_1, album_similarity_2)
+                # Sometimes album name is sometimes same as ytm title
+                album_similarity_3 = difflib.SequenceMatcher(
+                    a=normalize_text(ytm_title),
+                    b=normalize_text(spoti.get("album", "")),
+                ).ratio()
+
+                album_similarity = max(album_similarity_1, album_similarity_2, album_similarity_3)
         
+        if title_match_score > 0.8 and artist_similarity > 0.7 and duration_match_score < 0:
+            # Adjust strength for shorter versions to match longer ones (to boost good match but bad duration)
+            duration_match_score = 0.9
+
         # If result is a good match, boost it's score to drown low quality results
         score_boost = 0
         if title_match_score > 0.5 and artist_similarity > 0.5 and album_similarity > 0.5 and duration_match_score > 0.9:
@@ -192,26 +209,39 @@ def get_best_fit_song_id_v2(ytm_results, spoti, strength = 0.7) -> str:
         scores.append(score_boost + weights["boost"])
 
         # This conditions removes false positives i.e. edge case - Mike Candy's - Vibe instead of Baby - Mike Candy's
-        if title_match_score > 0.3:
-            # print(f"Title Match: {title_match_score}, Type: {ytm['category']}, Explict: { 'Yes' if spoti['is_explicit'] == True else 'No'}, Artist Similarity: {artist_similarity}, Duration Match: {duration_match_score}, Album Similarity: {album_similarity}")
+        sum_of_weights = sum(scores) / sum(list(weights.values())[: len(scores)])
+        
+        # print(f"Title Match: {title_match_score}, Type: {ytm['category']}, Explict: { 'Yes' if spoti['is_explicit'] == True else 'No'}, Artist Similarity: {artist_similarity}, Duration Match: {duration_match_score}, Album Similarity: {album_similarity}")
 
-            # Convert weights.values() to a list for slicing
-            match_score[ytm["videoId"]] = sum(scores) / sum(list(weights.values())[: len(scores)])
-            #print(f"Final Score for {ytm['videoId']}: {match_score[ytm['videoId']]}\n\n")
+        # Convert weights.values() to a list for slicing
+        match_score[ytm["videoId"]] = sum_of_weights
+        ratios[ytm["videoId"]] = duration_match_score*title_match_score + sum_of_weights
+        
+        # print(f"Final Score for {ytm['videoId']}: {match_score[ytm['videoId']]}\n\n")
 
 
     if not match_score:
         return None
     best_video_id, best_score = max(match_score.items(), key=lambda x: x[1])
 
-    # # After processing all results, sort the match scores in descending order
-    # sorted_matches = sorted(match_score.items(), key=lambda x: x[1], reverse=True)
+    # After processing all results, sort the match scores in descending order
+    sorted_matches = sorted(match_score.items(), key=lambda x: x[1], reverse=True)
+    top_3_matches = sorted_matches[:3]
+    best_ratios = {
+        videoId: ratios.get(videoId)
+        for videoId, scores in top_3_matches
+    }
 
-    # # Print top 3 results
+    # Print top 3 results
     # print("Top 3 results in ascending order of match score:")
     # for video_id, score in sorted_matches[:3]:
-    #     print(f"Video ID: {video_id}, Score: {score}")
+    #     print(f"Video ID: {video_id}, Score: {score}, Ratio: {best_ratios[video_id]}")
+    
+    best_video_id, best_score = max(best_ratios.items(), key=lambda x: x[1])
+    best_score = match_score.get(best_video_id)
 
-    if best_score >= strength:
+    # print(f"Best Song ID: {best_video_id}, Score: {best_score}")
+
+    if best_score >= (strength - tolerance):
         return best_video_id
     return None
