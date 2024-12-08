@@ -36,7 +36,14 @@ class YTMusicTransfer:
         with open(path + "lookup.json", 'w', encoding="utf-8") as f:
             json.dump(table, f, ensure_ascii=False, indent=4)
         
-    def search_songs(self, tracks, extended_search = False, confidence = None, use_cached = False):
+    def search_songs(self, tracks, **kawgs):
+        
+        extended_search = kawgs.pop("extended_search", False)
+        confidence = kawgs.get("confidence", None)
+        use_cached = kawgs.pop("use_cached", False)
+        search_albums = kawgs.get("search_albums", False)
+        enable_fallback = kawgs.get("enable_fallback", False)
+
         videoIds = []
         songs = list(tracks)
         notFound = list()
@@ -45,7 +52,7 @@ class YTMusicTransfer:
             lookup_ids = self.load_lookup_table()
         
         if extended_search:
-            print(f"Extended search enabled! Confidence level: {confidence if confidence else 0.7}")
+            print(f"Extended search enabled! Confidence level: {confidence if confidence else 0.7} | Use Cached: {use_cached} | Search Albums: {search_albums} | Fallback: {'Enabled' if enable_fallback else 'Disabled'}")
             
         print("Searching YouTube...")
         for i, song in enumerate(songs):
@@ -71,8 +78,8 @@ class YTMusicTransfer:
                 if not extended_search:
                     targetSong = get_best_fit_song_id(result, song)
                 else:
-                    targetSong = get_best_fit_song_id_v2(result, song, confidence)
-                    
+                    targetSong = get_best_fit_song_id_v2(ytm_results=result, spoti=song, **kawgs, api=self.api)
+                
                 if targetSong is None:
                     notFound.append(query)
                 else:

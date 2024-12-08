@@ -1,6 +1,8 @@
 import difflib
+import json
 import re
 import unicodedata
+from ytmusicapi import YTMusic
 
 def get_best_fit_song_id(ytm_results, spoti) -> str:
     """
@@ -80,13 +82,38 @@ def tokenize(text):
     """Split text into a set of normalized tokens."""
     return set(normalize_text(text).split())
 
-def get_best_fit_song_id_v2(ytm_results, spoti, confidence = 0.7, tolerance = 0.02) -> str:
+def get_best_fit_song_id_v2(ytm_results: list, spoti: dict, confidence: float = 0.7, tolerance: float = 0.02, api: YTMusic = None, search_albums: bool = False, enable_fallback: bool = False) -> str:
     match_score = {}
     ratios = {}
+    music_type = {}
     weights = {"title": 4, "artist": 4, "album": 2, "duration": 5, "boost": 0}
 
     if confidence is None:
         confidence = 0.7
+
+    if search_albums:
+        new_results = []
+
+        for ytm in ytm_results:
+            if api and "resultType" in ytm and ytm["resultType"] == "album":
+                songs = api.get_album(ytm["browseId"])
+                new_results.append(songs)
+
+        # Extend the original list after the loop
+        new_results_parsed = []
+        for results in new_results:
+            for tracks in results["tracks"]:
+                tracks["category"] = "Songs"
+                tracks["resultType"] = "song"
+                tracks["album"] = {
+                    "name": tracks["album"]
+                }
+                new_results_parsed.append(tracks)
+
+        ytm_results.extend(new_results_parsed)
+
+        with open("temp.json", "w") as f:
+            json.dump(ytm_results, f, indent=4)
 
     for ytm in ytm_results:
         if "resultType" not in ytm or ytm["resultType"] not in ["song", "video"] or not ytm.get("title"):
@@ -222,32 +249,59 @@ def get_best_fit_song_id_v2(ytm_results, spoti, confidence = 0.7, tolerance = 0.
         # Convert weights.values() to a list for slicing
         match_score[ytm["videoId"]] = sum_of_weights
         ratios[ytm["videoId"]] = duration_match_score*title_match_score + sum_of_weights
+
+        music_type[ytm["videoId"]] = ytm["videoType"]
         
         # print(f"Final Score for {ytm['videoId']}: {match_score[ytm['videoId']]}\n\n")
 
 
     if not match_score:
         return None
-    best_video_id, best_score = max(match_score.items(), key=lambda x: x[1])
 
-    # After processing all results, sort the match scores in descending order
+    # Sort match scores in descending order and keep top 3
     sorted_matches = sorted(match_score.items(), key=lambda x: x[1], reverse=True)
     top_3_matches = sorted_matches[:3]
-    best_ratios = {
-        videoId: ratios.get(videoId)
-        for videoId, scores in top_3_matches
-    }
 
-    # Print top 3 results
-    # print("Top 3 results in ascending order of match score:")
-    # for video_id, score in sorted_matches[:3]:
-    #     print(f"Video ID: {video_id}, Score: {score}, Ratio: {best_ratios[video_id]}")
-    
+    # Build best_ratios from top 3 matches
+    best_ratios = {videoId: ratios.get(videoId) for videoId, _ in top_3_matches}
+    max_score = max(best_ratios.values())
+
+    # Find all video IDs with the maximum score
+    max_video_ids = [videoId for videoId, score in best_ratios.items() if score == max_score]
+
+    # Function to select a video by preferred type (prioritizing ATV over OMV)
+    def select_audio_over_video(video_ids):
+        for video_id in video_ids:
+            if music_type.get(video_id) == "MUSIC_VIDEO_TYPE_ATV":
+                return video_id
+        for video_id in video_ids:
+            if music_type.get(video_id) == "MUSIC_VIDEO_TYPE_OMV":
+                return video_id
+        return None  # No ATV or OMV match
+
+    # Handle tie or no-tie cases
+    if len(max_video_ids) > 1:
+        # print("TIE! Prioritizing ATV over OMV...")
+        best_video_id = select_audio_over_video(max_video_ids)
+    else:
+        # print("No tie. Prioritizing ATV over OMV...")
+        best_video_id = select_audio_over_video(best_ratios.keys())
+
+    # If a preferred video was selected and meets confidence requirements, return it
+    if best_video_id:
+        best_score = match_score.get(best_video_id)
+        if best_score >= (confidence - tolerance):
+            return best_video_id
+
+    # Fall back to the highest scoring match
     best_video_id, best_score = max(best_ratios.items(), key=lambda x: x[1])
-    best_score = match_score.get(best_video_id)
-
-    # print(f"Best Song ID: {best_video_id}, Score: {best_score}")
-
     if best_score >= (confidence - tolerance):
         return best_video_id
+
+    # Fallback to default algorithm if enabled
+    if enable_fallback:
+        # print("Fallback to default algorithm.")
+        return get_best_fit_song_id(ytm_results, spoti)
+
+    # No valid match found
     return None

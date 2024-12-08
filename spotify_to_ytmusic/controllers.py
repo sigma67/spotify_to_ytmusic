@@ -32,6 +32,14 @@ def _print_success(name, playlistId):
 def _init():
     return Spotify(), YTMusicTransfer()
 
+def get_common_args_for_extended_search(args):
+    return {
+            "extended_search": args.extended_search,
+            "confidence": args.confidence,
+            "use_cached": args.use_cached,
+            "search_albums": args.search_albums,
+            "enable_fallback": args.enable_fallback
+    }
 
 def all(args):
     spotify, ytmusic = _init()
@@ -43,7 +51,10 @@ def all(args):
         count = count + 1
         try:
             playlist = spotify.getSpotifyPlaylist(p["external_urls"]["spotify"])
-            videoIds = ytmusic.search_songs(playlist["tracks"], args.extended_search, args.confidence, args.use_cached)
+            videoIds = ytmusic.search_songs(
+                playlist["tracks"],
+                **get_common_args_for_extended_search(args)
+            )
             playlist_id = ytmusic.create_playlist(
                 p["name"],
                 p["description"],
@@ -64,7 +75,10 @@ def _create_ytmusic(args, playlist, ytmusic):
         date = " " + datetime.today().strftime("%m/%d/%Y")
     name = args.name + date if args.name else playlist["name"] + date
     info = playlist["description"] if (args.info is None) else args.info
-    videoIds = ytmusic.search_songs(playlist["tracks"], args.extended_search, args.confidence, args.use_cached)
+    videoIds = ytmusic.search_songs(
+                playlist["tracks"],
+                **get_common_args_for_extended_search(args)
+            )
     if args.like:
         for id in videoIds:
             ytmusic.rate_song(id, "LIKE")
@@ -93,7 +107,10 @@ def update(args):
     spotify, ytmusic = _init()
     playlist = _get_spotify_playlist(spotify, args.playlist)
     playlistId = ytmusic.get_playlist_id(args.name)
-    videoIds = ytmusic.search_songs(playlist["tracks"], args.extended_search, args.confidence, args.use_cached)
+    videoIds = ytmusic.search_songs(
+                playlist["tracks"],
+                **get_common_args_for_extended_search(args)
+            )
     if not args.append:
         ytmusic.remove_songs(playlistId)
     time.sleep(2)
@@ -116,7 +133,10 @@ def search(args):
         "is_explicit": track["explicit"]
     }
 
-    video_id = ytmusic.search_songs([tracks], args.extended_search, args.confidence, args.use_cached)
+    video_id = ytmusic.search_songs(
+                [tracks],
+                **get_common_args_for_extended_search(args)
+            )
     if video_id:
         print(f"https://music.youtube.com/watch?v={video_id[0]}")
     else:
