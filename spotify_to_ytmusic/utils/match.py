@@ -95,8 +95,11 @@ def get_best_fit_song_id_v2(ytm_results: list, spoti: dict, confidence: float = 
 
         for ytm in ytm_results:
             if api and "resultType" in ytm and ytm["resultType"] == "album":
-                songs = api.get_album(ytm["browseId"])
-                new_results.append(songs)
+                try:
+                    songs = api.get_album(ytm["browseId"])
+                    new_results.append(songs)
+                except:
+                    pass
 
         # Extend the original list after the loop
         new_results_parsed = []
