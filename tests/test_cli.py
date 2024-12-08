@@ -110,36 +110,33 @@ class TestCli(unittest.TestCase):
                 "Stefano Crabuzza Let It Go": "R8M57jVEjGU",
                 "Stefano Noferini Dance U": "oXGhDY9OWJ0",
             }
-            
+        
             with open(lookup_path, "w") as f:
                 json.dump(test_data, f, indent=4)
-            
+        
             class MockArgs:
-                def __init__(self, existing_id, new_id):
-                    self.existing_id = existing_id
+                def __init__(self, current_id, new_id):
+                    self.current_id = current_id
                     self.new_id = new_id
-
                     self.func = mock.Mock(side_effect=controllers.fix_match)
-            
+        
             with mock.patch('sys.stdout', new_callable=StringIO) as mock_stdout, \
                 mock.patch('os.path.dirname', return_value=temp_dir), \
                 mock.patch('os.path.realpath', return_value=temp_dir), \
                 mock.patch('os.path.exists', return_value=True), \
-                mock.patch('sys.argv', ["", "fix-match", "R8M57jVEjGU", "oXGhDY9OWJ0"]):
-                
-                with mock.patch('argparse.ArgumentParser.parse_args', 
-                                return_value=MockArgs("R8M57jVEjGU", "oXGhDY9OWJ0")):
-                    
+                mock.patch('sys.argv', ["", "fix-match", "R8M57jVEjGU", "oXGhDY9OWJ0"]):  # Kept as is
+            
+                with mock.patch('argparse.ArgumentParser.parse_args',
+                                return_value=MockArgs("R8M57jVEjGU", "oXGhDY9OWJ0")):  # Updated to match
                     main()
-                
                 output = mock_stdout.getvalue().strip()
-                print(f"DEBUG: Captured Output -> {output}")
-                
+                # print(f"DEBUG: Captured Output -> {output}")
+            
                 self.assertIn("Replacing R8M57jVEjGU with oXGhDY9OWJ0", output)
-                
+            
                 with open(lookup_path, "r") as f:
                     updated_data = json.load(f)
-                
+            
                 self.assertEqual(updated_data["Stefano Crabuzza Let It Go"], "oXGhDY9OWJ0")
 
     def test_cache_clear(self):

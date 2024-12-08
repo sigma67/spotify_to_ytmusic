@@ -155,14 +155,8 @@ def cache_clear(args):
         os.remove(lookup_path)
 
 def fix_match(args):
-    existing_id = args.existing_id
+    existing_id = args.current_id
     new_id = args.new_id
-
-    id_pattern = r'^[A-Za-z0-9-]{11}$'
-
-    if not re.match(id_pattern, existing_id) or not re.match(id_pattern, new_id):
-        print("Error: IDs must match the format (e.g., dQw4w9WgXcQ).")
-        return
 
     print(f"Replacing {existing_id} with {new_id}")
     path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "lookup.json")

@@ -98,8 +98,9 @@ def get_args(args=None):
 
     fix_match_parser = subparsers.add_parser("fix-match", help="Fix an incorrect match by YouTube Music ID")
     fix_match_parser.set_defaults(func=controllers.fix_match)
-    fix_match_parser.add_argument("existing_id", type=str, help="The existing YouTube Music ID of the song to be fixed")
-    fix_match_parser.add_argument("new_id", type=str, help="The new YouTube Music ID to replace the existing one")
+    fix_match_parser.add_argument("--current-id", type=str, help="The existing YouTube Music ID of the song to be fixed")
+    fix_match_parser.add_argument("--new-id", type=str, help="The new YouTube Music ID to replace the existing one")
+
 
     return parser.parse_args(args)
 
