@@ -1,5 +1,4 @@
 import difflib
-import json
 import re
 import unicodedata
 from ytmusicapi import YTMusic
@@ -111,9 +110,6 @@ def get_best_fit_song_id_v2(ytm_results: list, spoti: dict, confidence: float = 
                 new_results_parsed.append(tracks)
 
         ytm_results.extend(new_results_parsed)
-
-        with open("temp.json", "w") as f:
-            json.dump(ytm_results, f, indent=4)
 
     for ytm in ytm_results:
         if "resultType" not in ytm or ytm["resultType"] not in ["song", "video"] or not ytm.get("title"):
