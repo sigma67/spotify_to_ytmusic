@@ -146,8 +146,13 @@ def setup(args):
     setup_func(args.file)
 
 def cache_clear(args):
-    path = os.path.dirname(os.path.realpath(__file__)) + os.sep
-    os.remove(path + "lookup.json")
+    path = os.path.dirname(os.path.realpath(__file__))
+    lookup_path = os.path.join(path, "lookup.json")
+    
+    print(f"Removing File: {lookup_path}")
+    
+    if os.path.exists(lookup_path):
+        os.remove(lookup_path)
 
 def fix_match(args):
     existing_id = args.existing_id
