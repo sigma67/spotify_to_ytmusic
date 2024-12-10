@@ -112,7 +112,7 @@ class YTMusicTransfer:
 
     def remove_songs(self, playlistId):
         items = self.api.get_playlist(playlistId, 10000)
-        if "tracks" in items:
+        if "tracks" in items and items["tracks"]:
             self.api.remove_playlist_items(playlistId, items["tracks"])
 
     def remove_playlists(self, pattern):

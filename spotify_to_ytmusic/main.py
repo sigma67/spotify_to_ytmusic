@@ -63,7 +63,7 @@ def get_args(args=None):
 
     update_parser = subparsers.add_parser(
         "update",
-        help="Update a YouTube Music playlist with entries from Spotify.",
+        help="Update a YouTube Music playlist with entries from Spotify. To update liked songs from Spotify, just include 'liked' in playlist argument.",
         parents=[spotify_playlist, get_common_extended_args()],
     )
     update_parser.set_defaults(func=controllers.update)

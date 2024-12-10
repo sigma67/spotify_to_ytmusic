@@ -105,7 +105,14 @@ def liked(args):
 
 def update(args):
     spotify, ytmusic = _init()
-    playlist = _get_spotify_playlist(spotify, args.playlist)
+
+    if args.playlist != "liked":
+        playlist = _get_spotify_playlist(spotify, args.playlist)
+    else:
+        playlist = spotify.getLikedPlaylist()
+
+    print("Note: If you receive 400 HTTP error and you are using cached mode, you may have an invalid videoID in your lookup file. Try clearing the cache, it may help.")
+
     playlistId = ytmusic.get_playlist_id(args.name)
     videoIds = ytmusic.search_songs(
                 playlist["tracks"],
