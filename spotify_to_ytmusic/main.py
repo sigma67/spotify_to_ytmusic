@@ -68,7 +68,8 @@ def get_args(args=None):
     )
     update_parser.set_defaults(func=controllers.update)
     update_parser.add_argument("name", type=str, help="The name of the YouTube Music playlist to update.")
-    update_parser.add_argument("--append", action="store_true", help="Do not delete items, append to target playlist instead")
+    update_parser.add_argument("--append", action="store_true", help="Do not delete items, append to target playlist instead.")
+    update_parser.add_argument("--reset", action="store_true", help="Delete all items then re-add to target playlist. (Note: If playlist is big, the request can get timed out.)")
 
     remove_parser = subparsers.add_parser("remove", help="Remove playlists with specified regex pattern.")
     remove_parser.set_defaults(func=controllers.remove)

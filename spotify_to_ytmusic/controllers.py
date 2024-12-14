@@ -104,25 +104,53 @@ def liked(args):
 
 
 def update(args):
-    spotify, ytmusic = _init()
+    try:
+        spotify, ytmusic = _init()
 
-    if args.playlist != "liked":
-        playlist = _get_spotify_playlist(spotify, args.playlist)
-    else:
-        playlist = spotify.getLikedPlaylist()
+        if args.playlist != "liked":
+            playlist = _get_spotify_playlist(spotify, args.playlist)
+        else:
+            playlist = spotify.getLikedPlaylist()
 
-    print("Note: If you receive 400 HTTP error and you are using cached mode, you may have an invalid videoID in your lookup file. Try clearing the cache, it may help.")
+        if not playlist:
+            raise ValueError("Playlist could not be retrieved from Spotify.")
 
-    playlistId = ytmusic.get_playlist_id(args.name)
-    videoIds = ytmusic.search_songs(
-                playlist["tracks"],
-                **get_common_args_for_extended_search(args)
-            )
-    if not args.append:
-        ytmusic.remove_songs(playlistId)
-    time.sleep(2)
-    ytmusic.add_playlist_items(playlistId, videoIds)
+        print("Note: If you receive a 400 HTTP error and you are using cached mode, you may have an invalid video ID in your lookup file. Try clearing the cache to resolve this issue.")
 
+        playlistId = ytmusic.get_playlist_id(args.name)
+        if not playlistId:
+            raise ValueError(f"Playlist '{args.name}' does not exist on YouTube Music.")
+
+        videoIds = ytmusic.search_songs(
+            playlist["tracks"],
+            **get_common_args_for_extended_search(args)
+        )
+
+        playlistIds = ytmusic.get_playlist_videoIds(playlistId)
+
+
+        videoIds_to_be_removed = set(playlistIds) - set(videoIds)
+        videoIds_to_be_added = set(videoIds) - set(playlistIds)
+
+        if args.reset:
+            print(f"Removing all songs from {args.name}...")
+            ytmusic.remove_songs(playlistId)
+            videoIds_to_be_removed = []
+            videoIds_to_be_added = videoIds
+
+        if videoIds_to_be_removed and not args.append:
+            print(f"Removing {len(videoIds_to_be_removed)} tracks from {args.name}...")
+            ytmusic.remove_specified_tracks(playlistId, list(videoIds_to_be_removed))
+
+        if videoIds_to_be_added:
+            print(f"Adding {len(videoIds_to_be_added)} tracks to {args.name}...")
+            time.sleep(2)
+            ytmusic.add_playlist_items(playlistId, list(videoIds_to_be_added))
+
+        print(f"Sync of '{args.name}' is now complete!")
+    
+    except Exception as e:
+        print(f"An error occurred during the update: {e}")
 
 def remove(args):
     ytmusic = YTMusicTransfer()
