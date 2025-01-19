@@ -31,5 +31,5 @@ jobs:
       - name: Setup PDM
         uses: pdm-project/setup-pdm@v4
       - name: Install dependencies
-        run: pdm install
+        run: pdm install -G lint
       - run:  pdm run mypy --install-types --non-interactive

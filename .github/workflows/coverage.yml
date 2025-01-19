@@ -18,7 +18,7 @@ jobs:
     - name: Setup PDM
       uses: pdm-project/setup-pdm@v4
     - name: Install dependencies
-      run: pdm install
+      run: pdm install -G test
     - name: Generate coverage report
       env:
         SETTINGS_INI: ${{ secrets.SETTINGS_INI }}
@@ -27,7 +27,7 @@ jobs:
         cat <<< "$SETTINGS_INI" > spotify_to_ytmusic/settings.ini
         mkdir -p $XDG_CACHE_HOME/spotify_to_ytmusic
         cat <<< "$SPOTIPY_CACHE" > $XDG_CACHE_HOME/spotify_to_ytmusic/spotipy.cache
-        pdm run pytest
+        pdm run coverage
         pdm run coverage xml
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
