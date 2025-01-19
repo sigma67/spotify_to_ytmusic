@@ -24,8 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.9"
-      - run: pip install mypy==1.14.1
-      - run:  mypy --install-types --non-interactive
+          python-version: 3.9
+      - name: Setup PDM
+        uses: pdm-project/setup-pdm@v4
+      - name: Install dependencies
+        run: pdm install
+      - run:  pdm run mypy --install-types --non-interactive
