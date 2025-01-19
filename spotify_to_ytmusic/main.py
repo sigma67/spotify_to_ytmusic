@@ -1,14 +1,31 @@
 import argparse
+import sys
 from pathlib import Path
 
 from spotify_to_ytmusic import controllers
+import importlib.metadata
+
+
+class NewlineVersionAction(argparse.Action):
+    def __call__(self, parser, namespace, values, option_string=None):
+        sys.stdout.write(
+            f"spotify-to-ytmusic {importlib.metadata.version('spotify-to-ytmusic')}\n"
+            f"ytmusicapi {importlib.metadata.version('ytmusicapi')} \n"
+            f"spotipy {importlib.metadata.version('spotipy')}",
+        )
+        parser.exit()
 
 
 def get_args(args=None):
     parser = argparse.ArgumentParser(
         description="Transfer spotify playlists to YouTube Music."
     )
-
+    parser.add_argument(
+        "-v",
+        "--version",
+        nargs=0,
+        action=NewlineVersionAction,
+    )
     subparsers = parser.add_subparsers(
         help="Provide a subcommand", dest="command", required=True
     )
@@ -71,7 +88,8 @@ def get_args(args=None):
 
     update_parser = subparsers.add_parser(
         "update",
-        help="Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.",
+        help="Delete all entries in the provided Google Play Music playlist and "
+        "update the playlist with entries from the Spotify playlist.",
         parents=[spotify_playlist],
     )
     update_parser.set_defaults(func=controllers.update)
