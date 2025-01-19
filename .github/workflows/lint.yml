@@ -1,0 +1,35 @@
+name: lint
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ytmusicapi/**
+      - tests/**
+
+jobs:
+  ruff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: chartboost/ruff-action@v1
+        with:
+          version: 0.9.2
+      - uses: chartboost/ruff-action@v1
+        with:
+          version: 0.9.2
+          args: format --check
+  mypy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.9
+      - name: Setup PDM
+        uses: pdm-project/setup-pdm@v4
+      - name: Install dependencies
+        run: pdm install -G lint
+      - run:  pdm run mypy --install-types --non-interactive

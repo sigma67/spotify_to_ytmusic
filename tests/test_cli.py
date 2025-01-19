@@ -19,17 +19,18 @@ class TestCli(unittest.TestCase):
 
     def test_get_args(self):
         args = get_args(["all", "user"])
-        self.assertEqual(len(vars(args)), 3)
-        args = get_args(["create", "playlist-link"])
-        self.assertEqual(len(vars(args)), 7)
-        args = get_args(["update", "playlist-link", "playlist-name"])
         self.assertEqual(len(vars(args)), 5)
+        args = get_args(["create", "playlist-link"])
+        self.assertEqual(len(vars(args)), 9)
+        args = get_args(["update", "playlist-link", "playlist-name"])
+        self.assertEqual(len(vars(args)), 6)
         args = get_args(["setup"])
-        self.assertEqual(len(vars(args)), 3)
+        self.assertEqual(len(vars(args)), 4)
 
     def test_liked(self):
         with mock.patch(
-            "sys.argv", ["", "liked", "-n", "spotify_to_ytmusic", "-d", "-i", "test liked"]
+            "sys.argv",
+            ["", "liked", "-n", "spotify_to_ytmusic", "-d", "-i", "test liked"],
         ):
             main()
 
@@ -39,18 +40,31 @@ class TestCli(unittest.TestCase):
 
         with mock.patch(
             "sys.argv",
-            ["", "create", TEST_PLAYLIST, "-n", "spotify_to_ytmusic", "-i", "test-playlist", "-d"],
+            [
+                "",
+                "create",
+                TEST_PLAYLIST,
+                "-n",
+                "spotify_to_ytmusic",
+                "-i",
+                "test-playlist",
+                "-d",
+            ],
         ):
             main()
 
         time.sleep(2)
-        with mock.patch("sys.argv", ["", "update", TEST_PLAYLIST, "spotify_to_ytmusic"]):
+        with mock.patch(
+            "sys.argv", ["", "update", TEST_PLAYLIST, "spotify_to_ytmusic"]
+        ):
             main()
 
         time.sleep(2)
-        with mock.patch("sys.argv", ["", "remove", "spotify\_to\_ytmusic"]), mock.patch(
-            "sys.stdout", new=StringIO()
-        ) as fakeOutput, mock.patch("builtins.input", side_effect="y"):
+        with (
+            mock.patch("sys.argv", ["", "remove", "spotify\_to\_ytmusic"]),
+            mock.patch("sys.stdout", new=StringIO()) as fakeOutput,
+            mock.patch("builtins.input", side_effect="y"),
+        ):
             main()
             assert (
                 int(fakeOutput.getvalue().splitlines()[-1][0]) >= 2
@@ -58,12 +72,24 @@ class TestCli(unittest.TestCase):
 
     def test_setup(self):
         tmp_path = DEFAULT_PATH.with_suffix(".tmp")
+        settings = Settings()
         with (
             mock.patch("sys.argv", ["", "setup"]),
-            mock.patch("builtins.input", side_effect=["4", "a", "b", "yes", ""]),
+            mock.patch(
+                "builtins.input",
+                side_effect=[
+                    "4",
+                    settings["youtube"]["client_id"],
+                    settings["youtube"]["client_secret"],
+                    "yes",
+                    "a",
+                    "b",
+                    "",
+                ],
+            ),
             mock.patch(
                 "ytmusicapi.auth.oauth.credentials.OAuthCredentials.token_from_code",
-                return_value=json.loads(Settings()["youtube"]["headers"]),
+                return_value=json.loads(settings["youtube"]["headers"]),
             ),
             mock.patch.object(setup, "DEFAULT_PATH", tmp_path),
             mock.patch("spotify_to_ytmusic.setup.has_browser", return_value=False),

@@ -13,7 +13,8 @@ def _get_spotify_playlist(spotify, playlist):
         return spotify.getSpotifyPlaylist(playlist)
     except Exception as ex:
         print(
-            "Could not get Spotify playlist. Please check the playlist link.\n Error: " + repr(ex)
+            "Could not get Spotify playlist. Please check the playlist link.\n Error: "
+            + repr(ex)
         )
         return
 

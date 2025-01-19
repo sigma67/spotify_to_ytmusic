@@ -1,19 +1,44 @@
 import argparse
+import sys
 from pathlib import Path
 
 from spotify_to_ytmusic import controllers
+import importlib.metadata
+
+
+class NewlineVersionAction(argparse.Action):
+    def __call__(self, parser, namespace, values, option_string=None):
+        sys.stdout.write(
+            f"spotify-to-ytmusic {importlib.metadata.version('spotify-to-ytmusic')}\n"
+            f"ytmusicapi {importlib.metadata.version('ytmusicapi')} \n"
+            f"spotipy {importlib.metadata.version('spotipy')}",
+        )
+        parser.exit()
 
 
 def get_args(args=None):
-    parser = argparse.ArgumentParser(description="Transfer spotify playlists to YouTube Music.")
-
-    subparsers = parser.add_subparsers(help="Provide a subcommand", dest="command", required=True)
+    parser = argparse.ArgumentParser(
+        description="Transfer spotify playlists to YouTube Music."
+    )
+    parser.add_argument(
+        "-v",
+        "--version",
+        nargs=0,
+        action=NewlineVersionAction,
+    )
+    subparsers = parser.add_subparsers(
+        help="Provide a subcommand", dest="command", required=True
+    )
     setup_parser = subparsers.add_parser("setup", help="Set up credentials")
     setup_parser.set_defaults(func=controllers.setup)
-    setup_parser.add_argument("--file", type=Path, help="Optional path to a settings.ini file")
+    setup_parser.add_argument(
+        "--file", type=Path, help="Optional path to a settings.ini file"
+    )
 
     spotify_playlist = argparse.ArgumentParser(add_help=False)
-    spotify_playlist.add_argument("playlist", type=str, help="Provide a playlist Spotify link.")
+    spotify_playlist.add_argument(
+        "playlist", type=str, help="Provide a playlist Spotify link."
+    )
 
     spotify_playlist_create = argparse.ArgumentParser(add_help=False)
     spotify_playlist_create.add_argument(
@@ -55,13 +80,16 @@ def get_args(args=None):
     create_parser.set_defaults(func=controllers.create)
 
     liked_parser = subparsers.add_parser(
-        "liked", help="Transfer all liked songs of the user.", parents=[spotify_playlist_create]
+        "liked",
+        help="Transfer all liked songs of the user.",
+        parents=[spotify_playlist_create],
     )
     liked_parser.set_defaults(func=controllers.liked)
 
     update_parser = subparsers.add_parser(
         "update",
-        help="Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.",
+        help="Delete all entries in the provided Google Play Music playlist and "
+        "update the playlist with entries from the Spotify playlist.",
         parents=[spotify_playlist],
     )
     update_parser.set_defaults(func=controllers.update)
@@ -79,9 +107,12 @@ def get_args(args=None):
     remove_parser.add_argument("pattern", help="regex pattern")
 
     all_parser = subparsers.add_parser(
-        "all", help="Transfer all public playlists of the specified user (Spotify User ID)."
+        "all",
+        help="Transfer all public playlists of the specified user (Spotify User ID).",
     )
-    all_parser.add_argument("user", type=str, help="Spotify userid of the specified user.")
+    all_parser.add_argument(
+        "user", type=str, help="Spotify userid of the specified user."
+    )
     all_parser.set_defaults(func=controllers.all)
     all_parser.add_argument(
         "-l",
