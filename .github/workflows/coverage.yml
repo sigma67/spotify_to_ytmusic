@@ -27,7 +27,7 @@ jobs:
         cat <<< "$SETTINGS_INI" > spotify_to_ytmusic/settings.ini
         mkdir -p $XDG_CACHE_HOME/spotify_to_ytmusic
         cat <<< "$SPOTIPY_CACHE" > $XDG_CACHE_HOME/spotify_to_ytmusic/spotipy.cache
-        pdm run coverage
+        pdm run coverage run
         pdm run coverage xml
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
