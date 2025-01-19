@@ -16,17 +16,19 @@ class Spotify:
         conf = settings["spotify"]
         client_id = conf["client_id"]
 
-        assert set(client_id).issubset(
-            string.hexdigits
-        ), f"Spotify client_id not set or invalid: {client_id}"
+        assert set(client_id).issubset(string.hexdigits), (
+            f"Spotify client_id not set or invalid: {client_id}"
+        )
         client_secret = conf["client_secret"]
-        assert set(client_secret).issubset(
-            string.hexdigits
-        ), f"Spotify client_secret not set or invalid: {client_secret}"
+        assert set(client_secret).issubset(string.hexdigits), (
+            f"Spotify client_secret not set or invalid: {client_secret}"
+        )
 
         use_oauth = conf.getboolean("use_oauth")
 
-        cache_handler = CacheFileHandler(cache_path=CACHE_DIR.joinpath("spotipy.cache").as_posix())
+        cache_handler = CacheFileHandler(
+            cache_path=CACHE_DIR.joinpath("spotipy.cache").as_posix()
+        )
         if use_oauth:
             auth = SpotifyOAuth(
                 client_id=client_id,
@@ -39,9 +41,13 @@ class Spotify:
             self.api = spotipy.Spotify(auth_manager=auth)
         else:
             client_credentials_manager = SpotifyClientCredentials(
-                client_id=client_id, client_secret=client_secret, cache_handler=cache_handler
+                client_id=client_id,
+                client_secret=client_secret,
+                cache_handler=cache_handler,
             )
-            self.api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+            self.api = spotipy.Spotify(
+                client_credentials_manager=client_credentials_manager
+            )
 
     def getSpotifyPlaylist(self, url):
         playlistId = extract_playlist_id_from_url(url)
@@ -82,7 +88,9 @@ class Spotify:
         response = self.api.current_user_saved_tracks(limit=50)
         tracks = response["items"]
         while response["next"] is not None:
-            response = self.api.current_user_saved_tracks(limit=50, offset=response["offset"] + 50)
+            response = self.api.current_user_saved_tracks(
+                limit=50, offset=response["offset"] + 50
+            )
             tracks.extend(response["items"])
 
         return {

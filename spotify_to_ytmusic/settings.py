@@ -7,7 +7,9 @@ from typing import Optional
 import platformdirs
 
 CACHE_DIR = Path(
-    platformdirs.user_cache_dir(appname="spotify_to_ytmusic", appauthor=False, ensure_exists=True)
+    platformdirs.user_cache_dir(
+        appname="spotify_to_ytmusic", appauthor=False, ensure_exists=True
+    )
 )
 DEFAULT_PATH = CACHE_DIR.joinpath("settings.ini")
 EXAMPLE_PATH = Path(__file__).parent.joinpath("settings.ini.example")
@@ -26,9 +28,9 @@ class Settings:
                 # Migration path for pre 0.3.0
                 shutil.copy(EXAMPLE_PATH.with_suffix(""), DEFAULT_PATH)
                 warnings.warn(f"Moved {filepath} to {DEFAULT_PATH}", DeprecationWarning)
-            except Exception as exc:
+            except Exception:
                 raise FileNotFoundError(
-                    f"No settings.ini found! Please run \n\n spotify_to_ytmusic setup"
+                    "No settings.ini found! Please run \n\n spotify_to_ytmusic setup"
                 )
         self.config.read(self.filepath)
 

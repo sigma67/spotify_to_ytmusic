@@ -14,8 +14,10 @@ class TestParsing(unittest.TestCase):
 
     def test_idFromSpotifyUrlRejectBadId(self):
         url = "https://open.spotify.com/playlist/420"
-        self.assertRaisesRegex(ValueError, r"Bad playlist id", extract_playlist_id_from_url, url)
-    
+        self.assertRaisesRegex(
+            ValueError, r"Bad playlist id", extract_playlist_id_from_url, url
+        )
+
     def test_idFromSpotifyUrlRejectBadUrl(self):
         url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         self.assertRaises(ValueError, extract_playlist_id_from_url, url)
