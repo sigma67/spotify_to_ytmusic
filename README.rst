@@ -55,7 +55,8 @@ Setup
 -------
 
 1. Generate a new app at https://developer.spotify.com/dashboard
-2. Run
+2. Generate a new app by following instructions at https://ytmusicapi.readthedocs.io/en/stable/setup/oauth.html
+3. Run
 
 .. code-block::
 
