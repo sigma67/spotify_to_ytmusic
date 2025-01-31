@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Optional
 
 import ytmusicapi
+from charset_normalizer.cli import query_yes_no
 
 from spotify_to_ytmusic.settings import DEFAULT_PATH, EXAMPLE_PATH, Settings
 from spotify_to_ytmusic.utils.browser import has_browser
@@ -82,9 +83,12 @@ def setup_spotify():
         ),
         "client_secret": input(
             "Paste your client secret from the Spotify developer dashboard:"
+
         ),
-        "use_oauth": input(
-            "Use OAuth method for authorization to transfer private playlists (yes/no):"
+        "use_oauth": str(
+            query_yes_no(
+                "Use OAuth method for authorization to transfer private playlists:"
+            )
         ),
     }
     settings["spotify"].update(credentials)
