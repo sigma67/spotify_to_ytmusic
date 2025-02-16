@@ -5,6 +5,7 @@ import re
 from collections import OrderedDict
 
 from ytmusicapi import YTMusic
+from ytmusicapi.auth.oauth import OAuthCredentials
 
 from spotify_to_ytmusic.utils.match import get_best_fit_song_id, get_best_fit_song_id_v2, normalize_text
 from spotify_to_ytmusic.settings import Settings
@@ -17,7 +18,17 @@ class YTMusicTransfer:
         settings = Settings()
         headers = settings["youtube"]["headers"]
         assert headers.startswith("{"), "ytmusicapi headers not set or invalid"
-        self.api = YTMusic(headers, settings["youtube"]["user_id"])
+        oauth_credentials = (
+            None
+            if settings["youtube"]["auth_type"] != "oauth"
+            else OAuthCredentials(
+                client_id=settings["youtube"]["client_id"],
+                client_secret=settings["youtube"]["client_secret"],
+            )
+        )
+        self.api = YTMusic(
+            headers, settings["youtube"]["user_id"], oauth_credentials=oauth_credentials
+        )
 
     def create_playlist(self, name, info, privacy="PRIVATE", tracks=None):
         return self.api.create_playlist(name, info, privacy, video_ids=tracks)
@@ -107,7 +118,7 @@ class YTMusicTransfer:
         try:
             playlist = next(x for x in pl if x["title"].find(name) != -1)["playlistId"]
             return playlist
-        except:
+        except StopIteration:
             raise Exception("Playlist title not found in playlists")
     
     def get_playlist_videoIds(self, playlistId):

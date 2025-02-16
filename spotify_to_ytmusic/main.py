@@ -1,19 +1,44 @@
 import argparse
+import sys
 from pathlib import Path
 
 from spotify_to_ytmusic import controllers
+import importlib.metadata
+
+
+class NewlineVersionAction(argparse.Action):
+    def __call__(self, parser, namespace, values, option_string=None):
+        sys.stdout.write(
+            f"spotify-to-ytmusic {importlib.metadata.version('spotify-to-ytmusic')}\n"
+            f"ytmusicapi {importlib.metadata.version('ytmusicapi')} \n"
+            f"spotipy {importlib.metadata.version('spotipy')}",
+        )
+        parser.exit()
 
 
 def get_args(args=None):
-    parser = argparse.ArgumentParser(description="Transfer Spotify playlists to YouTube Music.")
-
-    subparsers = parser.add_subparsers(help="Provide a subcommand", dest="command", required=True)
+    parser = argparse.ArgumentParser(
+        description="Transfer spotify playlists to YouTube Music."
+    )
+    parser.add_argument(
+        "-v",
+        "--version",
+        nargs=0,
+        action=NewlineVersionAction,
+    )
+    subparsers = parser.add_subparsers(
+        help="Provide a subcommand", dest="command", required=True
+    )
     setup_parser = subparsers.add_parser("setup", help="Set up credentials")
     setup_parser.set_defaults(func=controllers.setup)
-    setup_parser.add_argument("--file", type=Path, help="Optional path to a settings.ini file")
+    setup_parser.add_argument(
+        "--file", type=Path, help="Optional path to a settings.ini file"
+    )
 
     spotify_playlist = argparse.ArgumentParser(add_help=False)
-    spotify_playlist.add_argument("playlist", type=str, help="Provide a playlist Spotify link.")
+    spotify_playlist.add_argument(
+        "playlist", type=str, help="Provide a playlist Spotify link."
+    )
 
     spotify_playlist_create = argparse.ArgumentParser(add_help=False)
     spotify_playlist_create.add_argument(

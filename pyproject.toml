@@ -14,8 +14,8 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
 ]
 dependencies = [
-    "ytmusicapi>=1.8.2",
-    "spotipy>=2.23.0",
+    "ytmusicapi>=1.10",
+    "spotipy>=2.25.0",
     "platformdirs>=3.2",
 ]
 dynamic = ["version", "readme"]
@@ -55,9 +55,21 @@ command_line = "-m unittest discover tests"
 [tool.pdm]
 distribution = true
 
-[tool.pdm.dev-dependencies]
-dev = [
-    "black>=24.4.2",
-    "isort>=5.13.2",
-    "coverage>=7.5.3",
+[tool.mypy]
+files = [
+    "spotify_to_ytmusic/"
+]
+mypy_path = "spotify_to_ytmusic"
+
+[[tool.mypy.overrides]]
+module = ['ytmusicapi.*', 'spotipy.*']
+ignore_missing_imports = true
+
+[dependency-groups]
+test = [
+    "coverage>=7.5.3"
+]
+lint = [
+    "ruff>=0.9.2",
+    "mypy[install-types]>=1.14.1",
 ]
