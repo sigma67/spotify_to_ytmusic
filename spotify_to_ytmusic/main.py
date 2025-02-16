@@ -35,6 +35,14 @@ def get_args(args=None):
         "--file", type=Path, help="Optional path to a settings.ini file"
     )
 
+    cache_parser = argparse.ArgumentParser(add_help=False)
+    cache_parser.add_argument(
+        '--use-cached',
+        action="store_true",
+        default=False,
+        help="(Optional) Enable the use of a cache file to save and retrieve query results."
+    )
+
     spotify_playlist = argparse.ArgumentParser(add_help=False)
     spotify_playlist.add_argument(
         "playlist", type=str, help="Provide a playlist Spotify link."
@@ -75,14 +83,14 @@ def get_args(args=None):
     create_parser = subparsers.add_parser(
         "create",
         help="Create a new playlist on YouTube Music.",
-        parents=[spotify_playlist, spotify_playlist_create],
+        parents=[spotify_playlist, spotify_playlist_create, cache_parser],
     )
     create_parser.set_defaults(func=controllers.create)
 
     liked_parser = subparsers.add_parser(
         "liked",
         help="Transfer all liked songs of the user.",
-        parents=[spotify_playlist_create],
+        parents=[spotify_playlist_create, cache_parser],
     )
     liked_parser.set_defaults(func=controllers.liked)
 
@@ -90,7 +98,7 @@ def get_args(args=None):
         "update",
         help="Delete all entries in the provided Google Play Music playlist and "
         "update the playlist with entries from the Spotify playlist.",
-        parents=[spotify_playlist],
+        parents=[spotify_playlist, cache_parser],
     )
     update_parser.set_defaults(func=controllers.update)
     update_parser.add_argument(
@@ -109,6 +117,7 @@ def get_args(args=None):
     all_parser = subparsers.add_parser(
         "all",
         help="Transfer all public playlists of the specified user (Spotify User ID).",
+        parents=[cache_parser],
     )
     all_parser.add_argument(
         "user", type=str, help="Spotify userid of the specified user."
@@ -120,6 +129,16 @@ def get_args(args=None):
         action="store_true",
         help="Like the songs in all of the public playlist",
     )
+
+    search_parser = subparsers.add_parser(
+        "search", help="Search for a song in yt music (Algorthm Testing).",
+        parents=[cache_parser]
+    )
+    search_parser.add_argument("link", type=str, help="Link of the spotify song to search.")
+    search_parser.set_defaults(func=controllers.search)
+
+    cache_remove_parser = subparsers.add_parser("cache-clear", help="Clear cache file")
+    cache_remove_parser.set_defaults(func=controllers.cache_clear)
 
     return parser.parse_args(args)
 
