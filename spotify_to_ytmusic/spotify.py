@@ -98,6 +98,9 @@ class Spotify:
             "name": "Liked songs (Spotify)",
             "description": "Your liked tracks from spotify",
         }
+    
+    def getSingleTrack(self, song_url):
+        return self.api.track(song_url)
 
 
 def build_results(tracks, album=None):
@@ -114,6 +117,8 @@ def build_results(tracks, album=None):
                 "name": track["name"],
                 "album": album_name,
                 "duration": track["duration_ms"] / 1000,
+                "artists_list": [artist["name"] for artist in track["artists"] if "name" in artist],
+                "is_explicit": track["explicit"]
             }
         )
 
