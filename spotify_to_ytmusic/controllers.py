@@ -111,12 +111,18 @@ def search(args):
         "duration": track["duration_ms"] / 1000,
         "album": track['album']['name']
     }
-    video_id = ytmusic.search_songs([tracks], use_cached=args.use_cached)
-    print(f"https://music.youtube.com/watch?v={video_id[0]}")   
 
-def cache_clear(args):
-    path = os.path.dirname(os.path.realpath(__file__)) + os.sep
-    os.remove(path + "lookup.json")
+    video_id = ytmusic.search_songs([tracks], use_cached=args.use_cached)
+
+    if not video_id:
+        print("Error: No Match found.")
+        return
+    print(f"https://music.youtube.com/watch?v={video_id[0]}")
     
+def cache_clear(args):
+    from spotify_to_ytmusic.utils.cache_manager import CacheManager
+    cacheManager = CacheManager()
+    cacheManager.remove_cache_file()
+
 def setup(args):
     setup_func(args.file)

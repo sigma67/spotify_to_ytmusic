@@ -10,8 +10,11 @@ from ytmusicapi.auth.oauth import OAuthCredentials
 from spotify_to_ytmusic.utils.match import get_best_fit_song_id
 from spotify_to_ytmusic.settings import Settings
 
+from spotify_to_ytmusic.utils.cache_manager import CacheManager
+
 path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
+cacheManager = CacheManager()
 
 class YTMusicTransfer:
     def __init__(self):
@@ -35,24 +38,16 @@ class YTMusicTransfer:
 
     def rate_song(self, id, rating):
         return self.api.rate_song(id, rating)
-    
-    def load_lookup_table(self):
-        try:
-            with open(path + "lookup.json") as f:
-                return json.load(f)
-        except FileNotFoundError:
-            return {}
-
-    def save_to_lookup_table(self, table):
-        with open(path + "lookup.json", 'w', encoding="utf-8") as f:
-            json.dump(table, f, ensure_ascii=False)
 
     def search_songs(self, tracks, use_cached: bool = False):
         videoIds = []
         songs = list(tracks)
         notFound = list()
-        lookup_ids = self.load_lookup_table()
-
+        lookup_ids = cacheManager.load_lookup_table()
+        
+        if use_cached:
+            print("Use of cache file is enabled.")
+        
         print("Searching YouTube...")
         for i, song in enumerate(songs):
             name = re.sub(r" \(feat.*\..+\)", "", song["name"])
@@ -60,7 +55,6 @@ class YTMusicTransfer:
             query = query.replace(" &", "")
 
             if use_cached and query in lookup_ids.keys():
-                print(f"Found cached link from lookup table for {query}\n")
                 videoIds.append(lookup_ids[query])
                 continue
 
@@ -76,7 +70,7 @@ class YTMusicTransfer:
                     videoIds.append(targetSong)
                     if use_cached:
                         lookup_ids[query] = targetSong
-                        self.save_to_lookup_table(lookup_ids)
+                        cacheManager.save_to_lookup_table(lookup_ids)
 
             if i > 0 and i % 10 == 0:
                 print(f"YouTube tracks: {i}/{len(songs)}")

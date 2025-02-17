@@ -131,7 +131,7 @@ def get_args(args=None):
     )
 
     search_parser = subparsers.add_parser(
-        "search", help="Search for a song in yt music (Algorthm Testing).",
+        "search", help="Search for a song on YouTube Music to cross-check the algorithm match result.",
         parents=[cache_parser]
     )
     search_parser.add_argument("link", type=str, help="Link of the spotify song to search.")

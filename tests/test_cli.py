@@ -7,10 +7,10 @@ from unittest import mock
 from spotify_to_ytmusic import settings as settings_module
 from spotify_to_ytmusic import setup
 from spotify_to_ytmusic.main import get_args, main
-from spotify_to_ytmusic.settings import DEFAULT_PATH, EXAMPLE_PATH, Settings
+from spotify_to_ytmusic.settings import DEFAULT_PATH, EXAMPLE_PATH, CACHE_DIR, Settings
 
 TEST_PLAYLIST = "https://open.spotify.com/playlist/4UzyZJfSQ4584FaWGwepfL"
-
+TEST_SONG = "https://open.spotify.com/track/7bnczC5ATlZaZX0MHjX7KU?si=5a07bffaf6324717"
 
 class TestCli(unittest.TestCase):
     @classmethod
@@ -19,11 +19,15 @@ class TestCli(unittest.TestCase):
 
     def test_get_args(self):
         args = get_args(["all", "user"])
-        self.assertEqual(len(vars(args)), 5)
-        args = get_args(["create", "playlist-link"])
-        self.assertEqual(len(vars(args)), 9)
-        args = get_args(["update", "playlist-link", "playlist-name"])
         self.assertEqual(len(vars(args)), 6)
+        args = get_args(["create", "playlist-link"])
+        self.assertEqual(len(vars(args)), 10)
+        args = get_args(["update", "playlist-link", "playlist-name"])
+        self.assertEqual(len(vars(args)), 7)
+        args = get_args(["liked"])
+        self.assertEqual(len(vars(args)), 9)
+        args = get_args(["search", "link"])
+        self.assertEqual(len(vars(args)), 5)
         args = get_args(["setup"])
         self.assertEqual(len(vars(args)), 4)
 
@@ -70,6 +74,22 @@ class TestCli(unittest.TestCase):
                 int(fakeOutput.getvalue().splitlines()[-1][0]) >= 2
             )  # assert number of lines deleted
 
+
+    def test_search(self):
+        with mock.patch("sys.argv", ['', 'search', TEST_SONG]):
+            main()
+    
+    def test_search_with_use_cached_flag(self):
+        cache_file = CACHE_DIR / "lookup.json"
+        
+        # Ensure the cache file doesn't exist before running the test
+        if cache_file.exists():
+            cache_file.unlink()
+
+        with mock.patch("sys.argv", ['', 'search', TEST_SONG, '--use-cached']):
+            main()
+        self.assertTrue(cache_file.exists(), "Cache file was not created.")
+    
     def test_setup(self):
         tmp_path = DEFAULT_PATH.with_suffix(".tmp")
         settings = Settings()
