@@ -1,7 +1,5 @@
-import json
 import unittest
 from pathlib import Path
-from unittest import mock
 from platformdirs import user_cache_dir
 from spotify_to_ytmusic.utils.cache_manager import CacheManager
 

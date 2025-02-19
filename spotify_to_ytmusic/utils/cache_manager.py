@@ -1,6 +1,4 @@
 import json
-import os
-from pathlib import Path
 from spotify_to_ytmusic.settings import CACHE_DIR
 
 class CacheManager:
