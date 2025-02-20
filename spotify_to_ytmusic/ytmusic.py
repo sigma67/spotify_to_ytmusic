@@ -8,7 +8,11 @@ from ytmusicapi.auth.oauth import OAuthCredentials
 from spotify_to_ytmusic.utils.match import get_best_fit_song_id
 from spotify_to_ytmusic.settings import Settings
 
+from spotify_to_ytmusic.utils.cache_manager import CacheManager
+
 path = os.path.dirname(os.path.realpath(__file__)) + os.sep
+
+cacheManager = CacheManager()
 
 
 class YTMusicTransfer:
@@ -34,16 +38,27 @@ class YTMusicTransfer:
     def rate_song(self, id, rating):
         return self.api.rate_song(id, rating)
 
-    def search_songs(self, tracks):
+    def search_songs(self, tracks, use_cached: bool = False):
         videoIds = []
         songs = list(tracks)
         notFound = list()
+        lookup_ids = cacheManager.load_lookup_table()
+
+        if use_cached:
+            print("Use of cache file is enabled.")
+
         print("Searching YouTube...")
         for i, song in enumerate(songs):
             name = re.sub(r" \(feat.*\..+\)", "", song["name"])
             query = song["artist"] + " " + name
             query = query.replace(" &", "")
+
+            if use_cached and query in lookup_ids.keys():
+                videoIds.append(lookup_ids[query])
+                continue
+
             result = self.api.search(query)
+
             if len(result) == 0:
                 notFound.append(query)
             else:
@@ -52,6 +67,9 @@ class YTMusicTransfer:
                     notFound.append(query)
                 else:
                     videoIds.append(targetSong)
+                    if use_cached:
+                        lookup_ids[query] = targetSong
+                        cacheManager.save_to_lookup_table(lookup_ids)
 
             if i > 0 and i % 10 == 0:
                 print(f"YouTube tracks: {i}/{len(songs)}")
