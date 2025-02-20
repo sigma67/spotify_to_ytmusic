@@ -83,7 +83,6 @@ def setup_spotify():
         ),
         "client_secret": input(
             "Paste your client secret from the Spotify developer dashboard:"
-
         ),
         "use_oauth": str(
             query_yes_no(

@@ -1,6 +1,7 @@
 import json
 from spotify_to_ytmusic.settings import CACHE_DIR
 
+
 class CacheManager:
     def __init__(self):
         self.cache_dir = CACHE_DIR
@@ -17,7 +18,7 @@ class CacheManager:
     def save_to_lookup_table(self, table):
         with self.cache_file.open("w", encoding="utf-8") as f:
             json.dump(table, f, ensure_ascii=False)
-    
+
     def remove_cache_file(self):
         if self.cache_file.is_file():
             self.cache_file.unlink()

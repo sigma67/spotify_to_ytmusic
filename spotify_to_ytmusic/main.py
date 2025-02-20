@@ -37,10 +37,10 @@ def get_args(args=None):
 
     cache_parser = argparse.ArgumentParser(add_help=False)
     cache_parser.add_argument(
-        '--use-cached',
+        "--use-cached",
         action="store_true",
         default=False,
-        help="(Optional) Enable the use of a cache file to save and retrieve query results."
+        help="(Optional) Enable the use of a cache file to save and retrieve query results.",
     )
 
     spotify_playlist = argparse.ArgumentParser(add_help=False)
@@ -131,10 +131,13 @@ def get_args(args=None):
     )
 
     search_parser = subparsers.add_parser(
-        "search", help="Search for a song on YouTube Music to cross-check the algorithm match result.",
-        parents=[cache_parser]
+        "search",
+        help="Search for a song on YouTube Music to cross-check the algorithm match result.",
+        parents=[cache_parser],
     )
-    search_parser.add_argument("link", type=str, help="Link of the spotify song to search.")
+    search_parser.add_argument(
+        "link", type=str, help="Link of the spotify song to search."
+    )
     search_parser.set_defaults(func=controllers.search)
 
     cache_remove_parser = subparsers.add_parser("cache-clear", help="Clear cache file")

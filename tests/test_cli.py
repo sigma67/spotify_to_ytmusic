@@ -12,6 +12,7 @@ from spotify_to_ytmusic.settings import DEFAULT_PATH, EXAMPLE_PATH, CACHE_DIR, S
 TEST_PLAYLIST = "https://open.spotify.com/playlist/4UzyZJfSQ4584FaWGwepfL"
 TEST_SONG = "https://open.spotify.com/track/7bnczC5ATlZaZX0MHjX7KU?si=5a07bffaf6324717"
 
+
 class TestCli(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -74,22 +75,21 @@ class TestCli(unittest.TestCase):
                 int(fakeOutput.getvalue().splitlines()[-1][0]) >= 2
             )  # assert number of lines deleted
 
-
     def test_search(self):
-        with mock.patch("sys.argv", ['', 'search', TEST_SONG]):
+        with mock.patch("sys.argv", ["", "search", TEST_SONG]):
             main()
-    
+
     def test_search_with_use_cached_flag(self):
         cache_file = CACHE_DIR / "lookup.json"
-        
+
         # Ensure the cache file doesn't exist before running the test
         if cache_file.exists():
             cache_file.unlink()
 
-        with mock.patch("sys.argv", ['', 'search', TEST_SONG, '--use-cached']):
+        with mock.patch("sys.argv", ["", "search", TEST_SONG, "--use-cached"]):
             main()
         self.assertTrue(cache_file.exists(), "Cache file was not created.")
-    
+
     def test_setup(self):
         tmp_path = DEFAULT_PATH.with_suffix(".tmp")
         settings = Settings()

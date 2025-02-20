@@ -14,6 +14,7 @@ path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 cacheManager = CacheManager()
 
+
 class YTMusicTransfer:
     def __init__(self):
         settings = Settings()
@@ -42,10 +43,10 @@ class YTMusicTransfer:
         songs = list(tracks)
         notFound = list()
         lookup_ids = cacheManager.load_lookup_table()
-        
+
         if use_cached:
             print("Use of cache file is enabled.")
-        
+
         print("Searching YouTube...")
         for i, song in enumerate(songs):
             name = re.sub(r" \(feat.*\..+\)", "", song["name"])
