@@ -102,10 +102,19 @@ def get_args(args=None):
     )
     update_parser.set_defaults(func=controllers.update)
     update_parser.add_argument(
-        "name", type=str, help="The name of the YouTube Music playlist to update."
+        "name",
+        type=str,
+        help='The name of the YouTube Music playlist to update. Use "liked" to sync Spotify liked songs to the target YouTube Music playlist.',
     )
     update_parser.add_argument(
-        "--append", help="Do not delete items, append to target playlist instead"
+        "--append",
+        help="Do not delete items, append to target playlist instead",
+        action="store_true",
+    )
+    update_parser.add_argument(
+        "--remove-extra",
+        help="Remove tracks from the target playlist that are not in the Spotify playlist (only works with --append).",
+        action="store_true",
     )
 
     remove_parser = subparsers.add_parser(

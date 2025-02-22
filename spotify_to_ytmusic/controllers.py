@@ -90,13 +90,33 @@ def liked(args):
 
 def update(args):
     spotify, ytmusic = _init()
-    playlist = _get_spotify_playlist(spotify, args.playlist)
+    playlist = (
+        spotify.getLikedPlaylist()
+        if args.playlist == "liked"
+        else _get_spotify_playlist(spotify, args.playlist)
+    )
     playlistId = ytmusic.get_playlist_id(args.name)
     videoIds = ytmusic.search_songs(playlist["tracks"], use_cached=args.use_cached)
-    if not args.append:
-        ytmusic.remove_songs(playlistId)
-    time.sleep(2)
-    ytmusic.add_playlist_items(playlistId, videoIds)
+
+    if args.append:
+        existingVideos = ytmusic.get_playlist_videoIds(playlistId)
+        to_remove = (
+            [vid for vid in existingVideos if vid not in videoIds]
+            if args.remove_extra
+            else []
+        )
+        to_add = [vid for vid in videoIds if vid not in existingVideos]
+
+        if to_remove:
+            ytmusic.remove_specified_tracks(playlistId, to_remove)
+            time.sleep(2)
+        if to_add:
+            ytmusic.add_playlist_items(playlistId, to_add)
+    else:
+        if videoIds:
+            ytmusic.remove_songs(playlistId)
+            time.sleep(2)
+            ytmusic.add_playlist_items(playlistId, videoIds)
 
 
 def remove(args):
