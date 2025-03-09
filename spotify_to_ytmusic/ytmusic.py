@@ -1,9 +1,13 @@
 import os
 import re
 from collections import OrderedDict
+import sys
+import time
 
+import requests
 from ytmusicapi import YTMusic
 from ytmusicapi.auth.oauth import OAuthCredentials
+from ytmusicapi.exceptions import YTMusicServerError
 
 from spotify_to_ytmusic.utils.match import get_best_fit_song_id
 from spotify_to_ytmusic.settings import Settings
@@ -81,9 +85,60 @@ class YTMusicTransfer:
 
         return videoIds
 
-    def add_playlist_items(self, playlistId, videoIds):
-        videoIds = OrderedDict.fromkeys(videoIds)
-        self.api.add_playlist_items(playlistId, videoIds)
+    def add_playlist_items(self, playlistId, videoIds, ignore_errors=True):
+        videoIds = list(OrderedDict.fromkeys(videoIds))
+        response = self.api.add_playlist_items(playlistId, videoIds)
+
+        if response.get("status") == "STATUS_SUCCEEDED":
+            return True
+
+        if ignore_errors:
+            problematic_ids = []
+
+            for video_id in videoIds:
+                individual_response = self.api.add_playlist_items(
+                    playlistId, [video_id]
+                )
+                if individual_response.get("status") == "STATUS_FAILED":
+                    problematic_ids.append(video_id)
+
+            dialog_message = (
+                response.get("actions", [{}])[0]
+                .get("confirmDialogEndpoint", {})
+                .get("content", {})
+                .get("confirmDialogRenderer", {})
+                .get("dialogMessages", [{}])[0]
+                .get("runs", [{}])[0]
+                .get("text", "")
+            )
+
+            dialog_duplicate_error = (
+                response.get("actions", [{}])[0]
+                .get("confirmDialogEndpoint", {})
+                .get("content", {})
+                .get("confirmDialogRenderer", {})
+                .get("confirmButton", {})
+                .get("buttonRenderer", {})
+                .get("command", {})
+                .get("playlistEditEndpoint", {})
+                .get("actions", [{}])[0]
+                .get("dedupeOption", "")
+            )
+
+            if dialog_message:
+                print(f"Warning: {dialog_message}")
+            if dialog_duplicate_error == "DEDUPE_OPTION_SKIP":
+                print(
+                    f"Warning: You have {len(problematic_ids)} duplicate IDs. This may be caused by the cache storing correct track IDs that are now redirecting to different track IDs. Try running the command without --use-cached or clear the cache to resolve this issue; otherwise, updating the playlist with --append may take longer each time."
+                )
+            videoIds = [vid for vid in videoIds if vid not in problematic_ids]
+
+            if videoIds:
+                return self.add_playlist_items(
+                    playlistId, videoIds, ignore_errors=False
+                )
+
+        return False
 
     def get_playlist_id(self, name):
         pl = self.api.get_library_playlists(10000)
@@ -110,10 +165,27 @@ class YTMusicTransfer:
             if tracks_to_remove:
                 self.api.remove_playlist_items(playlistId, tracks_to_remove)
 
-    def remove_songs(self, playlistId):
+    def remove_songs(self, playlistId, max_retries=5, current_attempt=1):
         items = self.api.get_playlist(playlistId, 10000)
-        if "tracks" in items:
-            self.api.remove_playlist_items(playlistId, items["tracks"])
+
+        if tracks := items.get("tracks"):
+            if current_attempt == 1:
+                print(f"Now removing {len(tracks)} tracks from YTMusic playlist...")
+
+            try:
+                self.api.remove_playlist_items(playlistId, tracks)
+            except requests.exceptions.ReadTimeout:
+                if current_attempt < max_retries:
+                    time.sleep(2)
+                    print(
+                        f"Request timed out! Retrying ({current_attempt + 1}/{max_retries})..."
+                    )
+                    self.remove_songs(playlistId, max_retries, current_attempt + 1)
+                else:
+                    print("Max retries exhausted.")
+                    sys.exit(0)
+            except YTMusicServerError:
+                pass
 
     def remove_playlists(self, pattern):
         playlists = self.api.get_library_playlists(10000)
