@@ -33,7 +33,7 @@ class Spotify:
             auth = SpotifyOAuth(
                 client_id=client_id,
                 client_secret=client_secret,
-                redirect_uri="http://localhost",
+                redirect_uri="https://127.0.0.1",
                 scope="user-library-read",
                 cache_handler=cache_handler,
                 open_browser=has_browser(),
