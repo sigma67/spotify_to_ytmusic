@@ -1,4 +1,3 @@
-
 import pytest
 
 from spotify_to_ytmusic.spotify import Spotify
