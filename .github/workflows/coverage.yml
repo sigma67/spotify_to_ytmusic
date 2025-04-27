@@ -1,7 +1,12 @@
 name: Code coverage
 
 on:
-  push
+  pull_request:
+    branches:
+      - main
+    paths:
+      - spotify_to_ytmusic/**
+      - tests/**
 
 env:
   XDG_CACHE_HOME: .cache
