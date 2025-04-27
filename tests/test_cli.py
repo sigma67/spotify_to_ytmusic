@@ -2,6 +2,7 @@ import json
 import time
 import unittest
 from io import StringIO
+from pathlib import Path
 from unittest import mock
 
 from spotify_to_ytmusic import settings as settings_module
@@ -114,6 +115,7 @@ class TestCli(unittest.TestCase):
             mock.patch.object(setup, "DEFAULT_PATH", tmp_path),
             mock.patch("spotify_to_ytmusic.setup.has_browser", return_value=False),
             mock.patch.object(settings_module, "DEFAULT_PATH", tmp_path),
+            mock.patch.object(settings_module, "SPOTIPY_CACHE_FILE", Path("notexist")),
             mock.patch.object(Settings, "filepath", tmp_path),
         ):
             main()
@@ -126,6 +128,7 @@ class TestCli(unittest.TestCase):
         with (
             mock.patch("sys.argv", ["", "setup", "--file", EXAMPLE_PATH.as_posix()]),
             mock.patch.object(setup, "DEFAULT_PATH", tmp_path),
+            mock.patch.object(settings_module, "SPOTIPY_CACHE_FILE", Path("notexist")),
             mock.patch.object(settings_module, "DEFAULT_PATH", tmp_path),
         ):
             main()
