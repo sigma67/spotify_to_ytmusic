@@ -1,9 +1,13 @@
 name: Code coverage
 
 on:
-  pull_request:
+  push:
     branches:
       - main
+    paths:
+      - spotify_to_ytmusic/**
+      - tests/**
+  pull_request_target:
     paths:
       - spotify_to_ytmusic/**
       - tests/**
