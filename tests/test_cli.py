@@ -1,9 +1,10 @@
 import json
 import time
-import unittest
 from io import StringIO
 from pathlib import Path
 from unittest import mock
+
+import pytest
 
 from spotify_to_ytmusic import settings as settings_module
 from spotify_to_ytmusic import setup
@@ -14,24 +15,24 @@ TEST_PLAYLIST = "https://open.spotify.com/playlist/4UzyZJfSQ4584FaWGwepfL"
 TEST_SONG = "https://open.spotify.com/track/7bnczC5ATlZaZX0MHjX7KU?si=5a07bffaf6324717"
 
 
-class TestCli(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
+class TestCli:
+    @pytest.fixture(autouse=True)
+    def fixture_settings(self):
         Settings()
 
     def test_get_args(self):
         args = get_args(["all", "user"])
-        self.assertEqual(len(vars(args)), 6)
+        assert len(vars(args)) == 6
         args = get_args(["create", "playlist-link"])
-        self.assertEqual(len(vars(args)), 10)
+        assert len(vars(args)) == 10
         args = get_args(["update", "playlist-link", "playlist-name"])
-        self.assertEqual(len(vars(args)), 7)
+        assert len(vars(args)) == 7
         args = get_args(["liked"])
-        self.assertEqual(len(vars(args)), 9)
+        assert len(vars(args)) == 9
         args = get_args(["search", "link"])
-        self.assertEqual(len(vars(args)), 5)
+        assert len(vars(args)) == 5
         args = get_args(["setup"])
-        self.assertEqual(len(vars(args)), 4)
+        assert len(vars(args)) == 4
 
     def test_liked(self):
         with mock.patch(
@@ -89,7 +90,7 @@ class TestCli(unittest.TestCase):
 
         with mock.patch("sys.argv", ["", "search", TEST_SONG, "--use-cached"]):
             main()
-        self.assertTrue(cache_file.exists(), "Cache file was not created.")
+        assert cache_file.exists(), "Cache file was not created."
 
     def test_setup(self):
         tmp_path = DEFAULT_PATH.with_suffix(".tmp")
