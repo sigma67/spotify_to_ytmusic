@@ -1,5 +1,6 @@
-from spotify_to_ytmusic.spotify import extract_playlist_id_from_url
 import pytest
+
+from spotify_to_ytmusic.spotify import extract_playlist_id_from_url
 
 
 class TestParsing:

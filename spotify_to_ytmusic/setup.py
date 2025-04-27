@@ -2,7 +2,6 @@ import json
 import shutil
 import sys
 from pathlib import Path
-from typing import Optional
 
 import ytmusicapi
 from charset_normalizer.cli import query_yes_no
@@ -16,7 +15,7 @@ from spotify_to_ytmusic.settings import (
 from spotify_to_ytmusic.utils.browser import has_browser
 
 
-def setup(file: Optional[Path] = None):
+def setup(file: Path | None = None):
     if file:
         shutil.copy(file, DEFAULT_PATH)
         return

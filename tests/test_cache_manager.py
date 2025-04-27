@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pytest
 from platformdirs import user_cache_dir
+
 from spotify_to_ytmusic.utils.cache_manager import CacheManager
 
 

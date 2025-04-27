@@ -1,8 +1,7 @@
 import difflib
-from typing import Optional
 
 
-def get_best_fit_song_id(ytm_results, spoti) -> Optional[str]:
+def get_best_fit_song_id(ytm_results, spoti) -> str | None:
     """
     Find the best match for track spoti in a list of ytmusicapi results
 
