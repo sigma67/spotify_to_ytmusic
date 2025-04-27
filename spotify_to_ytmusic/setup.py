@@ -7,10 +7,10 @@ from typing import Optional
 import ytmusicapi
 from charset_normalizer.cli import query_yes_no
 
+import spotify_to_ytmusic.settings as settings_module
 from spotify_to_ytmusic.settings import (
     DEFAULT_PATH,
     EXAMPLE_PATH,
-    SPOTIPY_CACHE_FILE,
     Settings,
 )
 from spotify_to_ytmusic.utils.browser import has_browser
@@ -98,6 +98,6 @@ def setup_spotify():
     settings["spotify"].update(credentials)
 
     # remove Spotipy cache file to prevent issues when a second account is set up
-    SPOTIPY_CACHE_FILE.unlink(missing_ok=True)
+    settings_module.SPOTIPY_CACHE_FILE.unlink(missing_ok=True)
 
     settings.save()
