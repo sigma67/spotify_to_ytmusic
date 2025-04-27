@@ -24,7 +24,7 @@ class TestCli(unittest.TestCase):
         args = get_args(["create", "playlist-link"])
         self.assertEqual(len(vars(args)), 10)
         args = get_args(["update", "playlist-link", "playlist-name"])
-        self.assertEqual(len(vars(args)), 7)
+        self.assertEqual(len(vars(args)), 8)
         args = get_args(["liked"])
         self.assertEqual(len(vars(args)), 9)
         args = get_args(["search", "link"])
@@ -74,6 +74,20 @@ class TestCli(unittest.TestCase):
             assert (
                 int(fakeOutput.getvalue().splitlines()[-1][0]) >= 2
             )  # assert number of lines deleted
+
+    def test_update(self):
+        with mock.patch(
+            "sys.argv",
+            [
+                "",
+                "update",
+                TEST_PLAYLIST,
+                "spotify_to_ytmusic",
+                "--append",
+                "--remove-extra",
+            ],
+        ):
+            main()
 
     def test_search(self):
         with mock.patch("sys.argv", ["", "search", TEST_SONG]):
