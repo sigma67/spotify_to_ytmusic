@@ -67,7 +67,7 @@ class TestCli(unittest.TestCase):
 
         time.sleep(2)
         with (
-            mock.patch("sys.argv", ["", "remove", "spotify\_to\_ytmusic"]),
+            mock.patch("sys.argv", ["", "remove", r"spotify\_to\_ytmusic"]),
             mock.patch("sys.stdout", new=StringIO()) as fakeOutput,
             mock.patch("builtins.input", side_effect="y"),
         ):
