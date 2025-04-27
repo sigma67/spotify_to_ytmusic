@@ -9,7 +9,7 @@ import pytest
 from spotify_to_ytmusic import settings as settings_module
 from spotify_to_ytmusic import setup
 from spotify_to_ytmusic.main import get_args, main
-from spotify_to_ytmusic.settings import DEFAULT_PATH, EXAMPLE_PATH, CACHE_DIR, Settings
+from spotify_to_ytmusic.settings import CACHE_DIR, DEFAULT_PATH, EXAMPLE_PATH, Settings
 
 TEST_PLAYLIST = "https://open.spotify.com/playlist/4UzyZJfSQ4584FaWGwepfL"
 TEST_SONG = "https://open.spotify.com/track/7bnczC5ATlZaZX0MHjX7KU?si=5a07bffaf6324717"

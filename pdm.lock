@@ -5,10 +5,10 @@
 groups = ["default", "lint", "test"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:b07130069fa59988fe2249eb9dd81358d6ca46e65372501d4ce7b13be75d8205"
+content_hash = "sha256:1cfa39be805c053f35001d4649f1992ec9bc797b2de9662717df608de1d21a24"
 
 [[metadata.targets]]
-requires_python = ">=3.9"
+requires_python = ">=3.10"
 
 [[package]]
 name = "async-timeout"
@@ -625,14 +625,14 @@ files = [
 
 [[package]]
 name = "ytmusicapi"
-version = "1.10.0"
-requires_python = ">=3.9"
+version = "1.11.0rc1"
+requires_python = ">=3.10"
 summary = "Unofficial API for YouTube Music"
 groups = ["default"]
 dependencies = [
     "requests>=2.22",
 ]
 files = [
-    {file = "ytmusicapi-1.10.0-py3-none-any.whl", hash = "sha256:2f5f0f5079769bfd08e19c464e074e62dd6d1551a93ca6dfe7996d24d754dc8a"},
-    {file = "ytmusicapi-1.10.0.tar.gz", hash = "sha256:7a5492b0b9b053f04e93e79fe0afaee46c2d47d9449450cbde4a5b079c7f5edf"},
+    {file = "ytmusicapi-1.11.0rc1-py3-none-any.whl", hash = "sha256:dfd5fcb6d561cd006526d9b775b96492fb343c992034c2bcd10e55fe59175a2f"},
+    {file = "ytmusicapi-1.11.0rc1.tar.gz", hash = "sha256:f041b2c103323ef086021b1b7f79681fc5ae5bc5c9354dfc91c9018d1ccac85c"},
 ]

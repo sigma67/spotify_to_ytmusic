@@ -1,6 +1,5 @@
 import configparser
 from pathlib import Path
-from typing import Optional
 
 import platformdirs
 
@@ -18,7 +17,7 @@ class Settings:
     config: configparser.ConfigParser
     filepath: Path = DEFAULT_PATH
 
-    def __init__(self, filepath: Optional[Path] = None):
+    def __init__(self, filepath: Path | None = None):
         self.config = configparser.ConfigParser(interpolation=None)
         if filepath:
             self.filepath = filepath

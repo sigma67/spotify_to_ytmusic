@@ -1,6 +1,6 @@
 import html
-import string
 import re
+import string
 
 import spotipy
 from spotipy import CacheFileHandler

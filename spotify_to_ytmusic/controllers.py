@@ -54,7 +54,7 @@ def all(args):
                     ytmusic.rate_song(id, "LIKE")
             _print_success(p["name"], playlist_id)
         except Exception as ex:
-            print(f"Could not transfer playlist {p['name']}. {str(ex)}")
+            print(f"Could not transfer playlist {p['name']}. {ex!s}")
 
 
 def _create_ytmusic(args, playlist, ytmusic):

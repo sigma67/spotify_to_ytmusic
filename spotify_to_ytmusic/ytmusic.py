@@ -1,16 +1,13 @@
-import os
 import re
 from collections import OrderedDict
+from pathlib import Path
 
 from ytmusicapi import YTMusic
 from ytmusicapi.auth.oauth import OAuthCredentials
 
-from spotify_to_ytmusic.utils.match import get_best_fit_song_id
 from spotify_to_ytmusic.settings import Settings
-
 from spotify_to_ytmusic.utils.cache_manager import CacheManager
-
-path = os.path.dirname(os.path.realpath(__file__)) + os.sep
+from spotify_to_ytmusic.utils.match import get_best_fit_song_id
 
 cacheManager = CacheManager()
 
@@ -74,7 +71,7 @@ class YTMusicTransfer:
             if i > 0 and i % 10 == 0:
                 print(f"YouTube tracks: {i}/{len(songs)}")
 
-        with open(path + "noresults_youtube.txt", "w", encoding="utf-8") as f:
+        with open(Path.cwd() / "noresults_youtube.txt", "w", encoding="utf-8") as f:
             f.write("\n".join(notFound))
             f.write("\n")
             f.close()
@@ -100,7 +97,7 @@ class YTMusicTransfer:
 
     def remove_playlists(self, pattern):
         playlists = self.api.get_library_playlists(10000)
-        p = re.compile("{0}".format(pattern))
+        p = re.compile(f"{pattern}")
         matches = [pl for pl in playlists if p.match(pl["title"])]
         print("The following playlists will be removed:")
         print("\n".join([pl["title"] for pl in matches]))

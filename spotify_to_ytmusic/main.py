@@ -1,9 +1,9 @@
 import argparse
+import importlib.metadata
 import sys
 from pathlib import Path
 
 from spotify_to_ytmusic import controllers
-import importlib.metadata
 
 
 class NewlineVersionAction(argparse.Action):
