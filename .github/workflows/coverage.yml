@@ -24,8 +24,8 @@ jobs:
         SETTINGS_INI: ${{ secrets.SETTINGS_INI }}
         SPOTIPY_CACHE: ${{ secrets.SPOTIPY_CACHE }}
       run: |
-        cat <<< "$SETTINGS_INI" > spotify_to_ytmusic/settings.ini
         mkdir -p $XDG_CACHE_HOME/spotify_to_ytmusic
+        cat <<< "$SETTINGS_INI" > $XDG_CACHE_HOME/spotify_to_ytmusic/settings.ini
         cat <<< "$SPOTIPY_CACHE" > $XDG_CACHE_HOME/spotify_to_ytmusic/spotipy.cache
         pdm run coverage run
         pdm run coverage xml
