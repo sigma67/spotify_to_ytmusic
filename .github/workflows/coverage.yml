@@ -27,11 +27,18 @@ jobs:
         mkdir -p $XDG_CACHE_HOME/spotify_to_ytmusic
         cat <<< "$SETTINGS_INI" > $XDG_CACHE_HOME/spotify_to_ytmusic/settings.ini
         cat <<< "$SPOTIPY_CACHE" > $XDG_CACHE_HOME/spotify_to_ytmusic/spotipy.cache
-        pdm run coverage run
+        pdm run pytest --junitxml=test-results.xml
         pdm run coverage xml
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v5
+      if: ${{ !cancelled() }}
       with:
         flags: unittests
         fail_ci_if_error: true
         token: ${{ secrets.CODECOV_TOKEN }}
+    - name: Upload test results to Codecov
+      if: ${{ !cancelled() }}
+      uses: codecov/test-results-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: test-results.xml
