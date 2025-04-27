@@ -42,18 +42,15 @@ include-package-data=false
 [tool.setuptools.package-data]
 "*" = ["**.example", "**.py"]
 
-[tool.isort]
-profile = "hug"
-src_paths = ["spotify_to_ytmusic"]
 
-[tool.black]
-line-length = 99
+###############
+# DEVELOPMENT #
+###############
 
-[tool.coverage.run]
-command_line = "-m unittest discover tests"
-
-[tool.pdm]
-distribution = true
+[tool.pytest.ini_options]
+python_functions = "test_*"
+testpaths = ["tests"]
+addopts = "--verbose --cov --junitxml=junit.xml"
 
 [tool.mypy]
 files = [
@@ -67,7 +64,8 @@ ignore_missing_imports = true
 
 [dependency-groups]
 test = [
-    "coverage>=7.5.3"
+    "pytest>=7.4.4",
+    "pytest-cov>=4.1.0",
 ]
 lint = [
     "ruff>=0.9.2",
