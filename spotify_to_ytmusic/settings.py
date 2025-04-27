@@ -1,6 +1,4 @@
 import configparser
-import shutil
-import warnings
 from pathlib import Path
 from typing import Optional
 
@@ -11,8 +9,9 @@ CACHE_DIR = Path(
         appname="spotify_to_ytmusic", appauthor=False, ensure_exists=True
     )
 )
-DEFAULT_PATH = CACHE_DIR.joinpath("settings.ini")
-EXAMPLE_PATH = Path(__file__).parent.joinpath("settings.ini.example")
+SPOTIPY_CACHE_FILE = CACHE_DIR / "spotipy.cache"
+DEFAULT_PATH = CACHE_DIR / "settings.ini"
+EXAMPLE_PATH = Path(__file__).parent / "settings.ini.example"
 
 
 class Settings:
@@ -24,14 +23,9 @@ class Settings:
         if filepath:
             self.filepath = filepath
         if not self.filepath.is_file():
-            try:
-                # Migration path for pre 0.3.0
-                shutil.copy(EXAMPLE_PATH.with_suffix(""), DEFAULT_PATH)
-                warnings.warn(f"Moved {filepath} to {DEFAULT_PATH}", DeprecationWarning)
-            except Exception:
-                raise FileNotFoundError(
-                    "No settings.ini found! Please run \n\n spotify_to_ytmusic setup"
-                )
+            raise FileNotFoundError(
+                "No settings.ini found! Please run \n\n spotify_to_ytmusic setup"
+            )
         self.config.read(self.filepath)
 
     def __getitem__(self, key):

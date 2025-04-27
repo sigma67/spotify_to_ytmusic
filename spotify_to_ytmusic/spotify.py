@@ -6,7 +6,7 @@ import spotipy
 from spotipy import CacheFileHandler
 from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 
-from spotify_to_ytmusic.settings import CACHE_DIR, Settings
+from spotify_to_ytmusic.settings import SPOTIPY_CACHE_FILE, Settings
 from spotify_to_ytmusic.utils.browser import has_browser
 
 
@@ -26,9 +26,7 @@ class Spotify:
 
         use_oauth = conf.getboolean("use_oauth")
 
-        cache_handler = CacheFileHandler(
-            cache_path=CACHE_DIR.joinpath("spotipy.cache").as_posix()
-        )
+        cache_handler = CacheFileHandler(cache_path=SPOTIPY_CACHE_FILE.as_posix())
         if use_oauth:
             auth = SpotifyOAuth(
                 client_id=client_id,
