@@ -47,6 +47,7 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
+junit.xml
 
 # Translations
 *.mo
@@ -111,6 +112,12 @@ noresults.txt
 *.ini
 *.txt
 *.json
+!tests/mock_fixtures/mocked_get_large_playlist_items_response_page_2.json
+!tests/mock_fixtures/mocked_get_large_playlist_items_response_page_3.json
+!tests/mock_fixtures/mocked_get_large_playlist_response.json
+!tests/mock_fixtures/mocked_get_playlist_response.json
+!tests/mock_fixtures/mocked_ytm_oauth.json
+!tests/mock_fixtures/mocked_get_user_playlists_response.json
 
 #PDM
 .pdm-python

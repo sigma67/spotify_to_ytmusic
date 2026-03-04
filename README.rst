@@ -76,7 +76,7 @@ After you've completed setup, you can simply run the script from the command lin
 
     spotify_to_ytmusic create <spotifylink>
 
-where ``<spotifylink>`` is a link like https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M
+where ``<spotifylink>`` is a link like https://open.spotify.com/playlist/0S0cuX8pnvmF7gA47Eu63M that belongs to the **USER**. Due to the recent `Spotify API Changes <https://developer.spotify.com/blog/2026-02-06-update-on-developer-access-and-platform-security>`_ as of February 11, 2025, accessing tracks from public playlists not owned by the user is no longer possible.
 
 The script will log its progress and output songs that were not found in YouTube Music to **noresults_youtube.txt**.
 
@@ -130,6 +130,5 @@ Available subcommands:
         update              Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.
         remove              Remove playlists with specified regex pattern.
         all                 Transfer all public playlists of the specified user (Spotify User ID).
-
     options:
       -h, --help            show this help message and exit

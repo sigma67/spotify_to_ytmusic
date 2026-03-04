@@ -14,11 +14,30 @@ from spotify_to_ytmusic.settings import CACHE_DIR, DEFAULT_PATH, EXAMPLE_PATH, S
 TEST_PLAYLIST = "https://open.spotify.com/playlist/4UzyZJfSQ4584FaWGwepfL"
 TEST_SONG = "https://open.spotify.com/track/7bnczC5ATlZaZX0MHjX7KU?si=5a07bffaf6324717"
 
-
 class TestCli:
     @pytest.fixture(autouse=True)
     def fixture_settings(self):
         Settings()
+    
+    @pytest.fixture
+    def oauth_renew_credentials_json(self):
+        mocked_playlist_response_path = Path(__file__).parent / "mock_fixtures" / "mocked_ytm_oauth.json"
+        with mocked_playlist_response_path.open() as f:
+            return json.load(f)
+    
+    @pytest.fixture
+    def spotify_playlist_json(self):
+        mocked_playlist_response_path = Path(__file__).parent / "mock_fixtures" / "mocked_get_playlist_response.json"
+        with mocked_playlist_response_path.open() as f:
+            return json.load(f)
+
+    @pytest.fixture(scope="function")
+    def mock_spotify_api_playlist(self, spotify_playlist_json):
+        with mock.patch("spotify_to_ytmusic.spotify.spotipy.Spotify") as MockSpotipy:
+            mock_client = MockSpotipy.return_value
+            mock_client.playlist.return_value = spotify_playlist_json
+
+            yield mock_client
 
     def test_get_args(self):
         args = get_args(["all", "user"])
@@ -41,10 +60,7 @@ class TestCli:
         ):
             main()
 
-    def test_create(self):
-        with mock.patch("sys.argv", ["", "all", "sigmatics"]):
-            main()
-
+    def test_create(self, mock_spotify_api_playlist):
         with mock.patch(
             "sys.argv",
             [
@@ -92,7 +108,7 @@ class TestCli:
             main()
         assert cache_file.exists(), "Cache file was not created."
 
-    def test_setup(self):
+    def test_setup(self, oauth_renew_credentials_json):
         tmp_path = DEFAULT_PATH.with_suffix(".tmp")
         settings = Settings()
         with (
@@ -111,7 +127,7 @@ class TestCli:
             ),
             mock.patch(
                 "ytmusicapi.auth.oauth.credentials.OAuthCredentials.token_from_code",
-                return_value=json.loads(settings["youtube"]["headers"]),
+                return_value=oauth_renew_credentials_json,
             ),
             mock.patch.object(setup, "DEFAULT_PATH", tmp_path),
             mock.patch("spotify_to_ytmusic.setup.has_browser", return_value=False),

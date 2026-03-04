@@ -545,7 +545,7 @@ files = [
 
 [[package]]
 name = "spotipy"
-version = "2.25.0"
+version = "2.26.0"
 requires_python = ">3.8"
 summary = "A light weight Python library for the Spotify Web API"
 groups = ["default"]

@@ -1,0 +1,228 @@
+{
+  "collaborative": false,
+  "description": "",
+  "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/fakeId"
+  },
+  "followers": {
+    "href": null,
+    "total": 0
+  },
+  "href": "https://api.spotify.com/v1/playlists/fakeId",
+  "id": "fakeId",
+  "images": [
+    {
+      "height": null,
+      "url": "https://i.scdn.co/image/ab67616d00001e02330890d356d9d8d0ede65b73",
+      "width": null
+    }
+  ],
+  "name": "test playlist",
+  "owner": {
+    "display_name": "testUser",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/testUser"
+    },
+    "href": "https://api.spotify.com/v1/users/testUser",
+    "id": "testUser",
+    "type": "user",
+    "uri": "spotify:user:testUser"
+  },
+  "primary_color": null,
+  "public": true,
+  "snapshot_id": "AAAAA/someId",
+  "items": {
+    "href": "https://api.spotify.com/v1/playlists/fakeId/items?offset=0&limit=100",
+    "items": [
+      {
+        "added_at": "2021-05-18T04:15:56Z",
+        "added_by": {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/testUser"
+          },
+          "href": "https://api.spotify.com/v1/users/testUser",
+          "id": "testUser",
+          "type": "user",
+          "uri": "spotify:user:testUser"
+        },
+        "is_local": false,
+        "primary_color": null,
+        "item": {
+          "is_playable": true,
+          "explicit": false,
+          "type": "track",
+          "episode": false,
+          "track": true,
+          "album": {
+            "is_playable": true,
+            "type": "album",
+            "album_type": "single",
+            "href": "https://api.spotify.com/v1/albums/1ooVF2ZgjNBCHiIgHCIRh4",
+            "id": "1ooVF2ZgjNBCHiIgHCIRh4",
+            "images": [
+              {
+                "url": "https://i.scdn.co/image/ab67616d0000b273330890d356d9d8d0ede65b73",
+                "width": 640,
+                "height": 640
+              },
+              {
+                "url": "https://i.scdn.co/image/ab67616d00001e02330890d356d9d8d0ede65b73",
+                "width": 300,
+                "height": 300
+              },
+              {
+                "url": "https://i.scdn.co/image/ab67616d00004851330890d356d9d8d0ede65b73",
+                "width": 64,
+                "height": 64
+              }
+            ],
+            "name": "BAD BOY",
+            "release_date": "2020-10-30",
+            "release_date_precision": "day",
+            "uri": "spotify:album:1ooVF2ZgjNBCHiIgHCIRh4",
+            "artists": [
+              {
+                "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/1QsdzIKkTT5gDFj8GB1cIX"
+                },
+                "href": "https://api.spotify.com/v1/artists/1QsdzIKkTT5gDFj8GB1cIX",
+                "id": "1QsdzIKkTT5gDFj8GB1cIX",
+                "name": "Yseult",
+                "type": "artist",
+                "uri": "spotify:artist:1QsdzIKkTT5gDFj8GB1cIX"
+              }
+            ],
+            "external_urls": {
+              "spotify": "https://open.spotify.com/album/1ooVF2ZgjNBCHiIgHCIRh4"
+            },
+            "total_tracks": 1
+          },
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/1QsdzIKkTT5gDFj8GB1cIX"
+              },
+              "href": "https://api.spotify.com/v1/artists/1QsdzIKkTT5gDFj8GB1cIX",
+              "id": "1QsdzIKkTT5gDFj8GB1cIX",
+              "name": "Yseult",
+              "type": "artist",
+              "uri": "spotify:artist:1QsdzIKkTT5gDFj8GB1cIX"
+            }
+          ],
+          "disc_number": 1,
+          "track_number": 1,
+          "duration_ms": 274520,
+          "external_urls": {
+            "spotify": "https://open.spotify.com/track/2gJuY2L6eCxAfIXdXAWtm5"
+          },
+          "href": "https://api.spotify.com/v1/tracks/2gJuY2L6eCxAfIXdXAWtm5",
+          "id": "2gJuY2L6eCxAfIXdXAWtm5",
+          "name": "BAD BOY",
+          "uri": "spotify:track:2gJuY2L6eCxAfIXdXAWtm5",
+          "is_local": false
+        },
+        "video_thumbnail": {
+          "url": null
+        }
+      },
+      {
+        "added_at": "2021-05-28T04:08:50Z",
+        "added_by": {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/testUser"
+          },
+          "href": "https://api.spotify.com/v1/users/testUser",
+          "id": "testUser",
+          "type": "user",
+          "uri": "spotify:user:testUser"
+        },
+        "is_local": false,
+        "primary_color": null,
+        "item": {
+          "is_playable": true,
+          "explicit": false,
+          "type": "track",
+          "episode": false,
+          "track": true,
+          "album": {
+            "is_playable": true,
+            "type": "album",
+            "album_type": "single",
+            "href": "https://api.spotify.com/v1/albums/0FAWfXvd58Rm2VUSZMF8pr",
+            "id": "0FAWfXvd58Rm2VUSZMF8pr",
+            "images": [
+              {
+                "url": "https://i.scdn.co/image/ab67616d0000b27335d8be841e9f7f777fbca446",
+                "width": 640,
+                "height": 640
+              },
+              {
+                "url": "https://i.scdn.co/image/ab67616d00001e0235d8be841e9f7f777fbca446",
+                "width": 300,
+                "height": 300
+              },
+              {
+                "url": "https://i.scdn.co/image/ab67616d0000485135d8be841e9f7f777fbca446",
+                "width": 64,
+                "height": 64
+              }
+            ],
+            "name": "Cayendo (Side A - Acoustic)",
+            "release_date": "2020-04-03",
+            "release_date_precision": "day",
+            "uri": "spotify:album:0FAWfXvd58Rm2VUSZMF8pr",
+            "artists": [
+              {
+                "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/2h93pZq0e7k5yf4dywlkpM"
+                },
+                "href": "https://api.spotify.com/v1/artists/2h93pZq0e7k5yf4dywlkpM",
+                "id": "2h93pZq0e7k5yf4dywlkpM",
+                "name": "Frank Ocean",
+                "type": "artist",
+                "uri": "spotify:artist:2h93pZq0e7k5yf4dywlkpM"
+              }
+            ],
+            "external_urls": {
+              "spotify": "https://open.spotify.com/album/0FAWfXvd58Rm2VUSZMF8pr"
+            },
+            "total_tracks": 1
+          },
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/2h93pZq0e7k5yf4dywlkpM"
+              },
+              "href": "https://api.spotify.com/v1/artists/2h93pZq0e7k5yf4dywlkpM",
+              "id": "2h93pZq0e7k5yf4dywlkpM",
+              "name": "Frank Ocean",
+              "type": "artist",
+              "uri": "spotify:artist:2h93pZq0e7k5yf4dywlkpM"
+            }
+          ],
+          "disc_number": 1,
+          "track_number": 1,
+          "duration_ms": 202200,
+          "external_urls": {
+            "spotify": "https://open.spotify.com/track/72794Eag03xdy7TO0KNuid"
+          },
+          "href": "https://api.spotify.com/v1/tracks/72794Eag03xdy7TO0KNuid",
+          "id": "72794Eag03xdy7TO0KNuid",
+          "name": "Cayendo (Side A - Acoustic)",
+          "uri": "spotify:track:72794Eag03xdy7TO0KNuid",
+          "is_local": false
+        },
+        "video_thumbnail": {
+          "url": null
+        }
+      }
+    ],
+    "limit": 100,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total": 2
+  },
+  "type": "playlist",
+  "uri": "spotify:playlist:1cZcQPw6waAknbQ7ZKQT63"
+}

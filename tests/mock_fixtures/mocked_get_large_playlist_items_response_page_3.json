@@ -1,0 +1,3484 @@
+{
+  "href": "https://api.spotify.com/v1/playlists/testId/items?offset=200&limit=100",
+  "items": [
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/26oYqQO1MNxFLMfPttGRSS",
+          "id": "26oYqQO1MNxFLMfPttGRSS",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273abca63817c6931c674348a4d",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02abca63817c6931c674348a4d",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851abca63817c6931c674348a4d",
+              "width": 64
+            }
+          ],
+          "name": "Forbidden Voices",
+          "release_date": "2015-02-23",
+          "release_date_precision": "day",
+          "uri": "spotify:album:26oYqQO1MNxFLMfPttGRSS",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/26oYqQO1MNxFLMfPttGRSS"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 230634,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/2BF1X5nkYYSb0AUTRaGkDm"
+        },
+        "href": "https://api.spotify.com/v1/tracks/2BF1X5nkYYSb0AUTRaGkDm",
+        "id": "2BF1X5nkYYSb0AUTRaGkDm",
+        "name": "Forbidden Voices",
+        "uri": "spotify:track:2BF1X5nkYYSb0AUTRaGkDm",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/5kLRzKHClRO3TX5LeSzljZ",
+          "id": "5kLRzKHClRO3TX5LeSzljZ",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b27317d5a6bee8c363972c743b7f",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e0217d5a6bee8c363972c743b7f",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d0000485117d5a6bee8c363972c743b7f",
+              "width": 64
+            }
+          ],
+          "name": "Virus (How About Now)",
+          "release_date": "2014-10-27",
+          "release_date_precision": "day",
+          "uri": "spotify:album:5kLRzKHClRO3TX5LeSzljZ",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/1vo8zHmO1KzkuU9Xxh6J7W"
+              },
+              "href": "https://api.spotify.com/v1/artists/1vo8zHmO1KzkuU9Xxh6J7W",
+              "id": "1vo8zHmO1KzkuU9Xxh6J7W",
+              "name": "MOTi",
+              "type": "artist",
+              "uri": "spotify:artist:1vo8zHmO1KzkuU9Xxh6J7W"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/5kLRzKHClRO3TX5LeSzljZ"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1vo8zHmO1KzkuU9Xxh6J7W"
+            },
+            "href": "https://api.spotify.com/v1/artists/1vo8zHmO1KzkuU9Xxh6J7W",
+            "id": "1vo8zHmO1KzkuU9Xxh6J7W",
+            "name": "MOTi",
+            "type": "artist",
+            "uri": "spotify:artist:1vo8zHmO1KzkuU9Xxh6J7W"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 198077,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/5ZnzVZrSja6miEOxZIV8Q6"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5ZnzVZrSja6miEOxZIV8Q6",
+        "id": "5ZnzVZrSja6miEOxZIV8Q6",
+        "name": "Virus (How About Now)",
+        "uri": "spotify:track:5ZnzVZrSja6miEOxZIV8Q6",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "album",
+          "href": "https://api.spotify.com/v1/albums/4RSvuzDzXPyWK0qKWn8nQl",
+          "id": "4RSvuzDzXPyWK0qKWn8nQl",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b2733f46bdec7bc4a8602cb828ba",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e023f46bdec7bc4a8602cb828ba",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d000048513f46bdec7bc4a8602cb828ba",
+              "width": 64
+            }
+          ],
+          "name": "Money Sucks, Friends Rule (10 Year Remix Album)",
+          "release_date": "2024-10-18",
+          "release_date_precision": "day",
+          "uri": "spotify:album:4RSvuzDzXPyWK0qKWn8nQl",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5R3Hr2cnCCjt220Jmt2xLf"
+              },
+              "href": "https://api.spotify.com/v1/artists/5R3Hr2cnCCjt220Jmt2xLf",
+              "id": "5R3Hr2cnCCjt220Jmt2xLf",
+              "name": "Dillon Francis",
+              "type": "artist",
+              "uri": "spotify:artist:5R3Hr2cnCCjt220Jmt2xLf"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/4RSvuzDzXPyWK0qKWn8nQl"
+          },
+          "total_tracks": 8
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5R3Hr2cnCCjt220Jmt2xLf"
+            },
+            "href": "https://api.spotify.com/v1/artists/5R3Hr2cnCCjt220Jmt2xLf",
+            "id": "5R3Hr2cnCCjt220Jmt2xLf",
+            "name": "Dillon Francis",
+            "type": "artist",
+            "uri": "spotify:artist:5R3Hr2cnCCjt220Jmt2xLf"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 2,
+        "duration_ms": 196118,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/4DTz0SsUbgqO4Rzc4IBGvt"
+        },
+        "href": "https://api.spotify.com/v1/tracks/4DTz0SsUbgqO4Rzc4IBGvt",
+        "id": "4DTz0SsUbgqO4Rzc4IBGvt",
+        "name": "Set Me Free - Dillon Francis VIP",
+        "uri": "spotify:track:4DTz0SsUbgqO4Rzc4IBGvt",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "album",
+          "href": "https://api.spotify.com/v1/albums/4RSvuzDzXPyWK0qKWn8nQl",
+          "id": "4RSvuzDzXPyWK0qKWn8nQl",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b2733f46bdec7bc4a8602cb828ba",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e023f46bdec7bc4a8602cb828ba",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d000048513f46bdec7bc4a8602cb828ba",
+              "width": 64
+            }
+          ],
+          "name": "Money Sucks, Friends Rule (10 Year Remix Album)",
+          "release_date": "2024-10-18",
+          "release_date_precision": "day",
+          "uri": "spotify:album:4RSvuzDzXPyWK0qKWn8nQl",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5R3Hr2cnCCjt220Jmt2xLf"
+              },
+              "href": "https://api.spotify.com/v1/artists/5R3Hr2cnCCjt220Jmt2xLf",
+              "id": "5R3Hr2cnCCjt220Jmt2xLf",
+              "name": "Dillon Francis",
+              "type": "artist",
+              "uri": "spotify:artist:5R3Hr2cnCCjt220Jmt2xLf"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/4RSvuzDzXPyWK0qKWn8nQl"
+          },
+          "total_tracks": 8
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5R3Hr2cnCCjt220Jmt2xLf"
+            },
+            "href": "https://api.spotify.com/v1/artists/5R3Hr2cnCCjt220Jmt2xLf",
+            "id": "5R3Hr2cnCCjt220Jmt2xLf",
+            "name": "Dillon Francis",
+            "type": "artist",
+            "uri": "spotify:artist:5R3Hr2cnCCjt220Jmt2xLf"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/2vUCVkeZjzDcaoX4gagHdV"
+            },
+            "href": "https://api.spotify.com/v1/artists/2vUCVkeZjzDcaoX4gagHdV",
+            "id": "2vUCVkeZjzDcaoX4gagHdV",
+            "name": "Julian Jordan",
+            "type": "artist",
+            "uri": "spotify:artist:2vUCVkeZjzDcaoX4gagHdV"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 5,
+        "duration_ms": 169870,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/1MD4DLMnVk1E6CHQk1a5r2"
+        },
+        "href": "https://api.spotify.com/v1/tracks/1MD4DLMnVk1E6CHQk1a5r2",
+        "id": "1MD4DLMnVk1E6CHQk1a5r2",
+        "name": "Set Me Free - Julian Jordan Remix",
+        "uri": "spotify:track:1MD4DLMnVk1E6CHQk1a5r2",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/5sjOxT8Pln6BdtGaRHjPGN",
+          "id": "5sjOxT8Pln6BdtGaRHjPGN",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273b0f12a0c6ebea6ccd2c3a5e5",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02b0f12a0c6ebea6ccd2c3a5e5",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851b0f12a0c6ebea6ccd2c3a5e5",
+              "width": 64
+            }
+          ],
+          "name": "Set Me Free",
+          "release_date": "2014-10-07",
+          "release_date_precision": "day",
+          "uri": "spotify:album:5sjOxT8Pln6BdtGaRHjPGN",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5R3Hr2cnCCjt220Jmt2xLf"
+              },
+              "href": "https://api.spotify.com/v1/artists/5R3Hr2cnCCjt220Jmt2xLf",
+              "id": "5R3Hr2cnCCjt220Jmt2xLf",
+              "name": "Dillon Francis",
+              "type": "artist",
+              "uri": "spotify:artist:5R3Hr2cnCCjt220Jmt2xLf"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/5sjOxT8Pln6BdtGaRHjPGN"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5R3Hr2cnCCjt220Jmt2xLf"
+            },
+            "href": "https://api.spotify.com/v1/artists/5R3Hr2cnCCjt220Jmt2xLf",
+            "id": "5R3Hr2cnCCjt220Jmt2xLf",
+            "name": "Dillon Francis",
+            "type": "artist",
+            "uri": "spotify:artist:5R3Hr2cnCCjt220Jmt2xLf"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 247360,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/0r5EDdtVbAhXW988ZsLQnd"
+        },
+        "href": "https://api.spotify.com/v1/tracks/0r5EDdtVbAhXW988ZsLQnd",
+        "id": "0r5EDdtVbAhXW988ZsLQnd",
+        "name": "Set Me Free",
+        "uri": "spotify:track:0r5EDdtVbAhXW988ZsLQnd",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/6WAiRWtxdokJgZiFqh1V6R",
+          "id": "6WAiRWtxdokJgZiFqh1V6R",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273cd8a699d934d94930c4b2d35",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02cd8a699d934d94930c4b2d35",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851cd8a699d934d94930c4b2d35",
+              "width": 64
+            }
+          ],
+          "name": "Gold Skies",
+          "release_date": "2014-06-06",
+          "release_date_precision": "day",
+          "uri": "spotify:album:6WAiRWtxdokJgZiFqh1V6R",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/22bukBZvUppuwQwmDz75Gz"
+              },
+              "href": "https://api.spotify.com/v1/artists/22bukBZvUppuwQwmDz75Gz",
+              "id": "22bukBZvUppuwQwmDz75Gz",
+              "name": "Sander van Doorn",
+              "type": "artist",
+              "uri": "spotify:artist:22bukBZvUppuwQwmDz75Gz"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5X4LWwbUFNzPkEas04uU82"
+              },
+              "href": "https://api.spotify.com/v1/artists/5X4LWwbUFNzPkEas04uU82",
+              "id": "5X4LWwbUFNzPkEas04uU82",
+              "name": "DVBBS",
+              "type": "artist",
+              "uri": "spotify:artist:5X4LWwbUFNzPkEas04uU82"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/6WAiRWtxdokJgZiFqh1V6R"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/22bukBZvUppuwQwmDz75Gz"
+            },
+            "href": "https://api.spotify.com/v1/artists/22bukBZvUppuwQwmDz75Gz",
+            "id": "22bukBZvUppuwQwmDz75Gz",
+            "name": "Sander van Doorn",
+            "type": "artist",
+            "uri": "spotify:artist:22bukBZvUppuwQwmDz75Gz"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5X4LWwbUFNzPkEas04uU82"
+            },
+            "href": "https://api.spotify.com/v1/artists/5X4LWwbUFNzPkEas04uU82",
+            "id": "5X4LWwbUFNzPkEas04uU82",
+            "name": "DVBBS",
+            "type": "artist",
+            "uri": "spotify:artist:5X4LWwbUFNzPkEas04uU82"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1KV1BqrUpebQPqVU2r89xc"
+            },
+            "href": "https://api.spotify.com/v1/artists/1KV1BqrUpebQPqVU2r89xc",
+            "id": "1KV1BqrUpebQPqVU2r89xc",
+            "name": "Aleesia",
+            "type": "artist",
+            "uri": "spotify:artist:1KV1BqrUpebQPqVU2r89xc"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 235327,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/1opkP7MsGYWprn3Z7j53At"
+        },
+        "href": "https://api.spotify.com/v1/tracks/1opkP7MsGYWprn3Z7j53At",
+        "id": "1opkP7MsGYWprn3Z7j53At",
+        "name": "Gold Skies",
+        "uri": "spotify:track:1opkP7MsGYWprn3Z7j53At",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/4RzfNzvOUfjQqW63TI9wgS",
+          "id": "4RzfNzvOUfjQqW63TI9wgS",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273a8e83e9fe938779f21f50372",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02a8e83e9fe938779f21f50372",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851a8e83e9fe938779f21f50372",
+              "width": 64
+            }
+          ],
+          "name": "Gold Skies (The Remixes Part 1)",
+          "release_date": "2014-09-22",
+          "release_date_precision": "day",
+          "uri": "spotify:album:4RzfNzvOUfjQqW63TI9wgS",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/22bukBZvUppuwQwmDz75Gz"
+              },
+              "href": "https://api.spotify.com/v1/artists/22bukBZvUppuwQwmDz75Gz",
+              "id": "22bukBZvUppuwQwmDz75Gz",
+              "name": "Sander van Doorn",
+              "type": "artist",
+              "uri": "spotify:artist:22bukBZvUppuwQwmDz75Gz"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5X4LWwbUFNzPkEas04uU82"
+              },
+              "href": "https://api.spotify.com/v1/artists/5X4LWwbUFNzPkEas04uU82",
+              "id": "5X4LWwbUFNzPkEas04uU82",
+              "name": "DVBBS",
+              "type": "artist",
+              "uri": "spotify:artist:5X4LWwbUFNzPkEas04uU82"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/4RzfNzvOUfjQqW63TI9wgS"
+          },
+          "total_tracks": 4
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/22bukBZvUppuwQwmDz75Gz"
+            },
+            "href": "https://api.spotify.com/v1/artists/22bukBZvUppuwQwmDz75Gz",
+            "id": "22bukBZvUppuwQwmDz75Gz",
+            "name": "Sander van Doorn",
+            "type": "artist",
+            "uri": "spotify:artist:22bukBZvUppuwQwmDz75Gz"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5X4LWwbUFNzPkEas04uU82"
+            },
+            "href": "https://api.spotify.com/v1/artists/5X4LWwbUFNzPkEas04uU82",
+            "id": "5X4LWwbUFNzPkEas04uU82",
+            "name": "DVBBS",
+            "type": "artist",
+            "uri": "spotify:artist:5X4LWwbUFNzPkEas04uU82"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1KV1BqrUpebQPqVU2r89xc"
+            },
+            "href": "https://api.spotify.com/v1/artists/1KV1BqrUpebQPqVU2r89xc",
+            "id": "1KV1BqrUpebQPqVU2r89xc",
+            "name": "Aleesia",
+            "type": "artist",
+            "uri": "spotify:artist:1KV1BqrUpebQPqVU2r89xc"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/2o5jDhtHVPhrJdv3cEQ99Z"
+            },
+            "href": "https://api.spotify.com/v1/artists/2o5jDhtHVPhrJdv3cEQ99Z",
+            "id": "2o5jDhtHVPhrJdv3cEQ99Z",
+            "name": "Tiësto",
+            "type": "artist",
+            "uri": "spotify:artist:2o5jDhtHVPhrJdv3cEQ99Z"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 306102,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/7bKWpXmubyw8iJDUsMaRkr"
+        },
+        "href": "https://api.spotify.com/v1/tracks/7bKWpXmubyw8iJDUsMaRkr",
+        "id": "7bKWpXmubyw8iJDUsMaRkr",
+        "name": "Gold Skies - Tiësto Remix",
+        "uri": "spotify:track:7bKWpXmubyw8iJDUsMaRkr",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/4RzfNzvOUfjQqW63TI9wgS",
+          "id": "4RzfNzvOUfjQqW63TI9wgS",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273a8e83e9fe938779f21f50372",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02a8e83e9fe938779f21f50372",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851a8e83e9fe938779f21f50372",
+              "width": 64
+            }
+          ],
+          "name": "Gold Skies (The Remixes Part 1)",
+          "release_date": "2014-09-22",
+          "release_date_precision": "day",
+          "uri": "spotify:album:4RzfNzvOUfjQqW63TI9wgS",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/22bukBZvUppuwQwmDz75Gz"
+              },
+              "href": "https://api.spotify.com/v1/artists/22bukBZvUppuwQwmDz75Gz",
+              "id": "22bukBZvUppuwQwmDz75Gz",
+              "name": "Sander van Doorn",
+              "type": "artist",
+              "uri": "spotify:artist:22bukBZvUppuwQwmDz75Gz"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5X4LWwbUFNzPkEas04uU82"
+              },
+              "href": "https://api.spotify.com/v1/artists/5X4LWwbUFNzPkEas04uU82",
+              "id": "5X4LWwbUFNzPkEas04uU82",
+              "name": "DVBBS",
+              "type": "artist",
+              "uri": "spotify:artist:5X4LWwbUFNzPkEas04uU82"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/4RzfNzvOUfjQqW63TI9wgS"
+          },
+          "total_tracks": 4
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/22bukBZvUppuwQwmDz75Gz"
+            },
+            "href": "https://api.spotify.com/v1/artists/22bukBZvUppuwQwmDz75Gz",
+            "id": "22bukBZvUppuwQwmDz75Gz",
+            "name": "Sander van Doorn",
+            "type": "artist",
+            "uri": "spotify:artist:22bukBZvUppuwQwmDz75Gz"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5X4LWwbUFNzPkEas04uU82"
+            },
+            "href": "https://api.spotify.com/v1/artists/5X4LWwbUFNzPkEas04uU82",
+            "id": "5X4LWwbUFNzPkEas04uU82",
+            "name": "DVBBS",
+            "type": "artist",
+            "uri": "spotify:artist:5X4LWwbUFNzPkEas04uU82"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1KV1BqrUpebQPqVU2r89xc"
+            },
+            "href": "https://api.spotify.com/v1/artists/1KV1BqrUpebQPqVU2r89xc",
+            "id": "1KV1BqrUpebQPqVU2r89xc",
+            "name": "Aleesia",
+            "type": "artist",
+            "uri": "spotify:artist:1KV1BqrUpebQPqVU2r89xc"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/3XINWZaloea97SIRiyTJxX"
+            },
+            "href": "https://api.spotify.com/v1/artists/3XINWZaloea97SIRiyTJxX",
+            "id": "3XINWZaloea97SIRiyTJxX",
+            "name": "DubVision",
+            "type": "artist",
+            "uri": "spotify:artist:3XINWZaloea97SIRiyTJxX"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 2,
+        "duration_ms": 311250,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/0N84STI4Klm86q7TfgVuhS"
+        },
+        "href": "https://api.spotify.com/v1/tracks/0N84STI4Klm86q7TfgVuhS",
+        "id": "0N84STI4Klm86q7TfgVuhS",
+        "name": "Gold Skies - DubVision Remix",
+        "uri": "spotify:track:0N84STI4Klm86q7TfgVuhS",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/4RzfNzvOUfjQqW63TI9wgS",
+          "id": "4RzfNzvOUfjQqW63TI9wgS",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273a8e83e9fe938779f21f50372",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02a8e83e9fe938779f21f50372",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851a8e83e9fe938779f21f50372",
+              "width": 64
+            }
+          ],
+          "name": "Gold Skies (The Remixes Part 1)",
+          "release_date": "2014-09-22",
+          "release_date_precision": "day",
+          "uri": "spotify:album:4RzfNzvOUfjQqW63TI9wgS",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/22bukBZvUppuwQwmDz75Gz"
+              },
+              "href": "https://api.spotify.com/v1/artists/22bukBZvUppuwQwmDz75Gz",
+              "id": "22bukBZvUppuwQwmDz75Gz",
+              "name": "Sander van Doorn",
+              "type": "artist",
+              "uri": "spotify:artist:22bukBZvUppuwQwmDz75Gz"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5X4LWwbUFNzPkEas04uU82"
+              },
+              "href": "https://api.spotify.com/v1/artists/5X4LWwbUFNzPkEas04uU82",
+              "id": "5X4LWwbUFNzPkEas04uU82",
+              "name": "DVBBS",
+              "type": "artist",
+              "uri": "spotify:artist:5X4LWwbUFNzPkEas04uU82"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/4RzfNzvOUfjQqW63TI9wgS"
+          },
+          "total_tracks": 4
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/22bukBZvUppuwQwmDz75Gz"
+            },
+            "href": "https://api.spotify.com/v1/artists/22bukBZvUppuwQwmDz75Gz",
+            "id": "22bukBZvUppuwQwmDz75Gz",
+            "name": "Sander van Doorn",
+            "type": "artist",
+            "uri": "spotify:artist:22bukBZvUppuwQwmDz75Gz"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5X4LWwbUFNzPkEas04uU82"
+            },
+            "href": "https://api.spotify.com/v1/artists/5X4LWwbUFNzPkEas04uU82",
+            "id": "5X4LWwbUFNzPkEas04uU82",
+            "name": "DVBBS",
+            "type": "artist",
+            "uri": "spotify:artist:5X4LWwbUFNzPkEas04uU82"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1KV1BqrUpebQPqVU2r89xc"
+            },
+            "href": "https://api.spotify.com/v1/artists/1KV1BqrUpebQPqVU2r89xc",
+            "id": "1KV1BqrUpebQPqVU2r89xc",
+            "name": "Aleesia",
+            "type": "artist",
+            "uri": "spotify:artist:1KV1BqrUpebQPqVU2r89xc"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1Sst6GQgTy9e0QxrQX2Uyb"
+            },
+            "href": "https://api.spotify.com/v1/artists/1Sst6GQgTy9e0QxrQX2Uyb",
+            "id": "1Sst6GQgTy9e0QxrQX2Uyb",
+            "name": "Overused",
+            "type": "artist",
+            "uri": "spotify:artist:1Sst6GQgTy9e0QxrQX2Uyb"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 3,
+        "duration_ms": 256753,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/42IenLbjXjiK7RXff3wAcf"
+        },
+        "href": "https://api.spotify.com/v1/tracks/42IenLbjXjiK7RXff3wAcf",
+        "id": "42IenLbjXjiK7RXff3wAcf",
+        "name": "Gold Skies - Overused Remix",
+        "uri": "spotify:track:42IenLbjXjiK7RXff3wAcf",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/4RzfNzvOUfjQqW63TI9wgS",
+          "id": "4RzfNzvOUfjQqW63TI9wgS",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273a8e83e9fe938779f21f50372",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02a8e83e9fe938779f21f50372",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851a8e83e9fe938779f21f50372",
+              "width": 64
+            }
+          ],
+          "name": "Gold Skies (The Remixes Part 1)",
+          "release_date": "2014-09-22",
+          "release_date_precision": "day",
+          "uri": "spotify:album:4RzfNzvOUfjQqW63TI9wgS",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/22bukBZvUppuwQwmDz75Gz"
+              },
+              "href": "https://api.spotify.com/v1/artists/22bukBZvUppuwQwmDz75Gz",
+              "id": "22bukBZvUppuwQwmDz75Gz",
+              "name": "Sander van Doorn",
+              "type": "artist",
+              "uri": "spotify:artist:22bukBZvUppuwQwmDz75Gz"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5X4LWwbUFNzPkEas04uU82"
+              },
+              "href": "https://api.spotify.com/v1/artists/5X4LWwbUFNzPkEas04uU82",
+              "id": "5X4LWwbUFNzPkEas04uU82",
+              "name": "DVBBS",
+              "type": "artist",
+              "uri": "spotify:artist:5X4LWwbUFNzPkEas04uU82"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/4RzfNzvOUfjQqW63TI9wgS"
+          },
+          "total_tracks": 4
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/22bukBZvUppuwQwmDz75Gz"
+            },
+            "href": "https://api.spotify.com/v1/artists/22bukBZvUppuwQwmDz75Gz",
+            "id": "22bukBZvUppuwQwmDz75Gz",
+            "name": "Sander van Doorn",
+            "type": "artist",
+            "uri": "spotify:artist:22bukBZvUppuwQwmDz75Gz"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5X4LWwbUFNzPkEas04uU82"
+            },
+            "href": "https://api.spotify.com/v1/artists/5X4LWwbUFNzPkEas04uU82",
+            "id": "5X4LWwbUFNzPkEas04uU82",
+            "name": "DVBBS",
+            "type": "artist",
+            "uri": "spotify:artist:5X4LWwbUFNzPkEas04uU82"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1KV1BqrUpebQPqVU2r89xc"
+            },
+            "href": "https://api.spotify.com/v1/artists/1KV1BqrUpebQPqVU2r89xc",
+            "id": "1KV1BqrUpebQPqVU2r89xc",
+            "name": "Aleesia",
+            "type": "artist",
+            "uri": "spotify:artist:1KV1BqrUpebQPqVU2r89xc"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/3cnAJv9gydgm52KFIsdvO8"
+            },
+            "href": "https://api.spotify.com/v1/artists/3cnAJv9gydgm52KFIsdvO8",
+            "id": "3cnAJv9gydgm52KFIsdvO8",
+            "name": "Ferreck Dawn",
+            "type": "artist",
+            "uri": "spotify:artist:3cnAJv9gydgm52KFIsdvO8"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/3T0HSMgUpuH1hXbT1JPwQF"
+            },
+            "href": "https://api.spotify.com/v1/artists/3T0HSMgUpuH1hXbT1JPwQF",
+            "id": "3T0HSMgUpuH1hXbT1JPwQF",
+            "name": "Redondo",
+            "type": "artist",
+            "uri": "spotify:artist:3T0HSMgUpuH1hXbT1JPwQF"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 4,
+        "duration_ms": 379245,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/1LK6TpWB83EndqSPSJf1Wh"
+        },
+        "href": "https://api.spotify.com/v1/tracks/1LK6TpWB83EndqSPSJf1Wh",
+        "id": "1LK6TpWB83EndqSPSJf1Wh",
+        "name": "Gold Skies - Ferreck Dawn & Redondo Remix",
+        "uri": "spotify:track:1LK6TpWB83EndqSPSJf1Wh",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/38JiXXsbwnPED5NkNMBrax",
+          "id": "38JiXXsbwnPED5NkNMBrax",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b27342c4be28f00cf37fa676221b",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e0242c4be28f00cf37fa676221b",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d0000485142c4be28f00cf37fa676221b",
+              "width": 64
+            }
+          ],
+          "name": "Turn Up The Speakers",
+          "release_date": "2014-08-27",
+          "release_date_precision": "day",
+          "uri": "spotify:album:38JiXXsbwnPED5NkNMBrax",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/4D75GcNG95ebPtNvoNVXhz"
+              },
+              "href": "https://api.spotify.com/v1/artists/4D75GcNG95ebPtNvoNVXhz",
+              "id": "4D75GcNG95ebPtNvoNVXhz",
+              "name": "AFROJACK",
+              "type": "artist",
+              "uri": "spotify:artist:4D75GcNG95ebPtNvoNVXhz"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/38JiXXsbwnPED5NkNMBrax"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/4D75GcNG95ebPtNvoNVXhz"
+            },
+            "href": "https://api.spotify.com/v1/artists/4D75GcNG95ebPtNvoNVXhz",
+            "id": "4D75GcNG95ebPtNvoNVXhz",
+            "name": "AFROJACK",
+            "type": "artist",
+            "uri": "spotify:artist:4D75GcNG95ebPtNvoNVXhz"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 183750,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/2F9zf32Q3DFz977NmSt58Y"
+        },
+        "href": "https://api.spotify.com/v1/tracks/2F9zf32Q3DFz977NmSt58Y",
+        "id": "2F9zf32Q3DFz977NmSt58Y",
+        "name": "Turn Up The Speakers",
+        "uri": "spotify:track:2F9zf32Q3DFz977NmSt58Y",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/65Qz6GlGuY2iXqm9d8j0XM",
+          "id": "65Qz6GlGuY2iXqm9d8j0XM",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273c0f9319b7277e99b52d5b72b",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02c0f9319b7277e99b52d5b72b",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851c0f9319b7277e99b52d5b72b",
+              "width": 64
+            }
+          ],
+          "name": "Tremor (Sensation 2014 Anthem)",
+          "release_date": "2014-05-05",
+          "release_date_precision": "day",
+          "uri": "spotify:album:65Qz6GlGuY2iXqm9d8j0XM",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/73jBynjsVtofjRpdpRAJGk"
+              },
+              "href": "https://api.spotify.com/v1/artists/73jBynjsVtofjRpdpRAJGk",
+              "id": "73jBynjsVtofjRpdpRAJGk",
+              "name": "Dimitri Vegas & Like Mike",
+              "type": "artist",
+              "uri": "spotify:artist:73jBynjsVtofjRpdpRAJGk"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/65Qz6GlGuY2iXqm9d8j0XM"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/73jBynjsVtofjRpdpRAJGk"
+            },
+            "href": "https://api.spotify.com/v1/artists/73jBynjsVtofjRpdpRAJGk",
+            "id": "73jBynjsVtofjRpdpRAJGk",
+            "name": "Dimitri Vegas & Like Mike",
+            "type": "artist",
+            "uri": "spotify:artist:73jBynjsVtofjRpdpRAJGk"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 193139,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/6GNIcpcbeWxSH1TJgmGDl7"
+        },
+        "href": "https://api.spotify.com/v1/tracks/6GNIcpcbeWxSH1TJgmGDl7",
+        "id": "6GNIcpcbeWxSH1TJgmGDl7",
+        "name": "Tremor (Sensation 2014 Anthem) - Radio Edit",
+        "uri": "spotify:track:6GNIcpcbeWxSH1TJgmGDl7",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/24NKj9pKgI7RhIwUNTBJTM",
+          "id": "24NKj9pKgI7RhIwUNTBJTM",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273ca9f6afde4e52f9d0c726e70",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02ca9f6afde4e52f9d0c726e70",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851ca9f6afde4e52f9d0c726e70",
+              "width": 64
+            }
+          ],
+          "name": "Wizard Minimix (Spotify Exclusive)",
+          "release_date": "2013-12-02",
+          "release_date_precision": "day",
+          "uri": "spotify:album:24NKj9pKgI7RhIwUNTBJTM",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/24NKj9pKgI7RhIwUNTBJTM"
+          },
+          "total_tracks": 6
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/12SPNXi0aDpFt0rMVbmLrr"
+            },
+            "href": "https://api.spotify.com/v1/artists/12SPNXi0aDpFt0rMVbmLrr",
+            "id": "12SPNXi0aDpFt0rMVbmLrr",
+            "name": "Jay Hardway",
+            "type": "artist",
+            "uri": "spotify:artist:12SPNXi0aDpFt0rMVbmLrr"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 202411,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/4mBBIeQRAwymY79njJHsiE"
+        },
+        "href": "https://api.spotify.com/v1/tracks/4mBBIeQRAwymY79njJHsiE",
+        "id": "4mBBIeQRAwymY79njJHsiE",
+        "name": "Wizard",
+        "uri": "spotify:track:4mBBIeQRAwymY79njJHsiE",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/3UeAYPILU0r0fRhTp3FL9V",
+          "id": "3UeAYPILU0r0fRhTp3FL9V",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b27387b105a445ae69f7c4a8d480",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e0287b105a445ae69f7c4a8d480",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d0000485187b105a445ae69f7c4a8d480",
+              "width": 64
+            }
+          ],
+          "name": "Wizard (The Remixes)",
+          "release_date": "2014-03-31",
+          "release_date_precision": "day",
+          "uri": "spotify:album:3UeAYPILU0r0fRhTp3FL9V",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/12SPNXi0aDpFt0rMVbmLrr"
+              },
+              "href": "https://api.spotify.com/v1/artists/12SPNXi0aDpFt0rMVbmLrr",
+              "id": "12SPNXi0aDpFt0rMVbmLrr",
+              "name": "Jay Hardway",
+              "type": "artist",
+              "uri": "spotify:artist:12SPNXi0aDpFt0rMVbmLrr"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/3UeAYPILU0r0fRhTp3FL9V"
+          },
+          "total_tracks": 4
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/12SPNXi0aDpFt0rMVbmLrr"
+            },
+            "href": "https://api.spotify.com/v1/artists/12SPNXi0aDpFt0rMVbmLrr",
+            "id": "12SPNXi0aDpFt0rMVbmLrr",
+            "name": "Jay Hardway",
+            "type": "artist",
+            "uri": "spotify:artist:12SPNXi0aDpFt0rMVbmLrr"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1KpCi9BOfviCVhmpI4G2sY"
+            },
+            "href": "https://api.spotify.com/v1/artists/1KpCi9BOfviCVhmpI4G2sY",
+            "id": "1KpCi9BOfviCVhmpI4G2sY",
+            "name": "Tchami",
+            "type": "artist",
+            "uri": "spotify:artist:1KpCi9BOfviCVhmpI4G2sY"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 336774,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/7K8TZ6No9MMZ4hrNfsYgvs"
+        },
+        "href": "https://api.spotify.com/v1/tracks/7K8TZ6No9MMZ4hrNfsYgvs",
+        "id": "7K8TZ6No9MMZ4hrNfsYgvs",
+        "name": "Wizard - Tchami Remix",
+        "uri": "spotify:track:7K8TZ6No9MMZ4hrNfsYgvs",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/3UeAYPILU0r0fRhTp3FL9V",
+          "id": "3UeAYPILU0r0fRhTp3FL9V",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b27387b105a445ae69f7c4a8d480",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e0287b105a445ae69f7c4a8d480",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d0000485187b105a445ae69f7c4a8d480",
+              "width": 64
+            }
+          ],
+          "name": "Wizard (The Remixes)",
+          "release_date": "2014-03-31",
+          "release_date_precision": "day",
+          "uri": "spotify:album:3UeAYPILU0r0fRhTp3FL9V",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/12SPNXi0aDpFt0rMVbmLrr"
+              },
+              "href": "https://api.spotify.com/v1/artists/12SPNXi0aDpFt0rMVbmLrr",
+              "id": "12SPNXi0aDpFt0rMVbmLrr",
+              "name": "Jay Hardway",
+              "type": "artist",
+              "uri": "spotify:artist:12SPNXi0aDpFt0rMVbmLrr"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/3UeAYPILU0r0fRhTp3FL9V"
+          },
+          "total_tracks": 4
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/12SPNXi0aDpFt0rMVbmLrr"
+            },
+            "href": "https://api.spotify.com/v1/artists/12SPNXi0aDpFt0rMVbmLrr",
+            "id": "12SPNXi0aDpFt0rMVbmLrr",
+            "name": "Jay Hardway",
+            "type": "artist",
+            "uri": "spotify:artist:12SPNXi0aDpFt0rMVbmLrr"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0eW2N88UpBG0giW7LJOaY2"
+            },
+            "href": "https://api.spotify.com/v1/artists/0eW2N88UpBG0giW7LJOaY2",
+            "id": "0eW2N88UpBG0giW7LJOaY2",
+            "name": "Mike Hawkins",
+            "type": "artist",
+            "uri": "spotify:artist:0eW2N88UpBG0giW7LJOaY2"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 2,
+        "duration_ms": 215806,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/5WUwQVOA6nXkJVNikicYR0"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5WUwQVOA6nXkJVNikicYR0",
+        "id": "5WUwQVOA6nXkJVNikicYR0",
+        "name": "Wizard - Mike Hawkins Remix",
+        "uri": "spotify:track:5WUwQVOA6nXkJVNikicYR0",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/3UeAYPILU0r0fRhTp3FL9V",
+          "id": "3UeAYPILU0r0fRhTp3FL9V",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b27387b105a445ae69f7c4a8d480",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e0287b105a445ae69f7c4a8d480",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d0000485187b105a445ae69f7c4a8d480",
+              "width": 64
+            }
+          ],
+          "name": "Wizard (The Remixes)",
+          "release_date": "2014-03-31",
+          "release_date_precision": "day",
+          "uri": "spotify:album:3UeAYPILU0r0fRhTp3FL9V",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/12SPNXi0aDpFt0rMVbmLrr"
+              },
+              "href": "https://api.spotify.com/v1/artists/12SPNXi0aDpFt0rMVbmLrr",
+              "id": "12SPNXi0aDpFt0rMVbmLrr",
+              "name": "Jay Hardway",
+              "type": "artist",
+              "uri": "spotify:artist:12SPNXi0aDpFt0rMVbmLrr"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/3UeAYPILU0r0fRhTp3FL9V"
+          },
+          "total_tracks": 4
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/12SPNXi0aDpFt0rMVbmLrr"
+            },
+            "href": "https://api.spotify.com/v1/artists/12SPNXi0aDpFt0rMVbmLrr",
+            "id": "12SPNXi0aDpFt0rMVbmLrr",
+            "name": "Jay Hardway",
+            "type": "artist",
+            "uri": "spotify:artist:12SPNXi0aDpFt0rMVbmLrr"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/47z7ZrgFoBvVpCnElCE3Zh"
+            },
+            "href": "https://api.spotify.com/v1/artists/47z7ZrgFoBvVpCnElCE3Zh",
+            "id": "47z7ZrgFoBvVpCnElCE3Zh",
+            "name": "Yellow Claw",
+            "type": "artist",
+            "uri": "spotify:artist:47z7ZrgFoBvVpCnElCE3Zh"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 3,
+        "duration_ms": 218491,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/5KpJ0jaMr0UusAxQ0R1RFS"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5KpJ0jaMr0UusAxQ0R1RFS",
+        "id": "5KpJ0jaMr0UusAxQ0R1RFS",
+        "name": "Wizard - Yellow Claw Remix",
+        "uri": "spotify:track:5KpJ0jaMr0UusAxQ0R1RFS",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/3UeAYPILU0r0fRhTp3FL9V",
+          "id": "3UeAYPILU0r0fRhTp3FL9V",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b27387b105a445ae69f7c4a8d480",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e0287b105a445ae69f7c4a8d480",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d0000485187b105a445ae69f7c4a8d480",
+              "width": 64
+            }
+          ],
+          "name": "Wizard (The Remixes)",
+          "release_date": "2014-03-31",
+          "release_date_precision": "day",
+          "uri": "spotify:album:3UeAYPILU0r0fRhTp3FL9V",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/12SPNXi0aDpFt0rMVbmLrr"
+              },
+              "href": "https://api.spotify.com/v1/artists/12SPNXi0aDpFt0rMVbmLrr",
+              "id": "12SPNXi0aDpFt0rMVbmLrr",
+              "name": "Jay Hardway",
+              "type": "artist",
+              "uri": "spotify:artist:12SPNXi0aDpFt0rMVbmLrr"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/3UeAYPILU0r0fRhTp3FL9V"
+          },
+          "total_tracks": 4
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/12SPNXi0aDpFt0rMVbmLrr"
+            },
+            "href": "https://api.spotify.com/v1/artists/12SPNXi0aDpFt0rMVbmLrr",
+            "id": "12SPNXi0aDpFt0rMVbmLrr",
+            "name": "Jay Hardway",
+            "type": "artist",
+            "uri": "spotify:artist:12SPNXi0aDpFt0rMVbmLrr"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/6ZXRsQeAoGPspf8tNeEtPo"
+            },
+            "href": "https://api.spotify.com/v1/artists/6ZXRsQeAoGPspf8tNeEtPo",
+            "id": "6ZXRsQeAoGPspf8tNeEtPo",
+            "name": "Tom & Jame",
+            "type": "artist",
+            "uri": "spotify:artist:6ZXRsQeAoGPspf8tNeEtPo"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 4,
+        "duration_ms": 285000,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/4x0tCd5ieoszWcv4XVOCBs"
+        },
+        "href": "https://api.spotify.com/v1/tracks/4x0tCd5ieoszWcv4XVOCBs",
+        "id": "4x0tCd5ieoszWcv4XVOCBs",
+        "name": "Wizard - Tom & Jame Remix",
+        "uri": "spotify:track:4x0tCd5ieoszWcv4XVOCBs",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/6PzXquldNYOf5zFoPO3ZsI",
+          "id": "6PzXquldNYOf5zFoPO3ZsI",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273998bfd2744a5532ce19b9a21",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02998bfd2744a5532ce19b9a21",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851998bfd2744a5532ce19b9a21",
+              "width": 64
+            }
+          ],
+          "name": "Helicopter",
+          "release_date": "2014-03-10",
+          "release_date_precision": "day",
+          "uri": "spotify:album:6PzXquldNYOf5zFoPO3ZsI",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/53YSn9tHwGJ6bq5P0gGoYo"
+              },
+              "href": "https://api.spotify.com/v1/artists/53YSn9tHwGJ6bq5P0gGoYo",
+              "id": "53YSn9tHwGJ6bq5P0gGoYo",
+              "name": "Firebeatz",
+              "type": "artist",
+              "uri": "spotify:artist:53YSn9tHwGJ6bq5P0gGoYo"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/6PzXquldNYOf5zFoPO3ZsI"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/53YSn9tHwGJ6bq5P0gGoYo"
+            },
+            "href": "https://api.spotify.com/v1/artists/53YSn9tHwGJ6bq5P0gGoYo",
+            "id": "53YSn9tHwGJ6bq5P0gGoYo",
+            "name": "Firebeatz",
+            "type": "artist",
+            "uri": "spotify:artist:53YSn9tHwGJ6bq5P0gGoYo"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 206449,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/1toz8k7rYIw4FS5jOSXxYH"
+        },
+        "href": "https://api.spotify.com/v1/tracks/1toz8k7rYIw4FS5jOSXxYH",
+        "id": "1toz8k7rYIw4FS5jOSXxYH",
+        "name": "Helicopter - Video Edit",
+        "uri": "spotify:track:1toz8k7rYIw4FS5jOSXxYH",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/4cLnteeIFyOB8TqAfyOISy",
+          "id": "4cLnteeIFyOB8TqAfyOISy",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273a8bf95d447930d5e9d8de042",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02a8bf95d447930d5e9d8de042",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851a8bf95d447930d5e9d8de042",
+              "width": 64
+            }
+          ],
+          "name": "Proxy",
+          "release_date": "2014-03-07",
+          "release_date_precision": "day",
+          "uri": "spotify:album:4cLnteeIFyOB8TqAfyOISy",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/4cLnteeIFyOB8TqAfyOISy"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 279384,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/0HSHOXIDMwhFbXHnaxpvxE"
+        },
+        "href": "https://api.spotify.com/v1/tracks/0HSHOXIDMwhFbXHnaxpvxE",
+        "id": "0HSHOXIDMwhFbXHnaxpvxE",
+        "name": "Proxy - Original Mix",
+        "uri": "spotify:track:0HSHOXIDMwhFbXHnaxpvxE",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/0N5QcojgdA6aP9oQ7yYG9A",
+          "id": "0N5QcojgdA6aP9oQ7yYG9A",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b2738993223ca7b07fb866c1e605",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e028993223ca7b07fb866c1e605",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d000048518993223ca7b07fb866c1e605",
+              "width": 64
+            }
+          ],
+          "name": "Animals",
+          "release_date": "2013-07-01",
+          "release_date_precision": "day",
+          "uri": "spotify:album:0N5QcojgdA6aP9oQ7yYG9A",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/0N5QcojgdA6aP9oQ7yYG9A"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 304228,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/0hv6ku4431kPrjbpBBspw3"
+        },
+        "href": "https://api.spotify.com/v1/tracks/0hv6ku4431kPrjbpBBspw3",
+        "id": "0hv6ku4431kPrjbpBBspw3",
+        "name": "Animals - Original Mix",
+        "uri": "spotify:track:0hv6ku4431kPrjbpBBspw3",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/6So837uOpZKUwnzrHViWCl",
+          "id": "6So837uOpZKUwnzrHViWCl",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273d5ea88b073629bf4e91b2154",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02d5ea88b073629bf4e91b2154",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851d5ea88b073629bf4e91b2154",
+              "width": 64
+            }
+          ],
+          "name": "Animals (The Remixes Part 1)",
+          "release_date": "2014-01-27",
+          "release_date_precision": "day",
+          "uri": "spotify:album:6So837uOpZKUwnzrHViWCl",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/6So837uOpZKUwnzrHViWCl"
+          },
+          "total_tracks": 4
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 262800,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/4XKQpjPdUcXuc1sGIu5cJ9"
+        },
+        "href": "https://api.spotify.com/v1/tracks/4XKQpjPdUcXuc1sGIu5cJ9",
+        "id": "4XKQpjPdUcXuc1sGIu5cJ9",
+        "name": "Animals - Oliver Heldens Remix",
+        "uri": "spotify:track:4XKQpjPdUcXuc1sGIu5cJ9",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/6So837uOpZKUwnzrHViWCl",
+          "id": "6So837uOpZKUwnzrHViWCl",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273d5ea88b073629bf4e91b2154",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02d5ea88b073629bf4e91b2154",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851d5ea88b073629bf4e91b2154",
+              "width": 64
+            }
+          ],
+          "name": "Animals (The Remixes Part 1)",
+          "release_date": "2014-01-27",
+          "release_date_precision": "day",
+          "uri": "spotify:album:6So837uOpZKUwnzrHViWCl",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/6So837uOpZKUwnzrHViWCl"
+          },
+          "total_tracks": 4
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 2,
+        "duration_ms": 253090,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/3KXh5udmAP99e9Aznmd8Z6"
+        },
+        "href": "https://api.spotify.com/v1/tracks/3KXh5udmAP99e9Aznmd8Z6",
+        "id": "3KXh5udmAP99e9Aznmd8Z6",
+        "name": "Animals - Jay Ronko Remix",
+        "uri": "spotify:track:3KXh5udmAP99e9Aznmd8Z6",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/6So837uOpZKUwnzrHViWCl",
+          "id": "6So837uOpZKUwnzrHViWCl",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273d5ea88b073629bf4e91b2154",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02d5ea88b073629bf4e91b2154",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851d5ea88b073629bf4e91b2154",
+              "width": 64
+            }
+          ],
+          "name": "Animals (The Remixes Part 1)",
+          "release_date": "2014-01-27",
+          "release_date_precision": "day",
+          "uri": "spotify:album:6So837uOpZKUwnzrHViWCl",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/6So837uOpZKUwnzrHViWCl"
+          },
+          "total_tracks": 4
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 3,
+        "duration_ms": 198466,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/448TLDGJXO7IP1VWRkD4kb"
+        },
+        "href": "https://api.spotify.com/v1/tracks/448TLDGJXO7IP1VWRkD4kb",
+        "id": "448TLDGJXO7IP1VWRkD4kb",
+        "name": "Animals - Victor Niglio & Martin Garrix Festival Trap Remix",
+        "uri": "spotify:track:448TLDGJXO7IP1VWRkD4kb",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/6So837uOpZKUwnzrHViWCl",
+          "id": "6So837uOpZKUwnzrHViWCl",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273d5ea88b073629bf4e91b2154",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02d5ea88b073629bf4e91b2154",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851d5ea88b073629bf4e91b2154",
+              "width": 64
+            }
+          ],
+          "name": "Animals (The Remixes Part 1)",
+          "release_date": "2014-01-27",
+          "release_date_precision": "day",
+          "uri": "spotify:album:6So837uOpZKUwnzrHViWCl",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/6So837uOpZKUwnzrHViWCl"
+          },
+          "total_tracks": 4
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 4,
+        "duration_ms": 260625,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/2CHORzlDWNpLgNsLvTOpgq"
+        },
+        "href": "https://api.spotify.com/v1/tracks/2CHORzlDWNpLgNsLvTOpgq",
+        "id": "2CHORzlDWNpLgNsLvTOpgq",
+        "name": "Animals - Botnek Edit",
+        "uri": "spotify:track:2CHORzlDWNpLgNsLvTOpgq",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/1LUEJENeEAJdliMIDjauBx",
+          "id": "1LUEJENeEAJdliMIDjauBx",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b2738840e1ce5be30ec35eacc929",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e028840e1ce5be30ec35eacc929",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d000048518840e1ce5be30ec35eacc929",
+              "width": 64
+            }
+          ],
+          "name": "Torrent",
+          "release_date": "2014-01-10",
+          "release_date_precision": "day",
+          "uri": "spotify:album:1LUEJENeEAJdliMIDjauBx",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3XonXgjEAAXVl0WKLF1Z4g"
+              },
+              "href": "https://api.spotify.com/v1/artists/3XonXgjEAAXVl0WKLF1Z4g",
+              "id": "3XonXgjEAAXVl0WKLF1Z4g",
+              "name": "Sidney Samson",
+              "type": "artist",
+              "uri": "spotify:artist:3XonXgjEAAXVl0WKLF1Z4g"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/1LUEJENeEAJdliMIDjauBx"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/3XonXgjEAAXVl0WKLF1Z4g"
+            },
+            "href": "https://api.spotify.com/v1/artists/3XonXgjEAAXVl0WKLF1Z4g",
+            "id": "3XonXgjEAAXVl0WKLF1Z4g",
+            "name": "Sidney Samson",
+            "type": "artist",
+            "uri": "spotify:artist:3XonXgjEAAXVl0WKLF1Z4g"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 318754,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/2zlq3jyBgKbiBMfmqU0x9F"
+        },
+        "href": "https://api.spotify.com/v1/tracks/2zlq3jyBgKbiBMfmqU0x9F",
+        "id": "2zlq3jyBgKbiBMfmqU0x9F",
+        "name": "Torrent",
+        "uri": "spotify:track:2zlq3jyBgKbiBMfmqU0x9F",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "restrictions": {
+          "reason": "market"
+        },
+        "is_playable": false,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/24NKj9pKgI7RhIwUNTBJTM",
+          "id": "24NKj9pKgI7RhIwUNTBJTM",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273ca9f6afde4e52f9d0c726e70",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02ca9f6afde4e52f9d0c726e70",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851ca9f6afde4e52f9d0c726e70",
+              "width": 64
+            }
+          ],
+          "name": "Wizard Minimix (Spotify Exclusive)",
+          "release_date": "2013-12-02",
+          "release_date_precision": "day",
+          "uri": "spotify:album:24NKj9pKgI7RhIwUNTBJTM",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/24NKj9pKgI7RhIwUNTBJTM"
+          },
+          "total_tracks": 6
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 6,
+        "duration_ms": 574687,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/1b4vmXsC3vqsCJTXliZ3B0"
+        },
+        "href": "https://api.spotify.com/v1/tracks/1b4vmXsC3vqsCJTXliZ3B0",
+        "id": "1b4vmXsC3vqsCJTXliZ3B0",
+        "name": "Wizard Minimix",
+        "uri": "spotify:track:1b4vmXsC3vqsCJTXliZ3B0",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/6DEpxu52B9Dypcu8pxFEDN",
+          "id": "6DEpxu52B9Dypcu8pxFEDN",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273696ef3ea38a4c56cf29905b2",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02696ef3ea38a4c56cf29905b2",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851696ef3ea38a4c56cf29905b2",
+              "width": 64
+            }
+          ],
+          "name": "Just Some Loops",
+          "release_date": "2013-06-14",
+          "release_date_precision": "day",
+          "uri": "spotify:album:6DEpxu52B9Dypcu8pxFEDN",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/32Aw9aJJoXXC1Vn3zqzJbQ"
+              },
+              "href": "https://api.spotify.com/v1/artists/32Aw9aJJoXXC1Vn3zqzJbQ",
+              "id": "32Aw9aJJoXXC1Vn3zqzJbQ",
+              "name": "TV Noise",
+              "type": "artist",
+              "uri": "spotify:artist:32Aw9aJJoXXC1Vn3zqzJbQ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/6DEpxu52B9Dypcu8pxFEDN"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/32Aw9aJJoXXC1Vn3zqzJbQ"
+            },
+            "href": "https://api.spotify.com/v1/artists/32Aw9aJJoXXC1Vn3zqzJbQ",
+            "id": "32Aw9aJJoXXC1Vn3zqzJbQ",
+            "name": "TV Noise",
+            "type": "artist",
+            "uri": "spotify:artist:32Aw9aJJoXXC1Vn3zqzJbQ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 303759,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/2qdg4xVXTmw7m1TUQd9x4e"
+        },
+        "href": "https://api.spotify.com/v1/tracks/2qdg4xVXTmw7m1TUQd9x4e",
+        "id": "2qdg4xVXTmw7m1TUQd9x4e",
+        "name": "Just Some Loops - Original Mix",
+        "uri": "spotify:track:2qdg4xVXTmw7m1TUQd9x4e",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/41Q52HSJVbtcG9IOtWeyHD",
+          "id": "41Q52HSJVbtcG9IOtWeyHD",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273a664e02bacc4b186ca106861",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02a664e02bacc4b186ca106861",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851a664e02bacc4b186ca106861",
+              "width": 64
+            }
+          ],
+          "name": "Error 404",
+          "release_date": "2013-03-18",
+          "release_date_precision": "day",
+          "uri": "spotify:album:41Q52HSJVbtcG9IOtWeyHD",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/12SPNXi0aDpFt0rMVbmLrr"
+              },
+              "href": "https://api.spotify.com/v1/artists/12SPNXi0aDpFt0rMVbmLrr",
+              "id": "12SPNXi0aDpFt0rMVbmLrr",
+              "name": "Jay Hardway",
+              "type": "artist",
+              "uri": "spotify:artist:12SPNXi0aDpFt0rMVbmLrr"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/41Q52HSJVbtcG9IOtWeyHD"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/12SPNXi0aDpFt0rMVbmLrr"
+            },
+            "href": "https://api.spotify.com/v1/artists/12SPNXi0aDpFt0rMVbmLrr",
+            "id": "12SPNXi0aDpFt0rMVbmLrr",
+            "name": "Jay Hardway",
+            "type": "artist",
+            "uri": "spotify:artist:12SPNXi0aDpFt0rMVbmLrr"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 333759,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/5c7UATnb0XfIbyIHHfgIMb"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5c7UATnb0XfIbyIHHfgIMb",
+        "id": "5c7UATnb0XfIbyIHHfgIMb",
+        "name": "Error 404 - Original Mix",
+        "uri": "spotify:track:5c7UATnb0XfIbyIHHfgIMb",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/7xZak3wySwWlHuTn4eOzgD",
+          "id": "7xZak3wySwWlHuTn4eOzgD",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b2733eb38fa488c90f89d457fdb4",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e023eb38fa488c90f89d457fdb4",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d000048513eb38fa488c90f89d457fdb4",
+              "width": 64
+            }
+          ],
+          "name": "BFAM",
+          "release_date": "2012-11-12",
+          "release_date_precision": "day",
+          "uri": "spotify:album:7xZak3wySwWlHuTn4eOzgD",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/2vUCVkeZjzDcaoX4gagHdV"
+              },
+              "href": "https://api.spotify.com/v1/artists/2vUCVkeZjzDcaoX4gagHdV",
+              "id": "2vUCVkeZjzDcaoX4gagHdV",
+              "name": "Julian Jordan",
+              "type": "artist",
+              "uri": "spotify:artist:2vUCVkeZjzDcaoX4gagHdV"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/7xZak3wySwWlHuTn4eOzgD"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/2vUCVkeZjzDcaoX4gagHdV"
+            },
+            "href": "https://api.spotify.com/v1/artists/2vUCVkeZjzDcaoX4gagHdV",
+            "id": "2vUCVkeZjzDcaoX4gagHdV",
+            "name": "Julian Jordan",
+            "type": "artist",
+            "uri": "spotify:artist:2vUCVkeZjzDcaoX4gagHdV"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 318794,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/0FN86CgJpiYHivPZ6ZlNm6"
+        },
+        "href": "https://api.spotify.com/v1/tracks/0FN86CgJpiYHivPZ6ZlNm6",
+        "id": "0FN86CgJpiYHivPZ6ZlNm6",
+        "name": "BFAM - Original Mix",
+        "uri": "spotify:track:0FN86CgJpiYHivPZ6ZlNm6",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/6EfCddoQmyeP1VngMBmgxZ",
+          "id": "6EfCddoQmyeP1VngMBmgxZ",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273e28afd29db5ffedee37d7e42",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02e28afd29db5ffedee37d7e42",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851e28afd29db5ffedee37d7e42",
+              "width": 64
+            }
+          ],
+          "name": "Midnight Sun 2.0 (Martin Garrix Remix)",
+          "release_date": "2012-10-08",
+          "release_date_precision": "day",
+          "uri": "spotify:album:6EfCddoQmyeP1VngMBmgxZ",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/03RggOhzXgjvlFmc3A8TuW"
+              },
+              "href": "https://api.spotify.com/v1/artists/03RggOhzXgjvlFmc3A8TuW",
+              "id": "03RggOhzXgjvlFmc3A8TuW",
+              "name": "Roy Gates",
+              "type": "artist",
+              "uri": "spotify:artist:03RggOhzXgjvlFmc3A8TuW"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/6EfCddoQmyeP1VngMBmgxZ"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/03RggOhzXgjvlFmc3A8TuW"
+            },
+            "href": "https://api.spotify.com/v1/artists/03RggOhzXgjvlFmc3A8TuW",
+            "id": "03RggOhzXgjvlFmc3A8TuW",
+            "name": "Roy Gates",
+            "type": "artist",
+            "uri": "spotify:artist:03RggOhzXgjvlFmc3A8TuW"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 313129,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/6HD1Z5lx2SqHENf6NhsLr9"
+        },
+        "href": "https://api.spotify.com/v1/tracks/6HD1Z5lx2SqHENf6NhsLr9",
+        "id": "6HD1Z5lx2SqHENf6NhsLr9",
+        "name": "Midnight Sun 2.0 - Martin Garrix Remix",
+        "uri": "spotify:track:6HD1Z5lx2SqHENf6NhsLr9",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    },
+    {
+      "added_at": "2026-02-20T21:48:21Z",
+      "added_by": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/testUser"
+        },
+        "href": "https://api.spotify.com/v1/users/testUser",
+        "id": "testUser",
+        "type": "user",
+        "uri": "spotify:user:testUser"
+      },
+      "is_local": false,
+      "primary_color": null,
+      "item": {
+        "is_playable": true,
+        "explicit": false,
+        "type": "track",
+        "episode": false,
+        "track": true,
+        "album": {
+          "is_playable": true,
+          "type": "album",
+          "album_type": "single",
+          "href": "https://api.spotify.com/v1/albums/0qCFABkje7g5biVSmXOyOz",
+          "id": "0qCFABkje7g5biVSmXOyOz",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b2730c91dc72c2198609034f0ea5",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e020c91dc72c2198609034f0ea5",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d000048510c91dc72c2198609034f0ea5",
+              "width": 64
+            }
+          ],
+          "name": "Keygen",
+          "release_date": "2012-09-03",
+          "release_date_precision": "day",
+          "uri": "spotify:album:0qCFABkje7g5biVSmXOyOz",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+              },
+              "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+              "id": "60d24wfXkVzDSfLS6hyCjZ",
+              "name": "Martin Garrix",
+              "type": "artist",
+              "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/0qCFABkje7g5biVSmXOyOz"
+          },
+          "total_tracks": 1
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+            },
+            "href": "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+            "id": "60d24wfXkVzDSfLS6hyCjZ",
+            "name": "Martin Garrix",
+            "type": "artist",
+            "uri": "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+          }
+        ],
+        "disc_number": 1,
+        "track_number": 1,
+        "duration_ms": 296575,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/1UUdHRk0Bo4ssw1y2RCenI"
+        },
+        "href": "https://api.spotify.com/v1/tracks/1UUdHRk0Bo4ssw1y2RCenI",
+        "id": "1UUdHRk0Bo4ssw1y2RCenI",
+        "name": "Keygen - Original Mix",
+        "uri": "spotify:track:1UUdHRk0Bo4ssw1y2RCenI",
+        "is_local": false
+      },
+      "video_thumbnail": {
+        "url": null
+      }
+    }
+  ],
+  "limit": 100,
+  "next": null,
+  "offset": 200,
+  "previous": "https://api.spotify.com/v1/playlists/testId/items?offset=100&limit=100",
+  "total": 231
+}
