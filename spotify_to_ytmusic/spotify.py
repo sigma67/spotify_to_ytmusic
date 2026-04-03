@@ -53,8 +53,9 @@ class Spotify:
         print("Getting Spotify tracks...")
         results = self.api.playlist(playlistId)
         name = results["name"]
-        total = int(results["tracks"]["total"])
-        tracks = build_results(results["tracks"]["items"])
+        tracks_data = results.get("tracks") or results.get("items")
+        total = int(tracks_data["total"])
+        tracks = build_results(tracks_data["items"])
         count = len(tracks)
         print(f"Spotify tracks: {count}/{total}")
 
@@ -80,7 +81,7 @@ class Spotify:
             more = len(results) == 50
             count = count + 1
 
-        return [p for p in pl if p["owner"]["id"] == user and p["tracks"]["total"] > 0]
+        return [p for p in pl if p["owner"]["id"] == user and (p.get("tracks") or p.get("items", {})).get("total", 0) > 0]
 
     def getLikedPlaylist(self):
         response = self.api.current_user_saved_tracks(limit=50)
@@ -106,7 +107,9 @@ def build_results(tracks, album=None):
     for track in tracks:
         if "track" in track:
             track = track["track"]
-        if not track or track["duration_ms"] == 0:
+        elif "item" in track:
+            track = track["item"]
+        if not track or not track.get("duration_ms"):
             continue
         album_name = album if album else track["album"]["name"]
         results.append(
