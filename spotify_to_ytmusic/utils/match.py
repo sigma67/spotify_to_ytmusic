@@ -34,6 +34,11 @@ def get_best_fit_song_id(ytm_results, spoti) -> str | None:
             if len(title_split) == 2:
                 title = title_split[1]
 
+        if not ytm.get("artists") or not ytm.get("videoId"):
+            # some results (podcasts, profiles) carry no artists/videoId;
+            # skip them instead of crashing the whole transfer
+            continue
+
         artists = " ".join([a["name"] for a in ytm["artists"]])
 
         title_score[ytm["videoId"]] = difflib.SequenceMatcher(
