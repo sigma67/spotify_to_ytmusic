@@ -33,6 +33,18 @@ A simple command line script to clone a Spotify playlist to YouTube Music.
 - Like all songs from all playlists for a Spotify user
 - Remove playlists from YouTube Music
 
+.. warning::
+
+   **Spotify Premium may be required.**
+   Spotify restricts parts of its Web API for apps owned by accounts without an
+   active Premium subscription. Without Premium, requests can fail with
+   ``403 Forbidden`` errors, which may break commands such as ``create``,
+   ``update``, ``all`` and ``liked``.
+
+   If you run into this, make sure the Spotify account that owns your developer
+   app has an active Premium subscription. See
+   `Spotify's Web API documentation <https://developer.spotify.com/documentation/web-api>`_
+   for the current access rules.
 
 Install
 -------
