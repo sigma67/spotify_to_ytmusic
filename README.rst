@@ -35,7 +35,7 @@ A simple command line script to clone a Spotify playlist to YouTube Music.
 
 .. warning::
 
-   **Spotify Premium may be required.**
+   **Spotify Premium is required.**
    Spotify restricts parts of its Web API for apps owned by accounts without an
    active Premium subscription. Without Premium, requests can fail with
    ``403 Forbidden`` errors, which may break commands such as ``create``,
