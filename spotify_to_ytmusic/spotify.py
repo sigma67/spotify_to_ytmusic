@@ -104,8 +104,10 @@ class Spotify:
 def build_results(tracks, album=None):
     results = []
     for track in tracks:
-        if "track" in track:
-            track = track["track"]
+        # the playlist-items payload nests the track under "track" (legacy)
+        # or "item" (current API responses)
+        if "track" in track or "item" in track:
+            track = track.get("track") or track.get("item")
         if not track or track["duration_ms"] == 0:
             continue
         album_name = album if album else track["album"]["name"]
