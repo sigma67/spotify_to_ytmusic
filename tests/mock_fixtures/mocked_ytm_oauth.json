@@ -1,0 +1,8 @@
+{
+ "scope": "https://www.googleapis.com/auth/youtube",
+ "token_type": "Bearer",
+ "access_token": "fakeToken",
+ "refresh_token": "fakeRefreshToken",
+ "expires_at": 1770943011,
+ "expires_in": 3599
+}

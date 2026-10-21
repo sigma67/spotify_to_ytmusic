@@ -56,7 +56,6 @@ def all(args):
         except Exception as ex:
             print(f"Could not transfer playlist {p['name']}. {ex!s}")
 
-
 def _create_ytmusic(args, playlist, ytmusic):
     date = ""
     if args.date:
