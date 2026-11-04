@@ -32,7 +32,7 @@ class Spotify:
                 client_id=client_id,
                 client_secret=client_secret,
                 redirect_uri="https://127.0.0.1",
-                scope="user-library-read",
+                scope="user-library-read playlist-read-private playlist-read-collaborative",
                 cache_handler=cache_handler,
                 open_browser=has_browser(),
             )
@@ -72,16 +72,36 @@ class Spotify:
         }
 
     def getUserPlaylists(self, user):
-        pl = self.api.user_playlists(user)["items"]
-        count = 1
-        more = len(pl) == 50
-        while more:
-            results = self.api.user_playlists(user, offset=count * 50)["items"]
-            pl.extend(results)
-            more = len(results) == 50
-            count = count + 1
+        # Since Spotify's February 2026 Web API changes, GET /users/{id}/playlists
+        # is no longer available. Only the current user's playlists can be listed,
+        # via GET /me/playlists, which requires OAuth.
+        if not isinstance(self.api.auth_manager, SpotifyOAuth):
+            raise ValueError(
+                "Listing playlists requires OAuth. "
+                "Run 'spotify_to_ytmusic setup' and enable OAuth for Spotify."
+            )
+        current_user = self.api.me()["id"]
+        if user != current_user:
+            raise ValueError(
+                f"Spotify only allows listing the playlists of the logged-in user "
+                f"('{current_user}'), not '{user}'."
+            )
 
-        return [p for p in pl if p["owner"]["id"] == user and (p.get("tracks") or p.get("items", {})).get("total", 0) > 0]
+        pl = []
+        offset = 0
+        while True:
+            results = self.api.current_user_playlists(limit=50, offset=offset)
+            pl.extend(results["items"])
+            if not results.get("next"):
+                break
+            offset += 50
+
+        return [
+            p
+            for p in pl
+            if p["owner"]["id"] == user
+            and (p.get("tracks") or p.get("items") or {}).get("total", 0) > 0
+        ]
 
     def getLikedPlaylist(self):
         response = self.api.current_user_saved_tracks(limit=50)

@@ -95,7 +95,9 @@ The script will log its progress and output songs that were not found in YouTube
 Transfer all playlists of a Spotify user
 ----------------------------------------
 
-For migration purposes, it is possible to transfer all public playlists of a user by using the Spotify user's ID (unique username).
+For migration purposes, it is possible to transfer all playlists you own by using your Spotify user ID
+(the part after ``/user/`` in your profile link). This requires OAuth authentication.
+Spotify no longer allows listing other users' playlists.
 
 .. code-block::
 
@@ -141,7 +143,7 @@ Available subcommands:
         create              Create a new playlist on YouTube Music.
         update              Delete all entries in the provided Google Play Music playlist and update the playlist with entries from the Spotify playlist.
         remove              Remove playlists with specified regex pattern.
-        all                 Transfer all public playlists of the specified user (Spotify User ID).
+        all                 Transfer all playlists owned by the logged-in user (Spotify User ID).
 
     options:
       -h, --help            show this help message and exit
