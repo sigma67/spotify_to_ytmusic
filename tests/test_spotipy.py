@@ -16,5 +16,7 @@ class TestSpotify:
         assert len(data["tracks"]) > 190
 
     def test_getUserPlaylists(self):
-        playlists = self.spotify.getUserPlaylists("spinninrecordsofficial")
-        assert len(playlists) > 40
+        # Spotify only allows listing the logged-in user's playlists
+        user = self.spotify.api.me()["id"]
+        playlists = self.spotify.getUserPlaylists(user)
+        assert all(p["owner"]["id"] == user for p in playlists)

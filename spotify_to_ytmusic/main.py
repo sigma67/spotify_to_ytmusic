@@ -116,11 +116,11 @@ def get_args(args=None):
 
     all_parser = subparsers.add_parser(
         "all",
-        help="Transfer all public playlists of the specified user (Spotify User ID).",
+        help="Transfer all playlists owned by the logged-in user (Spotify User ID).",
         parents=[cache_parser],
     )
     all_parser.add_argument(
-        "user", type=str, help="Spotify userid of the specified user."
+        "user", type=str, help="Your Spotify user ID (requires OAuth)."
     )
     all_parser.set_defaults(func=controllers.all)
     all_parser.add_argument(
