@@ -13,9 +13,9 @@ def get_best_fit_song_id(ytm_results, spoti) -> str | None:
     title_score = {}
     for ytm in ytm_results:
         if (
-            "resultType" not in ytm
-            or ytm["resultType"] not in ["song", "video"]
-            or not ytm["title"]
+            ytm.get("resultType") not in ["song", "video"]
+            or not ytm.get("title")
+            or not ytm.get("videoId")
         ):
             continue
 
@@ -34,7 +34,7 @@ def get_best_fit_song_id(ytm_results, spoti) -> str | None:
             if len(title_split) == 2:
                 title = title_split[1]
 
-        artists = " ".join([a["name"] for a in ytm["artists"]])
+        artists = " ".join(a.get("name") or "" for a in ytm.get("artists") or [])
 
         title_score[ytm["videoId"]] = difflib.SequenceMatcher(
             a=title.lower(), b=spoti["name"].lower()
@@ -49,10 +49,11 @@ def get_best_fit_song_id(ytm_results, spoti) -> str | None:
             scores.append(duration_match_score * 5)
 
         # add album for songs only
-        if ytm["resultType"] == "song" and ytm.get("album", None) is not None:
+        album_name = (ytm.get("album") or {}).get("name")
+        if ytm["resultType"] == "song" and album_name:
             scores.append(
                 difflib.SequenceMatcher(
-                    a=ytm["album"]["name"].lower(), b=spoti["album"].lower()
+                    a=album_name.lower(), b=spoti["album"].lower()
                 ).ratio()
             )
 
